@@ -9,11 +9,14 @@ out/
 build/
 dist/
 
-# Databases & local state
-store.db
-store.db-journal
+# Databases & local state (WAL files, SQLite DBs)
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
 *.sqlite
 *.sqlite3
+data/
 
 # Environment variables
 .env
