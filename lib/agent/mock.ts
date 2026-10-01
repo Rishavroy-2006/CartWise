@@ -14,6 +14,73 @@ export async function handleMockChat(messages: ChatMessage[]): Promise<Assistant
 
   const query = lastUserMessage.content.toLowerCase().trim();
 
+  // 1a. Mock Chips Logic
+  if (query === "compare these") {
+    const p1 = getProductById(1);
+    const p5 = getProductById(5);
+    const p7 = getProductById(7);
+    const productsToCompare = [p1, p5, p7].filter(Boolean) as Product[];
+
+    return {
+      type: "compare",
+      products: productsToCompare,
+      comparisonPoints: {
+        "Price": productsToCompare.map(p => `$${p.price.toFixed(2)}`),
+        "Rating": productsToCompare.map(p => `${p.average_rating} (${p.review_count} reviews)`),
+        "Organic": productsToCompare.map(p => p.is_organic ? "Yes" : "No"),
+        "Pros": productsToCompare.map(p => {
+          const reviews = getProductReviews(p.id);
+          const topReview = reviews.find(r => r.rating >= 4);
+          return topReview ? `"${topReview.review_text}"` : "No positive reviews";
+        }),
+        "Cons": productsToCompare.map(p => {
+          const reviews = getProductReviews(p.id);
+          const lowReview = [...reviews].sort((a,b) => a.rating - b.rating)[0];
+          if (!lowReview || lowReview.rating >= 4) return `No complaints in ${p.review_count} reviews`;
+          return `"${lowReview.review_text}"`;
+        }),
+      }
+    };
+  }
+
+  if (query === "show cheaper") {
+     const { products, sql } = searchProducts({ category: "honey", maxPrice: 15 });
+     return {
+       type: "products",
+       text: `Found ${products.length} honeys under $15:`,
+       products,
+       trace: {
+         query: lastUserMessage.content,
+         parsed_intent: "Find cheaper honey",
+         filters: { category: "honey", max_price: 15 },
+         sql_query: sql.trim(),
+         results_count: products.length,
+         steps: [
+           { title: "Price Cap Enforcement", detail: "Strictly filtered items under $15.00", status: "complete" }
+         ]
+       }
+     };
+  }
+
+  if (query.includes("only 4.7")) {
+     const { products, sql } = searchProducts({ category: "honey", minRating: 4.7 });
+     return {
+       type: "products",
+       text: `Found ${products.length} top-rated honeys (4.7+ stars):`,
+       products,
+       trace: {
+         query: lastUserMessage.content,
+         parsed_intent: "Filter by 4.7+ rating",
+         filters: { category: "honey", min_rating: 4.7 },
+         sql_query: sql.trim(),
+         results_count: products.length,
+         steps: [
+           { title: "Rating Aggregation", detail: "Calculated average reviews with HAVING average_rating >= 4.7", status: "complete" }
+         ]
+       }
+     };
+  }
+
   // 1. Check for Comparison query
   if (
     query.includes("compare") ||
