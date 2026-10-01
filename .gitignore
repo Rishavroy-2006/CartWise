@@ -24,8 +24,6 @@ data/
 
 # System & AI planning files
 .planning/
-AGENTS.md
-TASKS.md
 .DS_Store
 *.pem
 

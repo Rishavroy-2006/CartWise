@@ -88,8 +88,8 @@ export function ProductsMessage({ products, text, trace, onOpenTrace }: Products
           </div>
         )}
 
-        {/* Product Cards Layout: responsive grid with non-truncating titles */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Product Cards Layout: swipeable carousel on mobile, grid on desktop */}
+        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
           {products.map((product) => {
             const isAdded = Boolean(addedIds[product.id]);
             const isBuying = buyingId === product.id;
@@ -97,7 +97,7 @@ export function ProductsMessage({ products, text, trace, onOpenTrace }: Products
             return (
               <div
                 key={product.id}
-                className="bg-surface-container-lowest border border-outline-variant/40 hover:border-primary-container/40 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-200"
+                className="bg-surface-container-lowest border border-outline-variant/40 hover:border-primary-container/40 rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-200 w-[85vw] sm:w-auto flex-shrink-0 snap-center sm:snap-align-none"
               >
                 <div>
                   {/* Image container */}
@@ -163,14 +163,18 @@ export function ProductsMessage({ products, text, trace, onOpenTrace }: Products
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={() => handleAdd(product)}
-                      disabled={isAdded}
-                      className={`w-full py-2 px-2.5 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all duration-150 cursor-pointer active:scale-98 whitespace-nowrap ${
-                        isAdded
-                          ? "bg-secondary text-white"
-                          : "border border-primary-container text-primary hover:bg-surface-container-low"
+                      disabled={isAdded || product.stock === 0}
+                      className={`w-full py-2 px-2.5 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-98 whitespace-nowrap ${
+                        product.stock === 0
+                          ? "bg-surface-container-high text-on-surface-variant cursor-not-allowed opacity-75"
+                          : isAdded
+                          ? "bg-secondary text-white cursor-default"
+                          : "border border-primary-container text-primary hover:bg-surface-container-low cursor-pointer"
                       }`}
                     >
-                      {isAdded ? (
+                      {product.stock === 0 ? (
+                        <span>Out of stock</span>
+                      ) : isAdded ? (
                         <>
                           <Check className="w-4 h-4" />
                           <span>Added</span>
@@ -185,8 +189,12 @@ export function ProductsMessage({ products, text, trace, onOpenTrace }: Products
 
                     <button
                       onClick={() => handleBuy(product.id)}
-                      disabled={isBuying}
-                      className="w-full py-2 px-2.5 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 bg-primary text-white hover:bg-primary-container transition-all duration-150 cursor-pointer active:scale-98 shadow-xs whitespace-nowrap"
+                      disabled={isBuying || product.stock === 0}
+                      className={`w-full py-2 px-2.5 rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all duration-150 active:scale-98 shadow-xs whitespace-nowrap ${
+                        product.stock === 0
+                          ? "bg-surface-container-highest text-on-surface-variant cursor-not-allowed opacity-50"
+                          : "bg-primary text-white hover:bg-primary-container cursor-pointer"
+                      }`}
                     >
                       <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       <span>{isBuying ? "Ordering…" : "Buy Now"}</span>

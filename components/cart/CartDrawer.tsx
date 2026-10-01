@@ -15,6 +15,7 @@ import {
   CreditCard,
   MapPin,
   Leaf,
+  AlertCircle
 } from "lucide-react";
 
 export function CartDrawer() {
@@ -26,7 +27,6 @@ export function CartDrawer() {
     removeFromCart,
     clearCart,
     subtotal,
-    estimatedTax,
     total,
     isReviewOpen,
     setIsReviewOpen,
@@ -37,6 +37,7 @@ export function CartDrawer() {
   } = useCart();
 
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   if (!isCartOpen && !isReviewOpen && !isConfirmedOpen) {
     return null;
@@ -45,30 +46,30 @@ export function CartDrawer() {
   const handleProceedToReview = () => {
     setIsCartOpen(false);
     setIsReviewOpen(true);
+    setCheckoutError(null);
   };
 
   const handlePlaceOrder = async () => {
     if (cart.length === 0) return;
     setIsPlacingOrder(true);
+    setCheckoutError(null);
 
     try {
-      // Place order for first item or batch
-      const firstItem = cart[0];
-      const res = await fetch("/api/orders", {
+      const res = await fetch("/api/checkout", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId: firstItem.product.id }),
       });
       const data = await res.json();
 
       if (data.success && data.order) {
         setConfirmedOrder(data.order);
-        clearCart();
         setIsReviewOpen(false);
         setIsConfirmedOpen(true);
+      } else {
+        setCheckoutError(data.error || "Checkout failed. Please try again.");
       }
     } catch (e) {
       console.error("Order placement failed", e);
+      setCheckoutError("Network error. Please check your connection.");
     } finally {
       setIsPlacingOrder(false);
     }
@@ -253,16 +254,12 @@ export function CartDrawer() {
 
                   <div className="space-y-2.5 text-xs sm:text-sm">
                     <div className="flex justify-between text-on-surface-variant">
-                      <span>Item Subtotal</span>
+                      <span>Item Subtotal ({cart.reduce((s, i) => s + i.quantity, 0)} items)</span>
                       <span className="font-semibold text-on-surface">${subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-on-surface-variant">
-                      <span>Estimated Tax (5%)</span>
-                      <span className="font-semibold text-on-surface">${estimatedTax.toFixed(2)}</span>
-                    </div>
-                    <div className="flex justify-between text-on-surface-variant">
-                      <span>Organic Green Shipping</span>
-                      <span className="font-bold text-secondary">FREE</span>
+                      <span>Estimated delivery</span>
+                      <span className="font-bold text-secondary">3–5 business days</span>
                     </div>
                   </div>
 
@@ -288,76 +285,79 @@ export function CartDrawer() {
           </div>
         )}
 
-        {/* MODAL CONTENT: VIEW 2 - REVIEW ORDER (cartwise_review_order_3b) */}
+        {/* MODAL CONTENT: VIEW 2 - REVIEW ORDER */}
         {isReviewOpen && (
           <div className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-6">
             <div className="max-w-2xl mx-auto space-y-6">
-              <div>
-                <h2 className="text-xl sm:text-2xl font-bold text-primary mb-1">
-                  Review Your Order
-                </h2>
-                <p className="text-xs sm:text-sm text-on-surface-variant">
-                  Verify shipping address and details before deterministic order placement.
-                </p>
-              </div>
-
-              {/* Delivery Address (Fixed / Non-invented) */}
-              <div className="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-xs">
-                <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <div className="text-xs sm:text-sm">
-                  <span className="font-bold text-on-surface block mb-0.5">Delivery Address</span>
-                  <p className="text-on-surface-variant">124 Botanical Way, Suite 4B</p>
-                  <p className="text-on-surface-variant">San Francisco, CA 94107</p>
-                  <span className="text-[11px] font-semibold text-secondary block mt-1">
-                    Standard Ground (3–5 Business Days)
-                  </span>
-                </div>
-              </div>
-
-              {/* Payment Method */}
-              <div className="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-4 sm:p-5 flex items-start gap-3.5 shadow-xs">
-                <CreditCard className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                <div className="text-xs sm:text-sm">
-                  <span className="font-bold text-on-surface block mb-0.5">Payment Method</span>
-                  <p className="text-on-surface-variant">Organic Store Account (Verified Balance)</p>
-                  <span className="text-[11px] text-on-surface-variant">Direct checkout with product_id</span>
-                </div>
-              </div>
-
-              {/* Items Breakdown */}
-              <div className="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-4 sm:p-5 shadow-xs space-y-3">
-                <span className="font-bold text-xs uppercase tracking-wider text-on-surface-variant block pb-2 border-b border-outline-variant/30">
-                  Items to Order ({cart.reduce((s, i) => s + i.quantity, 0)})
-                </span>
-                {cart.map(({ product, quantity }) => (
-                  <div key={product.id} className="flex justify-between items-center text-xs sm:text-sm">
-                    <div>
-                      <span className="font-bold text-on-surface block">{product.name}</span>
-                      <span className="text-on-surface-variant">Qty: {quantity} (ID: #{product.id})</span>
-                    </div>
-                    <span className="font-bold text-primary">${(product.price * quantity).toFixed(2)}</span>
+              {checkoutError ? (
+                <div className="bg-error-container/20 border border-error-container rounded-2xl p-6 text-center space-y-4">
+                  <div className="w-12 h-12 rounded-full bg-error-container text-error flex items-center justify-center mx-auto">
+                    <AlertCircle className="w-6 h-6" />
                   </div>
-                ))}
-
-                <div className="pt-3 border-t border-outline-variant/30 flex justify-between font-bold text-base text-primary">
-                  <span>Grand Total</span>
-                  <span>${total.toFixed(2)}</span>
+                  <div>
+                    <h3 className="text-lg font-bold text-error mb-2">Checkout Failed</h3>
+                    <p className="text-sm text-on-surface-variant">{checkoutError}</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setCheckoutError(null);
+                      setIsReviewOpen(false);
+                      setIsCartOpen(true);
+                    }}
+                    className="px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface font-semibold text-xs sm:text-sm hover:bg-surface-container-highest transition-colors cursor-pointer"
+                  >
+                    Return to Cart
+                  </button>
                 </div>
-              </div>
+              ) : (
+                <>
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-bold text-primary mb-1">
+                      Review Your Order
+                    </h2>
+                    <p className="text-xs sm:text-sm text-on-surface-variant">
+                      Verify shipping address and details before deterministic order placement.
+                    </p>
+                  </div>
 
-              {/* Confirm Order Button */}
-              <button
-                onClick={handlePlaceOrder}
-                disabled={isPlacingOrder}
-                className="w-full py-3.5 px-6 rounded-xl bg-primary text-white font-bold text-sm sm:text-base hover:bg-primary-container transition-all cursor-pointer active:scale-98 shadow-sm flex items-center justify-center gap-2"
-              >
-                <span>{isPlacingOrder ? "Placing Order in Database…" : `Place Order ($${total.toFixed(2)})`}</span>
-              </button>
+
+
+                  {/* Items Breakdown */}
+                  <div className="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-4 sm:p-5 shadow-xs space-y-3">
+                    <span className="font-bold text-xs uppercase tracking-wider text-on-surface-variant block pb-2 border-b border-outline-variant/30">
+                      Items to Order ({cart.reduce((s, i) => s + i.quantity, 0)})
+                    </span>
+                    {cart.map(({ product, quantity }) => (
+                      <div key={product.id} className="flex justify-between items-center text-xs sm:text-sm">
+                        <div>
+                          <span className="font-bold text-on-surface block">{product.name}</span>
+                          <span className="text-on-surface-variant">Qty: {quantity} (ID: #{product.id})</span>
+                        </div>
+                        <span className="font-bold text-primary">${(product.price * quantity).toFixed(2)}</span>
+                      </div>
+                    ))}
+
+                    <div className="pt-3 border-t border-outline-variant/30 flex justify-between font-bold text-base text-primary">
+                      <span>Grand Total</span>
+                      <span>${total.toFixed(2)}</span>
+                    </div>
+                  </div>
+
+                  {/* Confirm Order Button */}
+                  <button
+                    onClick={handlePlaceOrder}
+                    disabled={isPlacingOrder}
+                    className="w-full py-3.5 px-6 rounded-xl bg-primary text-white font-bold text-sm sm:text-base hover:bg-primary-container transition-all cursor-pointer active:scale-98 shadow-sm flex items-center justify-center gap-2"
+                  >
+                    <span>{isPlacingOrder ? "Placing Order in Database…" : `Place Order ($${total.toFixed(2)})`}</span>
+                  </button>
+                </>
+              )}
             </div>
           </div>
         )}
 
-        {/* MODAL CONTENT: VIEW 3 - ORDER CONFIRMED (cartwise_order_confirmed_3c) */}
+        {/* MODAL CONTENT: VIEW 3 - ORDER CONFIRMED */}
         {isConfirmedOpen && (
           <div className="flex-1 overflow-y-auto p-6 sm:p-12 text-center flex flex-col justify-center items-center">
             <div className="max-w-md mx-auto space-y-5">
@@ -373,23 +373,33 @@ export function CartDrawer() {
                   Order #{confirmedOrder?.id || "1042"} Confirmed
                 </h2>
                 <p className="text-xs sm:text-sm text-on-surface-variant mt-2 leading-relaxed">
-                  Your order for <strong>{confirmedOrder?.product_name || "Organic Raw Honey"}</strong> ($
-                  {confirmedOrder?.price?.toFixed(2) || "14.99"}) has been recorded directly to the SQLite database.
+                  Your order has been recorded directly to the SQLite database.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-surface-container-low border border-outline-variant/30 text-xs sm:text-sm text-on-surface space-y-1">
-                <div className="flex justify-between">
+              <div className="p-4 rounded-xl bg-surface-container-low border border-outline-variant/30 text-xs sm:text-sm text-on-surface space-y-3">
+                <div className="flex justify-between pb-2 border-b border-outline-variant/30">
                   <span className="text-on-surface-variant">Order ID:</span>
                   <span className="font-bold text-primary">#{confirmedOrder?.id || 1042}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-on-surface-variant">Estimated Delivery:</span>
-                  <span className="font-bold text-secondary">3–5 Business Days</span>
+                
+                <div className="space-y-1.5 text-left">
+                  <span className="font-bold text-[11px] uppercase tracking-wider text-on-surface-variant">Items included</span>
+                  {confirmedOrder?.items?.map((item: any) => (
+                    <div key={item.id} className="flex justify-between items-center text-xs">
+                      <span className="text-on-surface font-medium">{item.quantity}x {item.product_name}</span>
+                      <span className="text-on-surface-variant">${(item.unit_price * item.quantity).toFixed(2)}</span>
+                    </div>
+                  ))}
+                  <div className="pt-2 flex justify-between font-bold text-primary text-sm border-t border-outline-variant/20">
+                    <span>Total</span>
+                    <span>${confirmedOrder?.total?.toFixed(2)}</span>
+                  </div>
                 </div>
-                <div className="flex justify-between">
+
+                <div className="pt-2 flex justify-between">
                   <span className="text-on-surface-variant">Database Timestamp:</span>
-                  <span className="font-mono text-xs">{confirmedOrder?.ordered_at || new Date().toISOString()}</span>
+                  <span className="font-mono text-[11px]">{confirmedOrder?.created_at || new Date().toISOString()}</span>
                 </div>
               </div>
 

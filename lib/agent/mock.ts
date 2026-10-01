@@ -1,4 +1,4 @@
-import { searchProducts, getProductById, SearchProductsOptions } from "../db";
+import { searchProducts, getProductById, getProductReviews, SearchProductsOptions } from "../db";
 import { AssistantMessage, ChatMessage, Product, AgentTrace } from "../types";
 
 export async function handleMockChat(messages: ChatMessage[]): Promise<AssistantMessage> {
@@ -24,34 +24,25 @@ export async function handleMockChat(messages: ChatMessage[]): Promise<Assistant
     const steelCutOats = getProductById(20); // Steel-Cut Oats
 
     if (rolledOats && steelCutOats) {
+      const productsToCompare = [rolledOats, steelCutOats];
       return {
         type: "compare",
-        products: [rolledOats, steelCutOats],
+        products: productsToCompare,
         comparisonPoints: {
-          "Processing Method": [
-            "De-husked, steamed, and rolled flat with steel rollers",
-            "Whole groats sliced into 2-3 pieces with sharp steel blades"
-          ],
-          "Cooking Time": [
-            "5 to 7 minutes on stove (or 2 mins microwave)",
-            "25 to 30 minutes simmering on low heat"
-          ],
-          "Texture & Mouthfeel": [
-            "Soft, smooth, creamy porridge consistency",
-            "Chewy, hearty, dense, with a distinctive nutty bite"
-          ],
-          "Glycemic Index": [
-            "Medium (approx 55) — quicker digestion",
-            "Low (approx 42-45) — slow, sustained glucose release"
-          ],
-          "Dietary Fiber": [
-            "4g per 40g serving (soluble beta-glucan)",
-            "5g per 40g serving (higher intact kernel fiber)"
-          ],
-          "Best Culinary Use": [
-            "Overnight oats, quick breakfast bowls, baking cookies",
-            "Warm rustic savory bowls, slow-cooker batch breakfasts"
-          ]
+          "Price": productsToCompare.map(p => `${p.price.toFixed(2)}`),
+          "Rating": productsToCompare.map(p => `${p.average_rating} (${p.review_count} reviews)`),
+          "Organic": productsToCompare.map(p => p.is_organic ? "Yes" : "No"),
+          "Pros": productsToCompare.map(p => {
+            const reviews = getProductReviews(p.id);
+            const topReview = reviews.find(r => r.rating >= 4);
+            return topReview ? `"${topReview.review_text}"` : "No positive reviews";
+          }),
+          "Cons": productsToCompare.map(p => {
+            const reviews = getProductReviews(p.id);
+            const lowReview = [...reviews].sort((a,b) => a.rating - b.rating)[0];
+            if (!lowReview || lowReview.rating >= 4) return `No complaints in ${p.review_count} reviews`;
+            return `"${lowReview.review_text}"`;
+          }),
         }
       };
     }
@@ -92,7 +83,7 @@ export async function handleMockChat(messages: ChatMessage[]): Promise<Assistant
 
     return {
       type: "products",
-      text: "Here are 4 wholesome breakfast staples verified under $15 in our pantry aisle:",
+      text: "Here are 4 wholesome breakfast staples under $15 in our pantry aisle:",
       products,
       trace: {
         query: lastUserMessage.content,
@@ -103,7 +94,7 @@ export async function handleMockChat(messages: ChatMessage[]): Promise<Assistant
         steps: [
           { title: "Category Mapping", detail: "Scanned grains and snacks categories for morning items", status: "complete" },
           { title: "Price Cap Enforcement", detail: "Strictly filtered items under $15.00", status: "complete" },
-          { title: "Nutritional Sort", detail: "Prioritized whole grain and organic verified staples", status: "complete" }
+          { title: "Nutritional Sort", detail: "Prioritized whole grain and organic staples", status: "complete" }
         ]
       }
     };
@@ -112,16 +103,16 @@ export async function handleMockChat(messages: ChatMessage[]): Promise<Assistant
   // 4. Check for Honey specific search (e.g. "organic honey with 4.5+ rating under $20" or "under 20")
   if (query.includes("honey")) {
     const isOrganic = query.includes("organic");
-    const minRating = query.includes("4.5") ? 4.5 : query.includes("4") ? 4.0 : undefined;
+    const minRating = query.includes("4.7") ? 4.7 : query.includes("4.5") ? 4.5 : query.includes("4") ? 4.0 : undefined;
     const maxPrice = query.includes("20") ? 20 : query.includes("15") ? 15 : undefined;
 
     // If query is just vague "honey", return clarify message
     if (!isOrganic && minRating === undefined && maxPrice === undefined && query.length < 15) {
       return {
         type: "clarify",
-        question: "We carry 8 artisanal honeys in store! What kind of honey are you looking for?",
+        question: "We carry 8 honeys in store! What kind of honey are you looking for?",
         options: [
-          "Certified Organic Raw Honey",
+          "Organic Raw Honey",
           "High Rating (4.5+ Stars)",
           "Under $15 Budget",
           "Light Floral Acacia Honey"
@@ -130,7 +121,7 @@ export async function handleMockChat(messages: ChatMessage[]): Promise<Assistant
     }
 
     const { products, sql } = searchProducts({
-      query: "honey",
+      category: "honey",
       isOrganic: isOrganic ? true : undefined,
       minRating,
       maxPrice
@@ -146,7 +137,7 @@ export async function handleMockChat(messages: ChatMessage[]): Promise<Assistant
 
     return {
       type: "products",
-      text: `Found ${products.length} verified ${isOrganic ? "organic " : ""}honeys${minRating ? ` with ${minRating}+ rating` : ""}${maxPrice ? ` under $${maxPrice}` : ""}:`,
+      text: `Found ${products.length} ${isOrganic ? "organic " : ""}honeys${minRating ? ` with ${minRating}+ rating` : ""}${maxPrice ? ` under $${maxPrice}` : ""}:`,
       products,
       trace: {
         query: lastUserMessage.content,
@@ -248,7 +239,7 @@ export async function handleMockImage(imageInput: string | Buffer | File): Promi
 
     return {
       type: "image_analysis",
-      tags: ["Organic Raw Honey", "Glass Jar", "Artisanal", "Unfiltered"],
+      tags: ["Organic Raw Honey", "Glass Jar", "Unfiltered"],
       description: "Visual analysis identified a glass jar of artisanal organic raw honey. 3 matching items found in the honey aisle.",
       matchedProducts: matches,
       uploadedImage: typeof imageInput === "string" ? imageInput : "/images/honey.png"
@@ -292,7 +283,7 @@ export async function handleMockImage(imageInput: string | Buffer | File): Promi
   const rawHoney = getProductById(1);
   return {
     type: "image_analysis",
-    tags: ["Pantry Product", "Grocery Item", "Organic Label"],
+    tags: ["Pantry Product", "Grocery Item", "Organic label: not visible"],
     description: "Visual match identified a grocery product. Showing top recommendations from our catalog.",
     matchedProducts: rawHoney ? [rawHoney] : [],
     uploadedImage: typeof imageInput === "string" ? imageInput : "/images/honey.png"

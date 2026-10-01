@@ -8,6 +8,7 @@ export interface Product {
   average_rating?: number;
   review_count?: number;
   image_url?: string;
+  stock: number;
 }
 
 export interface Review {
@@ -18,12 +19,21 @@ export interface Review {
   review_text: string;
 }
 
-export interface Order {
+export interface OrderItem {
   id: number;
+  order_id: number;
   product_id: number;
   product_name: string;
-  price: number;
-  ordered_at: string;
+  unit_price: number;
+  quantity: number;
+}
+
+export interface Order {
+  id: number;
+  total: number;
+  status: "delivered" | "transit";
+  created_at: string;
+  items?: OrderItem[];
 }
 
 export interface CartItem {

@@ -1,17 +1,16 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { Product, CartItem, Order } from "@/lib/types";
 
 interface CartContextType {
   cart: CartItem[];
-  addToCart: (product: Product, quantity?: number) => void;
-  removeFromCart: (productId: number) => void;
-  updateQuantity: (productId: number, delta: number) => void;
-  clearCart: () => void;
+  addToCart: (product: Product, quantity?: number) => Promise<{ success: boolean; error?: string }>;
+  removeFromCart: (productId: number) => Promise<void>;
+  updateQuantity: (productId: number, delta: number) => Promise<{ success: boolean; error?: string }>;
+  clearCart: () => Promise<void>;
   cartCount: number;
   subtotal: number;
-  estimatedTax: number;
   total: number;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
@@ -21,7 +20,7 @@ interface CartContextType {
   setIsConfirmedOpen: (open: boolean) => void;
   confirmedOrder: Order | null;
   setConfirmedOrder: (order: Order | null) => void;
-  buyDirectly: (productId: number) => Promise<{ success: boolean; order?: Order; error?: string }>;
+  buyDirectly: (orderId: number) => Promise<{ success: boolean; error?: string }>;
   activeTab: "chat" | "orders";
   setActiveTab: (tab: "chat" | "orders") => void;
   selectedTrace: any | null;
@@ -39,83 +38,101 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [activeTab, setActiveTab] = useState<"chat" | "orders">("chat");
   const [selectedTrace, setSelectedTrace] = useState<any | null>(null);
 
-  // Initialize with initial items matching Stitch design if needed
-  useEffect(() => {
+  const fetchCart = useCallback(async () => {
     try {
-      const saved = localStorage.getItem("cartwise_cart");
-      if (saved) {
-        setCart(JSON.parse(saved));
+      const res = await fetch("/api/cart");
+      const data = await res.json();
+      if (data.success && data.cart) {
+        setCart(data.cart);
       }
-    } catch {
-      // Ignore storage errors
+    } catch (e) {
+      console.error("Failed to fetch cart", e);
     }
   }, []);
 
   useEffect(() => {
+    fetchCart();
+  }, [fetchCart]);
+
+  const addToCart = async (product: Product, quantity = 1) => {
     try {
-      localStorage.setItem("cartwise_cart", JSON.stringify(cart));
-    } catch {
-      // Ignore storage errors
-    }
-  }, [cart]);
-
-  const addToCart = (product: Product, quantity = 1) => {
-    setCart((prev) => {
-      const existing = prev.find((item) => item.product.id === product.id);
-      if (existing) {
-        return prev.map((item) =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
+      const res = await fetch("/api/cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId: product.id, quantity }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        await fetchCart();
+        return { success: true };
+      } else {
+        return { success: false, error: data.error };
       }
-      return [...prev, { product, quantity }];
-    });
+    } catch (e: any) {
+      return { success: false, error: e.message };
+    }
   };
 
-  const removeFromCart = (productId: number) => {
-    setCart((prev) => prev.filter((item) => item.product.id !== productId));
+  const removeFromCart = async (productId: number) => {
+    try {
+      await fetch(`/api/cart?productId=${productId}`, { method: "DELETE" });
+      await fetchCart();
+    } catch (e) {
+      console.error("Failed to remove from cart", e);
+    }
   };
 
-  const updateQuantity = (productId: number, delta: number) => {
-    setCart((prev) =>
-      prev
-        .map((item) => {
-          if (item.product.id === productId) {
-            const newQty = item.quantity + delta;
-            return newQty > 0 ? { ...item, quantity: newQty } : null;
-          }
-          return item;
-        })
-        .filter(Boolean) as CartItem[]
-    );
+  const updateQuantity = async (productId: number, delta: number) => {
+    const item = cart.find(i => i.product.id === productId);
+    if (!item) return { success: false, error: "Item not in cart" };
+
+    const newQty = item.quantity + delta;
+    
+    try {
+      const res = await fetch("/api/cart", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId, quantity: newQty }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        await fetchCart();
+        return { success: true };
+      } else {
+        return { success: false, error: data.error };
+      }
+    } catch (e: any) {
+      return { success: false, error: e.message };
+    }
   };
 
-  const clearCart = () => {
-    setCart([]);
+  const clearCart = async () => {
+    try {
+      await fetch("/api/cart", { method: "DELETE" });
+      await fetchCart();
+    } catch (e) {
+      console.error("Failed to clear cart", e);
+    }
   };
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = Number(
     cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0).toFixed(2)
   );
-  const estimatedTax = Number((subtotal * 0.05).toFixed(2));
-  const total = Number((subtotal + estimatedTax).toFixed(2));
+  const total = subtotal;
 
-  const buyDirectly = async (productId: number) => {
+  const buyDirectly = async (orderId: number) => {
     try {
-      const res = await fetch("/api/orders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId }),
+      const res = await fetch(`/api/orders/${orderId}/reorder`, {
+        method: "POST"
       });
       const data = await res.json();
-      if (data.success && data.order) {
-        setConfirmedOrder(data.order);
-        setIsConfirmedOpen(true);
-        return { success: true, order: data.order };
+      if (data.success) {
+        await fetchCart();
+        setIsCartOpen(true);
+        return { success: true };
       }
-      return { success: false, error: data.error || "Order placement failed." };
+      return { success: false, error: data.error || "Reorder failed." };
     } catch (e: any) {
       return { success: false, error: e?.message || "Network error" };
     }
@@ -131,7 +148,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         clearCart,
         cartCount,
         subtotal,
-        estimatedTax,
         total,
         isCartOpen,
         setIsCartOpen,

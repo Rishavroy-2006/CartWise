@@ -41,16 +41,15 @@ export function OrdersView() {
     fetchOrders();
   }, []);
 
-  const handleReorder = async (productId: number) => {
-    setReorderingId(productId);
-    await buyDirectly(productId);
+  const handleReorder = async (orderId: number) => {
+    setReorderingId(orderId);
+    await buyDirectly(orderId);
     setReorderingId(null);
-    fetchOrders();
   };
 
   const filteredOrders = orders.filter((o) => {
     const matchesSearch =
-      o.product_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (o.items && o.items.some(i => i.product_name.toLowerCase().includes(searchQuery.toLowerCase()))) ||
       String(o.id).includes(searchQuery);
     return matchesSearch;
   });
@@ -128,14 +127,14 @@ export function OrdersView() {
         </div>
       ) : (
         <div className="space-y-4">
-          {filteredOrders.map((order, idx) => {
-            const isDelivered = idx > 1; // Mark older orders as delivered for fidelity
-            const isReordering = reorderingId === order.product_id;
+          {filteredOrders.map((order) => {
+            const isDelivered = order.status === "delivered";
+            const isReordering = reorderingId === order.id;
 
             return (
               <article
                 key={order.id}
-                className="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-5 sm:p-6 shadow-xs hover:border-outline-variant transition-all"
+                className="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-5 sm:p-6 shadow-xs hover:border-outline-variant transition-all flex flex-col gap-4"
               >
                 {/* Order Top Bar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3.5 border-b border-surface-container gap-2">
@@ -164,43 +163,44 @@ export function OrdersView() {
 
                   <div className="flex items-center gap-1.5 text-xs text-on-surface-variant">
                     <Calendar className="w-3.5 h-3.5" />
-                    <span>{order.ordered_at}</span>
+                    <span>{order.created_at}</span>
                   </div>
                 </div>
 
-                {/* Order Details */}
-                <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-surface-container-low flex items-center justify-center p-1.5 flex-shrink-0">
-                      <ShoppingBag className="w-6 h-6 text-primary" />
+                {/* Order Items Breakdown */}
+                <div className="space-y-3">
+                  {order.items?.map((item) => (
+                    <div key={item.id} className="flex items-center justify-between text-sm sm:text-base">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center flex-shrink-0 text-on-surface-variant">
+                          <ShoppingBag className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <span className="font-bold text-on-surface block leading-tight">{item.product_name}</span>
+                          <span className="text-xs text-on-surface-variant">Qty: {item.quantity} (ID: #{item.product_id})</span>
+                        </div>
+                      </div>
+                      <span className="font-bold text-on-surface">${(item.unit_price * item.quantity).toFixed(2)}</span>
                     </div>
-                    <div>
-                      <h3 className="font-bold text-sm sm:text-base text-on-surface">
-                        {order.product_name}
-                      </h3>
-                      <span className="text-xs text-on-surface-variant block">
-                        Verified Product ID: #{order.product_id}
-                      </span>
-                    </div>
-                  </div>
+                  ))}
+                </div>
 
-                  <div className="flex items-center justify-between sm:justify-end gap-6">
-                    <div>
-                      <span className="text-xs text-on-surface-variant block sm:text-right">Price</span>
-                      <span className="text-base sm:text-lg font-bold text-primary">
-                        ${order.price.toFixed(2)}
-                      </span>
-                    </div>
-
-                    <button
-                      onClick={() => handleReorder(order.product_id)}
-                      disabled={isReordering}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-primary-container text-primary font-semibold text-xs sm:text-sm hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95"
-                    >
-                      <RotateCcw className="w-3.5 h-3.5" />
-                      <span>{isReordering ? "Ordering…" : "Buy Again"}</span>
-                    </button>
+                {/* Order Footer Actions */}
+                <div className="pt-4 border-t border-surface-container flex items-center justify-between">
+                  <div className="flex flex-col">
+                    <span className="text-xs text-on-surface-variant">Total</span>
+                    <span className="text-base sm:text-lg font-bold text-primary">
+                      ${order.total.toFixed(2)}
+                    </span>
                   </div>
+                  <button
+                    onClick={() => handleReorder(order.id)}
+                    disabled={isReordering}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-primary-container text-primary font-semibold text-xs sm:text-sm hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>{isReordering ? "Processing…" : "Buy Again"}</span>
+                  </button>
                 </div>
               </article>
             );

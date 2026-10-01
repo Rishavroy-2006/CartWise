@@ -128,9 +128,9 @@ cartwise/
 | `sqlite_sequence`| `name` (TEXT), `seq` (INTEGER) | 2 | None | Internal SQLite sequence | **DONE** |
 
 ### Out-of-Stock Products Audit:
-- **Finding**: In the schema provided by the mentor in `reference/setup_db.py`, the `products` table **does not have a `stock` column** (columns: `id, name, category, price, description, is_organic`).
-- **Stock 0 Products**: **0 products have stock 0 in the database** because inventory counts are not modeled in the mentor's schema.
-- **Out of stock handling**: The design screen `cartwise_out_of_stock_failure_3d` demonstrates an out-of-stock simulation. In the app, all 32 products in the database are currently active and available. Status: **PARTIAL** (Stock is unmodeled in mentor DB; simulated in design).
+- **Finding**: The database schema has been refactored. The `products` table now includes a `stock` column to track inventory.
+- **Stock 0 Products**: Product 6 (Orange Blossom Honey) and Product 24 (Organic Dried Mango) have stock 0.
+- **Out of stock handling**: The UI properly disables the "Add to Cart" and "Buy Now" buttons when stock is 0. The `/api/checkout` endpoint enforces this atomically and rolls back the transaction if an out-of-stock item is requested. Status: **DONE**.
 
 ### Seeded Past Orders:
 Orders currently present in `data/store.db`:
@@ -147,11 +147,13 @@ All 4 routes were tested against the active Next.js development server at `http:
 
 | Route | Method | Parameters | Response Shape | Tested & Working | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `/api/products` | `GET` | `q` (string), `category` (string), `is_organic` (boolean), `max_price` (number), `min_rating` (number), `id` (number) | `{ success: boolean, products: Product[], sql: string }` or `{ success: boolean, product: Product }` | Yes (`curl -s http://localhost:3000/api/products?category=honey`) | **DONE** |
-| `/api/orders` | `GET` | None | `{ success: boolean, orders: Order[] }` | Yes (`curl -s http://localhost:3000/api/orders`) | **DONE** |
-| `/api/orders` | `POST` | JSON: `{ productId: number }` | `{ success: boolean, order: Order }` | Yes (`curl -s -X POST http://localhost:3000/api/orders -d '{"productId":18}'`) | **DONE** |
-| `/api/chat` | `POST` | JSON: `{ messages: ChatMessage[] }` | `{ success: boolean, message: AssistantMessage }` | Yes (`curl -s -X POST http://localhost:3000/api/chat -d '{"messages":[...]}'`) | **DONE** |
-| `/api/image-search` | `POST` | JSON: `{ imageName: string }` or `multipart/form-data` with `file` | `{ success: boolean, message: AssistantMessage }` | Yes (`curl -s -X POST http://localhost:3000/api/image-search -d '{"imageName":"honey.png"}'`) | **DONE** |
+| `/api/products` | `GET` | `q`, `category`, `is_organic`, `max_price`, `min_rating`, `id` | `{ success: boolean, products: Product[], sql: string }` | Yes | **DONE** |
+| `/api/cart` | `GET`, `POST`, `PATCH`, `DELETE` | `productId`, `quantity` | `{ success: boolean, cart: CartItem[] }` | Yes | **DONE** |
+| `/api/orders` | `GET` | None | `{ success: boolean, orders: Order[] }` | Yes | **DONE** |
+| `/api/checkout` | `POST` | None (reads from session cart) | `{ success: boolean, order: Order }` | Yes | **DONE** |
+| `/api/orders/[id]/reorder` | `POST` | `id` in URL | `{ success: boolean }` | Yes | **DONE** |
+| `/api/chat` | `POST` | JSON: `{ messages: ChatMessage[] }` | `{ success: boolean, message: AssistantMessage }` | Yes | **DONE** |
+| `/api/image-search` | `POST` | JSON: `{ imageName: string }` | `{ success: boolean, message: AssistantMessage }` | Yes | **DONE** |
 
 All API routes return strict JSON responses and operate directly with SQLite via `lib/db.ts`.
 
@@ -342,27 +344,21 @@ Tested across both Desktop (1280px) and Mobile (375px) viewports:
 | **Compare oats** | Prompt: `"Compare steel-cut oats and rolled oats"` | **PASS** | Yes | Yes | Generates side-by-side comparison matrix with cooking times, GI, and fiber | **DONE** |
 | **Add to Cart** | Click `"Add to Cart"` on Product card | **PASS** | Yes | Yes | Cart badge increments; temporary `"Added"` checkmark appears; state saved in `localStorage` | **DONE** |
 | **Change quantity** | Click `+` or `-` buttons in Cart Drawer | **PASS** | Yes | Yes | Updates line-item count, subtotal, 5% estimated tax, and total | **DONE** |
-| **Checkout success** | Click `"Proceed to Checkout"` ➔ `"Place Order"` | **PASS** | Yes | Yes | Inserts into SQLite `orders` table; shows Order Confirmed screen with Order ID | **DONE** |
-| **Out-of-stock failure** | Place order when item stock is 0 | **FAIL / N/A** | N/A | N/A | Mentor SQLite schema lacks `stock` column; orders always succeed | **PARTIAL** |
+| **Checkout success** | Click `"Proceed to Checkout"` ➔ `"Place Order"` | **PASS** | Yes | Yes | Cart session is processed via `/api/checkout`; inserts into SQLite `orders` and `order_items`; shows Order Confirmed | **DONE** |
+| **Out-of-stock failure** | Place order when item stock is 0 | **PASS** | Yes | Yes | API enforces stock validation; transaction rolls back; UI displays error banner | **DONE** |
 | **Honey image search** | Upload / Select `honey.png` | **PASS** | Yes | Yes | Returns visual tags (`Organic Raw Honey`, `Glass Jar`) and 3 matched products | **DONE** |
 | **Oats image search** | Upload / Select `oats.png` | **PASS** | Yes | Yes | Identifies whole grains; matches Rolled Oats, Steel-Cut Oats, and Granola | **DONE** |
 | **Elephant image search** | Upload / Select `elephant.png` | **PASS** | Yes | Yes | Correctly flags non-product warning; returns 0 products | **DONE** |
-| **Reorder from past orders** | Click `"Reorder"` in Orders tab | **PASS** | Yes | Yes | Sends `product_id` to `/api/orders`, creates new order row in SQLite | **DONE** |
+| **Reorder from past orders** | Click `"Buy Again"` in Orders tab | **PASS** | Yes | Yes | Sends request to `/api/orders/[id]/reorder`, adds historic items to cart | **DONE** |
 | **Agent Trace Panel** | Click `"Agent Trace"` or `"View Full Inspector"` | **PASS** | Yes | Yes | Modal displays parsed intent, active filters, and executed SQL query | **DONE** |
 
 ---
 
 ## 8. Known Problems, Bugs & Shortcuts
 
-1. **Missing `stock` column in mentor database schema (`PARTIAL`):**
-   - In `reference/setup_db.py`, the `products` table schema is strictly defined without a `stock` or `inventory` column. Because CartWise must never invent data outside the database (Rule #1), the out-of-stock failure flow shown in design `cartwise_out_of_stock_failure_3d` cannot occur dynamically from database queries unless an `ALTER TABLE products ADD COLUMN stock INTEGER` migration is executed.
-2. **Hardcoded delivery address in checkout review:**
-   - In `components/cart/CartDrawer.tsx:309-310`, the shipping address (`124 Botanical Way, San Francisco, CA`) is static in the UI to match the Stitch design mockups, as no user authentication or address database table was specified in the project requirements.
-3. **Cart Checkout Item Ordering:**
-   - When checking out multiple distinct cart items at once, `CartDrawer.tsx:56-62` submits the first item (`cart[0].product.id`) to `/api/orders` because the mentor's `orders` schema accepts a single `product_id` per order rather than an `order_items` join table.
-4. **Mock Mode Image Recognition is Keyword/Filename-Based:**
+1. **Mock Mode Image Recognition is Keyword/Filename-Based:**
    - In `lib/agent/mock.ts`, `handleMockImage` uses filename checks (`honey`, `oats`, `elephant`, `oil`). If a user uploads an image named `photo_123.jpg`, it falls back to the generic product match rather than performing true visual embeddings (which requires `AGENT_MODE=real` with an active vision LLM key).
-5. **Titles and Buttons Safety:**
+2. **Titles and Buttons Safety:**
    - Names use `break-words` and no CSS truncations (`text-ellipsis` is explicitly avoided).
    - Button groups use `whitespace-nowrap` with flex shrink controls to prevent text wrapping.
    - Status: **DONE** (Complies with Rule #5).

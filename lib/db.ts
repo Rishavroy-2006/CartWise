@@ -1,7 +1,7 @@
 import Database from "better-sqlite3";
 import path from "path";
 import fs from "fs";
-import { Product, Order, Review } from "./types";
+import { Product, Order, Review, OrderItem } from "./types";
 
 let dbInstance: Database.Database | null = null;
 
@@ -46,12 +46,15 @@ export function getDb(): Database.Database {
   }
 
   const primaryPath = path.join(process.cwd(), "data", "store.db");
-  const fallbackPath = path.join(process.cwd(), "reference", "store.db");
+  const dataDir = path.dirname(primaryPath);
 
-  const dbPath = fs.existsSync(primaryPath) ? primaryPath : fallbackPath;
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
 
-  dbInstance = new Database(dbPath);
+  dbInstance = new Database(primaryPath);
   dbInstance.pragma("journal_mode = WAL");
+  dbInstance.pragma("foreign_keys = ON");
   return dbInstance;
 }
 
@@ -70,11 +73,11 @@ export function searchProducts(options: SearchProductsOptions = {}): {
 } {
   const db = getDb();
   let sql = `
-    SELECT p.id, p.name, p.category, p.price, p.description, p.is_organic,
-           ROUND(AVG(r.rating), 2) as average_rating,
-           COUNT(r.id) as review_count
+    SELECT p.id, p.name, p.category, p.price, p.description, p.is_organic, p.stock,
+           rs.average_rating,
+           rs.review_count
     FROM products p
-    LEFT JOIN reviews r ON p.id = r.product_id
+    LEFT JOIN ratings_summary rs ON p.id = rs.product_id
     WHERE 1=1
   `;
   const params: (string | number)[] = [];
@@ -100,10 +103,8 @@ export function searchProducts(options: SearchProductsOptions = {}): {
     params.push(options.isOrganic ? 1 : 0);
   }
 
-  sql += ` GROUP BY p.id`;
-
   if (options.minRating !== undefined) {
-    sql += ` HAVING average_rating >= ?`;
+    sql += ` AND rs.average_rating >= ?`;
     params.push(options.minRating);
   }
 
@@ -122,8 +123,9 @@ export function searchProducts(options: SearchProductsOptions = {}): {
     price: number;
     description: string;
     is_organic: number;
+    stock: number;
     average_rating: number | null;
-    review_count: number;
+    review_count: number | null;
   }>;
 
   const products: Product[] = rows.map((r) => ({
@@ -133,6 +135,7 @@ export function searchProducts(options: SearchProductsOptions = {}): {
     price: r.price,
     description: r.description,
     is_organic: Boolean(r.is_organic),
+    stock: r.stock,
     average_rating: r.average_rating ? Number(r.average_rating) : 0,
     review_count: r.review_count || 0,
     image_url: PRODUCT_IMAGE_MAP[r.id] || "/images/honey.png",
@@ -144,13 +147,12 @@ export function searchProducts(options: SearchProductsOptions = {}): {
 export function getProductById(id: number): Product | null {
   const db = getDb();
   const sql = `
-    SELECT p.id, p.name, p.category, p.price, p.description, p.is_organic,
-           ROUND(AVG(r.rating), 2) as average_rating,
-           COUNT(r.id) as review_count
+    SELECT p.id, p.name, p.category, p.price, p.description, p.is_organic, p.stock,
+           rs.average_rating,
+           rs.review_count
     FROM products p
-    LEFT JOIN reviews r ON p.id = r.product_id
+    LEFT JOIN ratings_summary rs ON p.id = rs.product_id
     WHERE p.id = ?
-    GROUP BY p.id
   `;
   const row = db.prepare(sql).get(id) as {
     id: number;
@@ -159,8 +161,9 @@ export function getProductById(id: number): Product | null {
     price: number;
     description: string;
     is_organic: number;
+    stock: number;
     average_rating: number | null;
-    review_count: number;
+    review_count: number | null;
   } | undefined;
 
   if (!row) return null;
@@ -172,6 +175,7 @@ export function getProductById(id: number): Product | null {
     price: row.price,
     description: row.description,
     is_organic: Boolean(row.is_organic),
+    stock: row.stock,
     average_rating: row.average_rating ? Number(row.average_rating) : 0,
     review_count: row.review_count || 0,
     image_url: PRODUCT_IMAGE_MAP[row.id] || "/images/honey.png",
@@ -185,19 +189,46 @@ export function createOrder(productId: number): { order: Order; success: boolean
   }
 
   const db = getDb();
-  const stmt = db.prepare(
-    "INSERT INTO orders (product_id, product_name, price) VALUES (?, ?, ?)"
-  );
-  const info = stmt.run(product.id, product.name, product.price);
+  let orderRow: Order | null = null;
 
-  const orderStmt = db.prepare("SELECT * FROM orders WHERE id = ?");
-  const orderRow = orderStmt.get(info.lastInsertRowid) as Order;
+  db.transaction(() => {
+    const stmt = db.prepare(
+      "INSERT INTO orders (total, status) VALUES (?, ?)"
+    );
+    const info = stmt.run(product.price, 'delivered');
+    
+    const itemStmt = db.prepare(
+      "INSERT INTO order_items (order_id, product_id, product_name, unit_price, quantity) VALUES (?, ?, ?, ?, ?)"
+    );
+    itemStmt.run(info.lastInsertRowid, product.id, product.name, product.price, 1);
 
-  return { order: orderRow, success: true };
+    const orderStmt = db.prepare("SELECT * FROM orders WHERE id = ?");
+    orderRow = orderStmt.get(info.lastInsertRowid) as Order;
+    
+    if (orderRow) {
+      const itemsStmt = db.prepare("SELECT * FROM order_items WHERE order_id = ?");
+      orderRow.items = itemsStmt.all(orderRow.id) as OrderItem[];
+    }
+  })();
+
+  return { order: orderRow!, success: true };
 }
 
 export function getOrders(): Order[] {
   const db = getDb();
   const stmt = db.prepare("SELECT * FROM orders ORDER BY id DESC");
-  return stmt.all() as Order[];
+  const orders = stmt.all() as Order[];
+
+  const itemsStmt = db.prepare("SELECT * FROM order_items WHERE order_id = ?");
+  for (const order of orders) {
+    order.items = itemsStmt.all(order.id) as OrderItem[];
+  }
+
+  return orders;
+}
+
+export function getProductReviews(productId: number): Review[] {
+  const db = getDb();
+  const stmt = db.prepare("SELECT * FROM reviews WHERE product_id = ? ORDER BY rating DESC");
+  return stmt.all(productId) as Review[];
 }
