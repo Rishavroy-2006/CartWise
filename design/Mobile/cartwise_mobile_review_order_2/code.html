@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise Mobile - Review Order (2)</title>
+<!-- Plus Jakarta Sans Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#a5f3c4",
+            "on-error": "#ffffff",
+            "surface-container-highest": "#e4e2de",
+            "tertiary-fixed-dim": "#ffb77d",
+            "inverse-surface": "#30312e",
+            "tertiary-container": "#6b3700",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#a5f3c4",
+            "secondary-fixed-dim": "#8ad7aa",
+            "surface-container-lowest": "#ffffff",
+            "surface-tint": "#376757",
+            "surface-variant": "#e4e2de",
+            "on-secondary-fixed": "#002111",
+            "on-primary-fixed": "#002117",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed": "#2f1500",
+            "on-secondary-container": "#23714c",
+            "primary-container": "#1b4d3e",
+            "on-error-container": "#93000a",
+            "primary-fixed-dim": "#9ed1bd",
+            "tertiary-fixed": "#ffdcc3",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#1d4f40",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "inverse-on-surface": "#f2f0ed",
+            "surface-dim": "#dbdad6",
+            "surface-bright": "#fbf9f5",
+            "on-background": "#1b1c1a",
+            "secondary": "#1b6b47",
+            "surface-container": "#efeeea",
+            "surface": "#fbf9f5",
+            "on-surface-variant": "#404945",
+            "on-secondary-fixed-variant": "#005232",
+            "on-primary-container": "#8abda9",
+            "inverse-primary": "#9ed1bd",
+            "surface-container-high": "#eae8e4",
+            "tertiary": "#4a2500",
+            "on-tertiary-container": "#ff993b",
+            "primary-fixed": "#baeed9",
+            "outline-variant": "#c0c9c3",
+            "on-secondary": "#ffffff",
+            "on-surface": "#1b1c1a",
+            "primary": "#003629",
+            "surface-container-low": "#f5f3ef",
+            "outline": "#707974",
+            "on-tertiary": "#ffffff",
+            "background": "#fbf9f5"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "gutter": "1.25rem",
+            "margin-desktop": "3rem",
+            "gutter-desktop": "2rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin-tablet": "2rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#e5e5e5] min-h-screen flex justify-center items-center py-4 font-body-md text-on-surface antialiased">
+<!-- Mobile Screen Container (390px fixed canvas width) -->
+<main class="w-[390px] max-w-[390px] bg-background min-h-[844px] flex flex-col shadow-xl overflow-hidden relative">
+<!-- Top Bar -->
+<header class="sticky top-0 z-30 bg-surface-container-lowest border-b border-outline-variant/30 px-4 py-3.5 flex items-center justify-between">
+<button aria-label="Go back" class="p-1 -ml-1 text-on-surface hover:text-primary rounded-lg transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[24px]" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Review Order</h1>
+<div class="w-8"></div> <!-- Visual spacer to balance the centered title -->
+</header>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto px-4 pt-4 pb-6 space-y-4">
+<!-- 3-Step Progress Stepper -->
+<section aria-label="Progress Stepper" class="bg-surface-container-lowest rounded-xl p-3.5 border border-outline-variant/40 shadow-sm">
+<div class="flex items-center justify-between">
+<!-- Step 1: Cart (Completed) -->
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Cart</span>
+</div>
+<!-- Divider line -->
+<div class="flex-1 h-[2px] bg-secondary mx-2 rounded-full"></div>
+<!-- Step 2: Review (Active) -->
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-md text-label-md font-bold">
+              2
+            </div>
+<span class="font-label-md text-label-md text-primary font-bold">Review</span>
+</div>
+<!-- Divider line -->
+<div class="flex-1 h-[2px] bg-outline-variant/50 mx-2 rounded-full"></div>
+<!-- Step 3: Confirmed (Inactive) -->
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high text-outline flex items-center justify-center font-label-md text-label-md font-medium">
+              3
+            </div>
+<span class="font-label-md text-label-md text-outline font-medium">Confirmed</span>
+</div>
+</div>
+</section>
+<!-- Stock Verification Check Banner -->
+<section class="bg-secondary-container/40 border border-secondary/30 rounded-xl p-3.5 flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<p class="font-label-lg text-label-lg text-on-secondary-container font-semibold">
+          All items verified in stock
+        </p>
+</section>
+<!-- Item List Section -->
+<section aria-label="Order Items" class="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant/40 shadow-sm space-y-4">
+<!-- Item 1: Organic Acacia Honey -->
+<article class="flex items-start justify-between pb-4 border-b border-outline-variant/30">
+<div class="flex items-start space-x-3">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low overflow-hidden shrink-0 border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A pristine clear glass jar filled with luminous golden organic acacia honey bathed in natural morning sunlight on a clean kitchen counter. High key soft lighting emphasizes the warm amber clarity and smooth liquid texture of the natural honey. Modern minimalist Scandinavian culinary styling with wholesome organic aesthetic and calm earth tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUJAZsfN8bi-OOudBKyWYzEN1Y3VRbAFy-OtnFvQI9OmxjgZQlUmOKzhaJjUA40YVXUGyN3OOTDAcbr2lHk3MXQJ-njrfj9QAaKmEssvgyQ3X18GhAg_hN034s6EO01VFzouE3MzJOTBjX3V88xjOkTJd_PzmYG8V8LcgBQN5joyFJf0xO0ckaXQgdBwdYmhXPbg2mZ0PHMw-EcZ0uxu7k6PgD_3W_EiqbInAfnslOJ0hMj6K4SCrz">
+</div>
+<div class="flex flex-col">
+<h2 class="font-label-lg text-label-lg text-on-surface font-semibold">Organic Acacia Honey</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Qty: 2 × ₹17.99</p>
+<div class="mt-1">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-secondary-container text-on-secondary-container">
+                  In stock
+                </span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">₹35.98</span>
+</div>
+</article>
+<!-- Item 2: Organic Raw Honey -->
+<article class="flex items-start justify-between">
+<div class="flex items-start space-x-3">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low overflow-hidden shrink-0 border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="An artisanal jar of dense unfiltered organic raw honey with golden yellow tones and authentic honeycomb detail resting on a natural linen surface. Soft directional daylight illuminates the pure wholesome texture of organic honey in an earthy modern rustic setting with subtle botanical greenery in the soft background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfW0nv2B2v2aRTMLfcZ6kjlbDxEnh1eHoazi8TksLXLuT5HBgJEnR2F3urxJKLuuns0RKk3vQqXOvlyYOYbmb6qbPG6GbHX5OCllZS6uVa4jaWxb_EHtUdvwul7JWC0LbklC1pEA35jl8XFp0nUcY5afSlJqzb36Ff0Dn-9muS1af_4sEzcwv-klrFp6UDDVCb2GuCSo7uY3vcNzxbg6135dhbJQNC52g2Xpi8ibnGoFqFir1vJjj1">
+</div>
+<div class="flex flex-col">
+<h2 class="font-label-lg text-label-lg text-on-surface font-semibold">Organic Raw Honey</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Qty: 1 × ₹14.99</p>
+<div class="mt-1">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-secondary-container text-on-secondary-container">
+                  In stock
+                </span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">₹14.99</span>
+</div>
+</article>
+</section>
+<!-- Order Summary Card -->
+<section aria-label="Order Summary" class="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant/40 shadow-sm space-y-3">
+<div class="flex justify-between items-center text-on-surface-variant font-body-md text-body-md">
+<span class="">Subtotal (3 items)</span>
+<span class="font-medium text-on-surface">₹50.97</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant font-body-md text-body-md">
+<span class="">Delivery</span>
+<span class="font-medium text-on-surface">Estimated 3-5 business days</span>
+</div>
+<div class="pt-3 border-t border-outline-variant/30 flex justify-between items-center font-headline-sm text-headline-sm">
+<span class="text-on-surface font-bold">Total</span>
+<span class="text-primary font-bold">₹50.97</span>
+</div>
+</section>
+<!-- Reassurance Notice Text -->
+<p class="text-center font-label-lg text-label-lg text-on-surface-variant px-2">
+        Your order is only placed when you press Place order.
+      </p>
+</div>
+<!-- Sticky Bottom Bar -->
+<footer class="sticky bottom-0 z-30 bg-surface-container-lowest border-t border-outline-variant/30 p-4 space-y-2.5 shadow-[0_-4px_16px_rgba(27,77,62,0.06)]">
+<!-- Primary Action Button -->
+<button class="w-full py-3.5 px-4 bg-primary-container hover:bg-secondary text-on-primary font-label-lg text-label-lg font-bold rounded-lg transition-colors flex items-center justify-center space-x-1.5 shadow-sm active:scale-[0.99]" type="button">
+<span class="">Place order</span>
+<span class="">(₹50.97)</span>
+</button>
+<!-- Secondary Action Button -->
+<button class="w-full py-3 px-4 bg-transparent hover:bg-surface-container-low text-primary-container border-[1.5px] border-primary-container font-label-lg text-label-lg font-semibold rounded-lg transition-colors flex items-center justify-center active:scale-[0.99]" type="button">
+<span class="">Back to cart</span>
+</button>
+</footer>
+</main>
+
+
+</body></html>

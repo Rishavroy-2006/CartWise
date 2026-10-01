@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise - Compare products</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-highest": "#e4e2de",
+            "surface-container-high": "#eae8e4",
+            "surface-dim": "#dbdad6",
+            "surface-bright": "#fbf9f5",
+            "outline": "#707974",
+            "error-container": "#ffdad6",
+            "secondary-fixed": "#a5f3c4",
+            "tertiary": "#4a2500",
+            "surface": "#fbf9f5",
+            "on-secondary-container": "#23714c",
+            "on-surface-variant": "#404945",
+            "outline-variant": "#c0c9c3",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#30312e",
+            "surface-tint": "#376757",
+            "tertiary-container": "#6b3700",
+            "on-primary-fixed-variant": "#1d4f40",
+            "on-primary-container": "#8abda9",
+            "on-tertiary": "#ffffff",
+            "background": "#fbf9f5",
+            "on-background": "#1b1c1a",
+            "on-tertiary-fixed": "#2f1500",
+            "on-tertiary-container": "#ff993b",
+            "inverse-on-surface": "#f2f0ed",
+            "secondary-fixed-dim": "#8ad7aa",
+            "on-surface": "#1b1c1a",
+            "surface-container": "#efeeea",
+            "surface-container-low": "#f5f3ef",
+            "on-secondary-fixed-variant": "#005232",
+            "secondary": "#1b6b47",
+            "on-secondary": "#ffffff",
+            "on-error-container": "#93000a",
+            "primary": "#003629",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "primary-fixed": "#baeed9",
+            "secondary-container": "#a5f3c4",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed": "#002111",
+            "tertiary-fixed": "#ffdcc3",
+            "on-primary-fixed": "#002117",
+            "on-error": "#ffffff",
+            "inverse-primary": "#9ed1bd",
+            "primary-container": "#1b4d3e",
+            "error": "#ba1a1a",
+            "primary-fixed-dim": "#9ed1bd",
+            "surface-variant": "#e4e2de",
+            "tertiary-fixed-dim": "#ffb77d"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.25rem",
+            "space-xl": "2.5rem",
+            "space-sm": "0.5rem",
+            "margin-desktop": "3rem",
+            "space-xs": "0.25rem",
+            "gutter-desktop": "2rem",
+            "margin-tablet": "2rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex flex-col justify-between selection:bg-secondary-fixed selection:text-on-secondary-fixed-variant">
+<!-- TOP NAVBAR -->
+<header class="bg-surface-container-lowest sticky top-0 z-50 shadow-sm border-b border-outline-variant/30">
+<div class="flex items-center justify-between px-8 py-3.5 w-full max-w-7xl mx-auto">
+<!-- Brand & Navigation Cluster -->
+<div class="flex items-center gap-10">
+<!-- Logo with Leaf Icon -->
+<a class="flex items-center gap-2 group" href="#">
+<span class="material-symbols-outlined text-primary text-[26px]" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">CartWise</span>
+</a>
+<!-- Exactly Two Navigation Links: Chat (Active) and Orders (Inactive) -->
+<nav class="flex items-center gap-8">
+<a class="text-primary border-b-2 border-primary pb-1 font-semibold text-label-lg font-label-lg transition-colors" href="#">Chat</a>
+<a class="text-on-surface-variant pb-1 hover:text-primary transition-colors text-label-lg font-label-lg" href="#">Orders</a>
+</nav>
+</div>
+<!-- Right Action Suite -->
+<div class="flex items-center gap-4">
+<!-- 'New chat' Button -->
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-lg text-label-lg border border-outline-variant/50 transition-all duration-150 active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span class="">New chat</span>
+</button>
+<!-- 'Agent Trace' Toggle Button -->
+<button class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low text-on-surface-variant font-label-lg text-label-lg border border-outline-variant/50 transition-all duration-150 active:scale-[0.98]" type="button">
+<span class="h-2 w-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="">Agent Trace</span>
+</button>
+<div class="h-5 w-[1px] bg-outline-variant/40 mx-1"></div>
+<!-- Shopping Cart Icon with '3' Count Badge -->
+<button aria-label="Shopping Cart with 3 items" class="relative p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[24px]" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute top-1 right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-primary text-on-primary text-[10px] font-bold leading-none">
+            3
+          </span>
+</button>
+<!-- Generic Circular Account Silhouette -->
+<button aria-label="Account silhouette" class="p-1 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[28px]" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN CHAT WORKSPACE -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-8 py-8 flex flex-col gap-6">
+<!-- USER MESSAGE BUBBLE -->
+<div class="flex justify-end w-full">
+<div class="max-w-2xl bg-white border border-outline-variant/40 rounded-2xl rounded-br-[4px] p-4 shadow-sm" style="background-color: rgba(45, 122, 84, 0.08);">
+<p class="text-on-surface font-body-md text-body-md">
+          Compare Organic Acacia Honey, Organic Raw Honey, and Organic Buckwheat Honey
+        </p>
+</div>
+</div>
+<!-- ASSISTANT RESPONSE BUBBLE -->
+<div class="flex items-start gap-3 w-full">
+<!-- Botanical Assistant Avatar -->
+<div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0 text-on-primary shadow-sm mt-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<!-- Comparison Card Container -->
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant/40 rounded-2xl rounded-tl-[4px] p-6 shadow-sm overflow-hidden">
+<!-- Header -->
+<div class="pb-5 mb-5 border-b border-outline-variant/30">
+<h1 class="text-headline-sm font-headline-sm font-bold text-primary">
+            Product Comparison
+          </h1>
+</div>
+<!-- Comparison Table (3 Product Columns side-by-side) -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse table-fixed min-w-[760px]">
+<colgroup>
+<col class="w-1/3">
+<col class="w-1/3">
+<col class="w-1/3">
+</colgroup>
+<tbody>
+<!-- 1. [Row: Product Header / Best Pick badge] -->
+<tr class="align-bottom">
+<td class="pb-3 px-3">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md font-semibold whitespace-nowrap">
+<span class="material-symbols-outlined text-[16px] text-tertiary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="">Best pick: highest rating</span>
+</div>
+</td>
+<td class="pb-3 px-3">
+<div class="h-6"></div>
+</td>
+<td class="pb-3 px-3">
+<div class="h-6"></div>
+</td>
+</tr>
+<!-- 2. [Row: Image] -->
+<tr>
+<td class="px-3 pb-4">
+<div class="w-full h-44 rounded-xl bg-surface-container-low border border-outline-variant/30 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, clear studio product photograph of an artisanal Organic Acacia Honey glass jar with a natural cork lid on a warm neutral surface. The liquid honey is clear, light golden, and luminous under gentle natural studio sunlight. Modern organic grocery minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8Rd3ZUKD_iYiO92YZBIdRL8MnyT4uaAwISLU54i74AzhtWxgioF8tHD-Eh3gDeyjM-Ro14wURx5ArPQf08B6rNLhkiPuApRV7mf_2hQsLofsDzg9LXVB9g_nC_cg_jNHhmyGlv1nur_w3bNJ5WjA8R0SdBzNHUVeahPGgfg1J_wrF3iOLtHHn_LCTShaHSApTRejDL9OdFk-ct5ZerTFdqGTYoxnSNwGVLlGX9dWt_MeahJ_z6yoD">
+</div>
+</td>
+<td class="px-3 pb-4">
+<div class="w-full h-44 rounded-xl bg-surface-container-low border border-outline-variant/30 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A studio photograph of an Organic Raw Honey glass jar featuring thick, unpasteurized honey with natural golden crystallization textures. The jar has a simple cream paper label and sits on a softly lit warm beige countertop in a refined modern Scandinavian kitchen setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDABgzu9BMvMNmvUt6KFY_apTWoWTGzPCydX2qRFY5NumufM7vsAwD_VPuixeNRWt7YrNOt3vmpZR1culDHYYdMOrBnR1df-fjIbwWAOxkHhUImNF92bnFBoqhJ4u5oouro88NHKtvoxMr1DrwCA-IyGAXceZSPSdiO4OvPsnnBL4D63jyIzM-JZtPEe1Z0x7wVjFNokk7W3t8dfy2mCRDjt1OPoRFrwOVg179CgNnZDCcyXFjBkaoO">
+</div>
+</td>
+<td class="px-3 pb-4">
+<div class="w-full h-44 rounded-xl bg-surface-container-low border border-outline-variant/30 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A premium studio product shot of an Organic Buckwheat Honey jar containing deeply pigmented, molasses-dark amber honey. Warm side lighting highlights rich viscous amber tones through thick clear glass, placed on a grounded earthy textured surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASrF-wluO9z40f9eBDo0_qJOYh1ZZJqicQg3RD7jXy7HlYQSHBsGHQdpyuo-eh0X65tSK0O7qvW1MVJcBNTV-RvnURPI-E010pn5cMtv2wmsfU4dYH9alxb1tvT2ciDn00dCKAVmfrJGn0dhkSy2ZkhkX__5nZeH-d3PpLGJdQv1gb7vVqxRSoPkzIe9-Vj7-9xKkMKEjbRtDxeNDUvBcnxS1b2m82zrsCuBbebVjYubOQRB2DPSip">
+</div>
+</td>
+</tr>
+<!-- 3. [Row: Name] -->
+<tr class="border-t border-outline-variant/20">
+<td class="px-3 pt-3 pb-2">
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface block">
+                    Organic Acacia Honey
+                  </span>
+</td>
+<td class="px-3 pt-3 pb-2">
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface block">
+                    Organic Raw Honey
+                  </span>
+</td>
+<td class="px-3 pt-3 pb-2">
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface block">
+                    Organic Buckwheat Honey
+                  </span>
+</td>
+</tr>
+<!-- 4. [Row: Price] -->
+<tr>
+<td class="px-3 pb-3">
+<span class="font-headline-md text-headline-md font-bold text-primary">₹17.99</span>
+</td>
+<td class="px-3 pb-3">
+<span class="font-headline-md text-headline-md font-bold text-primary">₹14.99</span>
+</td>
+<td class="px-3 pb-3">
+<span class="font-headline-md text-headline-md font-bold text-primary">₹18.99</span>
+</td>
+</tr>
+<!-- 5. [Row: Rating & Review Count] -->
+<tr class="bg-surface-container-low/40">
+<td class="px-3 py-3 rounded-l-lg">
+<div class="flex items-center gap-1.5 text-body-md font-body-md text-on-surface">
+<span class="text-tertiary-container font-bold">★ 4.8</span>
+<span class="text-on-surface-variant font-label-lg text-label-lg">(4 reviews)</span>
+</div>
+</td>
+<td class="px-3 py-3">
+<div class="flex items-center gap-1.5 text-body-md font-body-md text-on-surface">
+<span class="text-tertiary-container font-bold">★ 4.6</span>
+<span class="text-on-surface-variant font-label-lg text-label-lg">(4 reviews)</span>
+</div>
+</td>
+<td class="px-3 py-3 rounded-r-lg">
+<div class="flex items-center gap-1.5 text-body-md font-body-md text-on-surface">
+<span class="text-tertiary-container font-bold">★ 4.6</span>
+<span class="text-on-surface-variant font-label-lg text-label-lg">(4 reviews)</span>
+</div>
+</td>
+</tr>
+<!-- 6. [Row: Organic Tag] -->
+<tr>
+<td class="px-3 py-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/80 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    Organic
+                  </span>
+</td>
+<td class="px-3 py-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/80 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    Organic
+                  </span>
+</td>
+<td class="px-3 py-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/80 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    Organic
+                  </span>
+</td>
+</tr>
+<!-- 7. [Row: AI Pros (from reviews)] -->
+<tr class="bg-surface-container-low/40">
+<td class="px-3 py-3 rounded-l-lg align-top">
+<div class="flex flex-col gap-1">
+<span class="text-label-sm font-label-sm font-semibold text-secondary uppercase tracking-wider">Pros</span>
+<span class="text-body-md font-body-md text-on-surface">Mild flavor, very pure</span>
+</div>
+</td>
+<td class="px-3 py-3 align-top">
+<div class="flex flex-col gap-1">
+<span class="text-label-sm font-label-sm font-semibold text-secondary uppercase tracking-wider">Pros</span>
+<span class="text-body-md font-body-md text-on-surface">Unfiltered, very pure</span>
+</div>
+</td>
+<td class="px-3 py-3 rounded-r-lg align-top">
+<div class="flex flex-col gap-1">
+<span class="text-label-sm font-label-sm font-semibold text-secondary uppercase tracking-wider">Pros</span>
+<span class="text-body-md font-body-md text-on-surface">Rich, dark, great in tea</span>
+</div>
+</td>
+</tr>
+<!-- 8. [Row: AI Cons (honest, from reviews)] -->
+<tr>
+<td class="px-3 py-3 align-top">
+<div class="flex flex-col gap-1">
+<span class="text-label-sm font-label-sm font-semibold text-outline uppercase tracking-wider">Cons</span>
+<span class="text-body-md font-body-md text-on-surface-variant">No complaints in 4 reviews</span>
+</div>
+</td>
+<td class="px-3 py-3 align-top">
+<div class="flex flex-col gap-1">
+<span class="text-label-sm font-label-sm font-semibold text-outline uppercase tracking-wider">Cons</span>
+<span class="text-body-md font-body-md text-on-surface-variant">No complaints in 4 reviews</span>
+</div>
+</td>
+<td class="px-3 py-3 align-top">
+<div class="flex flex-col gap-1">
+<span class="text-label-sm font-label-sm font-semibold text-outline uppercase tracking-wider">Cons</span>
+<span class="text-body-md font-body-md text-on-surface-variant">Strong flavor may not suit everyone</span>
+</div>
+</td>
+</tr>
+<!-- 9. [Row: Buying Actions (strictly non-wrapping buttons side-by-side)] -->
+<tr class="border-t border-outline-variant/30">
+<!-- Acacia Actions -->
+<td class="px-3 pt-5 pb-1">
+<div class="flex items-center gap-2 flex-nowrap whitespace-nowrap">
+<button class="flex-1 shrink-0 inline-flex items-center justify-center px-3.5 py-2.5 rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg font-semibold hover:bg-secondary transition-colors duration-150 shadow-sm active:scale-[0.98]" type="button">
+                      Add to cart
+                    </button>
+<button class="flex-1 shrink-0 inline-flex items-center justify-center px-3.5 py-2.5 rounded-lg bg-[#D97706] text-white font-label-lg text-label-lg font-semibold hover:bg-[#b45309] transition-colors duration-150 shadow-sm active:scale-[0.98]" type="button">
+                      Buy now
+                    </button>
+</div>
+</td>
+<!-- Raw Actions -->
+<td class="px-3 pt-5 pb-1">
+<div class="flex items-center gap-2 flex-nowrap whitespace-nowrap">
+<button class="flex-1 shrink-0 inline-flex items-center justify-center px-3.5 py-2.5 rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg font-semibold hover:bg-secondary transition-colors duration-150 shadow-sm active:scale-[0.98]" type="button">
+                      Add to cart
+                    </button>
+<button class="flex-1 shrink-0 inline-flex items-center justify-center px-3.5 py-2.5 rounded-lg bg-[#D97706] text-white font-label-lg text-label-lg font-semibold hover:bg-[#b45309] transition-colors duration-150 shadow-sm active:scale-[0.98]" type="button">
+                      Buy now
+                    </button>
+</div>
+</td>
+<!-- Buckwheat Actions -->
+<td class="px-3 pt-5 pb-1">
+<div class="flex items-center gap-2 flex-nowrap whitespace-nowrap">
+<button class="flex-1 shrink-0 inline-flex items-center justify-center px-3.5 py-2.5 rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg font-semibold hover:bg-secondary transition-colors duration-150 shadow-sm active:scale-[0.98]" type="button">
+                      Add to cart
+                    </button>
+<button class="flex-1 shrink-0 inline-flex items-center justify-center px-3.5 py-2.5 rounded-lg bg-[#D97706] text-white font-label-lg text-label-lg font-semibold hover:bg-[#b45309] transition-colors duration-150 shadow-sm active:scale-[0.98]" type="button">
+                      Buy now
+                    </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- BOTTOM CHAT INPUT DOCK -->
+<footer class="sticky bottom-0 z-40 bg-surface/90 backdrop-blur-md pb-6 pt-2">
+<div class="w-full max-w-4xl mx-auto px-8">
+<form class="flex items-center gap-3 bg-surface-container-lowest border border-outline-variant/60 rounded-2xl px-4 py-2.5 shadow-md focus-within:ring-2 focus-within:ring-secondary focus-within:border-transparent transition-all" onsubmit="event.preventDefault();">
+<!-- Camera / Photo Action -->
+<button aria-label="Upload photo" class="p-2 text-on-surface-variant hover:text-primary rounded-full hover:bg-surface-container-low transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="photo_camera">photo_camera</span>
+</button>
+<!-- Input Text -->
+<input class="flex-1 bg-transparent border-0 focus:ring-0 text-on-surface placeholder:text-on-surface-variant/70 text-body-md font-body-md py-1 px-1 outline-none" placeholder="Ask CartWise or upload a photo..." type="text">
+<!-- Send Arrow Button -->
+<button aria-label="Send message" class="p-2 bg-primary text-on-primary rounded-xl hover:bg-secondary transition-colors duration-150 flex items-center justify-center active:scale-95 shadow-sm" type="submit">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_upward">arrow_upward</span>
+</button>
+</form>
+</div>
+</footer>
+
+
+</body></html>

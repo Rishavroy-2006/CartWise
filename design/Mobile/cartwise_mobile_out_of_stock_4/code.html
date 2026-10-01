@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise Mobile - Out of Stock (4)</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#a5f3c4",
+            "on-error": "#ffffff",
+            "surface-container-highest": "#e4e2de",
+            "tertiary-fixed-dim": "#ffb77d",
+            "inverse-surface": "#30312e",
+            "tertiary-container": "#6b3700",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#a5f3c4",
+            "secondary-fixed-dim": "#8ad7aa",
+            "surface-container-lowest": "#ffffff",
+            "surface-tint": "#376757",
+            "surface-variant": "#e4e2de",
+            "on-secondary-fixed": "#002111",
+            "on-primary-fixed": "#002117",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed": "#2f1500",
+            "on-secondary-container": "#23714c",
+            "primary-container": "#1b4d3e",
+            "on-error-container": "#93000a",
+            "primary-fixed-dim": "#9ed1bd",
+            "tertiary-fixed": "#ffdcc3",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#1d4f40",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "inverse-on-surface": "#f2f0ed",
+            "surface-dim": "#dbdad6",
+            "surface-bright": "#fbf9f5",
+            "on-background": "#1b1c1a",
+            "secondary": "#1b6b47",
+            "surface-container": "#efeeea",
+            "surface": "#fbf9f5",
+            "on-surface-variant": "#404945",
+            "on-secondary-fixed-variant": "#005232",
+            "on-primary-container": "#8abda9",
+            "inverse-primary": "#9ed1bd",
+            "surface-container-high": "#eae8e4",
+            "tertiary": "#4a2500",
+            "on-tertiary-container": "#ff993b",
+            "primary-fixed": "#baeed9",
+            "outline-variant": "#c0c9c3",
+            "on-secondary": "#ffffff",
+            "on-surface": "#1b1c1a",
+            "primary": "#003629",
+            "surface-container-low": "#f5f3ef",
+            "outline": "#707974",
+            "on-tertiary": "#ffffff",
+            "background": "#fbf9f5"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "gutter": "1.25rem",
+            "margin-desktop": "3rem",
+            "gutter-desktop": "2rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin-tablet": "2rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "body-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "body-md": ["15px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex justify-center items-start">
+<!-- Mobile Container (390px) -->
+<div class="w-full max-w-[390px] min-h-screen bg-surface flex flex-col relative shadow-sm">
+<!-- Top Bar -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest border-b border-outline-variant/30 px-margin py-3.5 flex items-center justify-between">
+<button aria-label="Go back" class="p-1 -ml-1 text-on-surface hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Review Order</h1>
+<div class="w-8"></div>
+</header>
+<!-- Progress Stepper -->
+<section class="bg-surface-container-lowest px-margin pt-4 pb-5 border-b border-outline-variant/20">
+<div class="flex items-center justify-between relative">
+<div class="absolute left-6 right-6 top-3.5 h-[2px] bg-surface-container-highest -z-0"></div>
+<div class="absolute left-6 w-1/2 top-3.5 h-[2px] bg-primary -z-0"></div>
+<!-- Step 1: Cart (Completed) -->
+<div class="flex flex-col items-center gap-1.5 z-10">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Cart</span>
+</div>
+<!-- Step 2: Review (Alert / Warning) -->
+<div class="flex flex-col items-center gap-1.5 z-10">
+<div class="w-7 h-7 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center ring-2 ring-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[16px] font-bold" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">Review</span>
+</div>
+<!-- Step 3: Confirmed (Inactive) -->
+<div class="flex flex-col items-center gap-1.5 z-10">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-outline flex items-center justify-center">
+<span class="font-label-sm text-label-sm font-semibold">3</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Confirmed</span>
+</div>
+</div>
+</section>
+<!-- Main Content Area -->
+<main class="flex-1 px-margin pt-4 pb-48 flex flex-col gap-4">
+<!-- Prominent Warning Banner -->
+<section class="bg-surface-container-lowest border border-tertiary-fixed-dim rounded-xl p-space-md shadow-sm">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center shrink-0 mt-0.5 text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="flex flex-col gap-1">
+<h2 class="font-headline-sm text-[16px] leading-[22px] text-tertiary font-bold">Organic Raw Honey just went out of stock</h2>
+<p class="font-body-md text-body-md text-on-surface-variant text-[14px] leading-[20px]">An item in your order became unavailable while reviewing. Don't worry, the rest of your order is safe.</p>
+</div>
+</div>
+</section>
+<!-- Item List Section -->
+<section class="flex flex-col gap-3">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant px-0.5">Order Items</h3>
+<!-- Item 1: Affected Item (Out of Stock) -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-space-md opacity-75">
+<div class="flex gap-3">
+<div class="relative w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0 border border-outline-variant/40">
+<img class="w-full h-full object-cover filter grayscale contrast-75" data-alt="A clean artisanal clear glass jar filled with organic golden amber raw honey standing on a neutral beige marble kitchen counter. Soft daylight streams in from a window creating warm reflections in a minimalist Scandi aesthetic. The scene uses earthy natural greens and warm honey golds consistent with modern organic grocery design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfaxXRfjRV62H9Fo_e85JPdBuwKd3MBUiegbPLp19hfG9fMRHFvWqqtOVW2M1crwOyezHgXZIhMzLrws87SVE8nIdbZEOqGKXjLFsbrGnXl36ad0yqY2j2Z3NUHbXk_666xUn23UT9TZkfRtl6i4KCeP8iRrzCLT7xrKVqx3CDCwlQHyFqf-C7INXf1Rsovh_2K38CB3DCNdI0uueouWq71CWJ_MVm8kAx8gWVKIDhpa4bGHMc6lOM">
+<div class="absolute inset-0 bg-inverse-surface/30 flex items-center justify-center">
+<div class="w-7 h-7 rounded-full bg-surface-container-lowest flex items-center justify-center shadow">
+<span class="material-symbols-outlined text-error text-[18px]">block</span>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h4 class="font-label-lg text-label-lg line-through text-outline">Organic Raw Honey</h4>
+<span class="font-body-md text-body-md line-through text-outline font-medium">₹14.99</span>
+</div>
+<div class="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">error</span>
+<span class="font-label-sm text-label-sm font-semibold">Out of stock</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-dashed border-outline-variant/40">
+<p class="font-body-sm text-body-sm text-error">This item is currently sold out. Please remove it to proceed with checkout.</p>
+</div>
+</div>
+<!-- Item 2: Remaining Item (In Stock) -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-space-md shadow-sm">
+<div class="flex gap-3">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0 border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A premium glass bottle of translucent pale organic acacia honey with an elegant wooden dipper resting nearby. The composition is bright with crisp warm lighting against a wholesome cream and neutral stone backdrop. Aesthetic matches an artisanal Nordic health food store with clean lines and natural organic elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtZk24Rc6xTX_1aGlUkjQfC3R3rJAeuiJO0OuLHwrXDBwPF02LTYC2AlePhkrm-hhVyGHC8LVBsy4d3_hOZ_TXOXL0a3s2snIW3rNhEK1qyHtZtJz3bGreKt8VyIAn9-daF_Q3EhSOgrgD2K0aopNClBK2098g0-rbRotJplmsYMhXkHAc86VnpAu-ZumQMNrXZJhmrHpcEPmzpDW9YOln8wqL8ZZFsvQvnwxzBuQ53TuSJWepwUAB">
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Organic Acacia Honey</h4>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">₹35.98</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Qty: 2 • ₹17.99 each</p>
+<div class="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-sm text-label-sm font-semibold">In stock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Order Summary Card -->
+<section class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-space-md shadow-sm mt-1">
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold mb-3">Order Summary</h3>
+<div class="flex flex-col gap-2.5">
+<div class="flex justify-between items-center font-body-md text-body-md text-on-surface-variant">
+<span class="">Previous subtotal</span>
+<span class="">₹50.97</span>
+</div>
+<div class="flex justify-between items-center font-body-md text-body-md text-error">
+<span class="">Out-of-stock removal</span>
+<span class="">-₹14.99</span>
+</div>
+<div class="pt-2 border-t border-outline-variant/30 flex justify-between items-center font-headline-sm text-headline-sm text-on-surface">
+<span class="font-bold">Updated total</span>
+<span class="font-bold text-primary">₹35.98</span>
+</div>
+<div class="pt-2 flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span class="">Estimated delivery</span>
+<span class="font-medium text-on-surface">3-5 business days</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom Bar -->
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-surface-container-lowest border-t border-outline-variant/30 p-margin shadow-lg z-50 flex flex-col gap-2.5">
+<!-- Primary Action -->
+<button class="w-full h-12 bg-primary-container hover:bg-secondary text-on-primary font-label-lg text-label-lg rounded-lg flex items-center justify-center transition-colors shadow-sm active:scale-[0.99]">
+        Remove item and continue
+      </button>
+<!-- Secondary Action -->
+<button class="w-full h-11 bg-transparent border-[1.5px] border-primary-container text-primary-container hover:bg-surface-container-low font-label-lg text-label-lg rounded-lg flex items-center justify-center transition-colors active:scale-[0.99]">
+        Back to cart
+      </button>
+</div>
+</div>
+
+
+</body></html>

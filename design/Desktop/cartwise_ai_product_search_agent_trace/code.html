@@ -1,0 +1,485 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise - Chat</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Script -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-highest": "#e4e2de",
+            "surface-container-high": "#eae8e4",
+            "surface-dim": "#dbdad6",
+            "surface-bright": "#fbf9f5",
+            "outline": "#707974",
+            "error-container": "#ffdad6",
+            "secondary-fixed": "#a5f3c4",
+            "tertiary": "#4a2500",
+            "surface": "#fbf9f5",
+            "on-secondary-container": "#23714c",
+            "on-surface-variant": "#404945",
+            "outline-variant": "#c0c9c3",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#30312e",
+            "surface-tint": "#376757",
+            "tertiary-container": "#6b3700",
+            "on-primary-fixed-variant": "#1d4f40",
+            "on-primary-container": "#8abda9",
+            "on-tertiary": "#ffffff",
+            "background": "#fbf9f5",
+            "on-background": "#1b1c1a",
+            "on-tertiary-fixed": "#2f1500",
+            "on-tertiary-container": "#ff993b",
+            "inverse-on-surface": "#f2f0ed",
+            "secondary-fixed-dim": "#8ad7aa",
+            "on-surface": "#1b1c1a",
+            "surface-container": "#efeeea",
+            "surface-container-low": "#f5f3ef",
+            "on-secondary-fixed-variant": "#005232",
+            "secondary": "#1b6b47",
+            "on-secondary": "#ffffff",
+            "on-error-container": "#93000a",
+            "primary": "#003629",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "primary-fixed": "#baeed9",
+            "secondary-container": "#a5f3c4",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed": "#002111",
+            "tertiary-fixed": "#ffdcc3",
+            "on-primary-fixed": "#002117",
+            "on-error": "#ffffff",
+            "inverse-primary": "#9ed1bd",
+            "primary-container": "#1b4d3e",
+            "error": "#ba1a1a",
+            "primary-fixed-dim": "#9ed1bd",
+            "surface-variant": "#e4e2de",
+            "tertiary-fixed-dim": "#ffb77d"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.25rem",
+            "space-xl": "2.5rem",
+            "space-sm": "0.5rem",
+            "margin-desktop": "3rem",
+            "space-xs": "0.25rem",
+            "gutter-desktop": "2rem",
+            "margin-tablet": "2rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #c0c9c3;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col font-body-md selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar (Identical to screens 1A-1D) -->
+<header class="sticky top-0 z-50 w-full bg-surface-container-lowest border-b border-outline-variant/30 shadow-sm">
+<div class="flex items-center justify-between px-6 lg:px-8 py-3.5 w-full max-w-7xl mx-auto">
+<!-- Brand Logo & Left Nav Links -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 text-headline-sm font-headline-sm font-bold text-primary tracking-tight" href="#">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="">CartWise</span>
+</a>
+<!-- Navigation Links: Exactly 'Chat' and 'Orders' -->
+<nav class="flex items-center gap-6">
+<a class="text-primary border-b-2 border-primary pb-1 font-semibold text-label-lg font-label-lg transition-colors" href="#">
+          Chat
+        </a>
+<a class="text-on-surface-variant pb-1 hover:text-primary transition-colors text-label-lg font-label-lg" href="#">
+          Orders
+        </a>
+</nav>
+</div>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-3">
+<!-- New chat Button -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-primary text-primary rounded-lg text-label-lg font-label-lg hover:bg-surface-container-low active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-lg">add</span>
+<span class="">New chat</span>
+</button>
+<!-- Agent Trace Toggle Button -->
+<button class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-outline-variant/70 bg-surface-container-low hover:bg-surface-container hover:text-primary active:scale-[0.98] transition-all text-label-lg font-label-lg text-primary font-medium" id="traceToggleBtn" type="button">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="material-symbols-outlined text-lg">neurology</span>
+<span class="">Agent Trace</span>
+</button>
+<!-- Shopping Cart Icon with Badge '3' -->
+<div class="relative p-1.5 rounded-full hover:bg-surface-container-low transition-colors cursor-pointer text-on-surface-variant hover:text-primary ml-1">
+<span class="material-symbols-outlined text-2xl">shopping_cart</span>
+<span class="absolute top-0.5 right-0.5 bg-primary text-on-primary text-[11px] font-semibold w-4 h-4 rounded-full flex items-center justify-center leading-none">
+          3
+        </span>
+</div>
+<!-- Account Silhouette Icon -->
+<div class="p-1.5 rounded-full hover:bg-surface-container-low transition-colors cursor-pointer text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined text-2xl">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Hybrid Workspace Layout -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-4 md:px-8 py-6 flex gap-6 relative overflow-hidden">
+<!-- Primary Chat Column -->
+<section class="flex-1 flex flex-col h-[calc(100vh-100px)] relative">
+<!-- Chat Stream Container with ample pb so input never obstructs cards or actions -->
+<div class="flex-1 overflow-y-auto custom-scroll pr-2 space-y-6 pb-36">
+<!-- User Message (Right Aligned) -->
+<div class="flex flex-col items-end">
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-2xl rounded-br-sm px-5 py-3.5 shadow-sm max-w-md">
+<p class="text-on-surface text-body-md font-body-md">I want organic honey with 4.5+ rating under ₹20</p>
+</div>
+</div>
+<!-- Assistant Response (Left Aligned) -->
+<div class="flex items-start gap-3.5">
+<!-- Assistant Avatar -->
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0 mt-1 shadow-sm">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="flex-1 space-y-4">
+<!-- Text Message -->
+<p class="text-on-surface text-body-md font-body-md font-medium">
+            I found 3 organic honeys that match.
+          </p>
+<!-- 3 Matching Product Cards Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 pt-1">
+<!-- Product Card 1: Organic Acacia Honey -->
+<article class="bg-surface-container-lowest border border-outline-variant/70 rounded-xl p-4 flex flex-col justify-between hover:border-primary/50 transition-all shadow-sm group">
+<div>
+<!-- Image Container with Badges -->
+<div class="relative w-full h-44 rounded-lg overflow-hidden bg-surface-container mb-3.5">
+<img alt="Organic Acacia Honey" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFqFQnHVDkTquOqv-kCDu1X7_4vAJmYtHYl3GbwoABv0LBkQJXjGXKtdCmRHjy1kgeBeYydU8HqiflhRcxrU1Po7w8GG-2PatQztSMrg3E6aSIgRpJ-dyFvC5ML8k-sMWaYWaVITowtzOnZaYsl0SkB1-kp3pvJIT-cUewTJazT7_-8CxP2bPk25R3hF1H5AGuelo9TMnAqHd3T1UaR2or5L_pAuaBkClLQB1Tgt9ypeRJSXD1FmaN">
+<span class="absolute top-2.5 left-2.5 bg-secondary text-on-secondary text-label-sm font-label-sm px-2.5 py-0.5 rounded-full font-semibold shadow-sm">
+                    Organic
+                  </span>
+<span class="absolute top-2.5 right-2.5 bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm px-2 py-0.5 rounded font-bold shadow-sm">
+                    Top rated
+                  </span>
+</div>
+<!-- Title -->
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 font-semibold leading-snug">Organic Acacia Honey</h3>
+<!-- Rating & Stock -->
+<div class="flex items-center gap-1.5 mb-2.5">
+<span class="text-label-lg font-label-lg text-on-surface font-medium">★ 4.8</span>
+<span class="text-outline text-label-sm font-label-sm">(4 reviews)</span>
+<span class="text-outline-variant text-label-sm">•</span>
+<span class="text-label-sm font-label-sm text-secondary font-semibold">In stock</span>
+</div>
+<!-- 1-line AI review summary -->
+<div class="bg-surface-container-low border border-outline-variant/60 rounded-lg px-2.5 py-2 mb-3">
+<p class="text-body-sm font-body-sm text-on-surface-variant italic">
+                    "Mild, pure taste"
+                  </p>
+</div>
+<!-- Price -->
+<p class="text-headline-sm font-headline-sm font-bold text-primary mb-3">₹17.99</p>
+</div>
+<!-- Action buttons on ONE single line that never wraps -->
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/30">
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 bg-primary text-on-primary rounded-lg text-label-md font-label-md hover:bg-secondary active:scale-[0.98] transition-all text-center font-medium" type="button">
+                  Add to cart
+                </button>
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 bg-on-tertiary-container text-on-tertiary rounded-lg text-label-md font-label-md hover:opacity-90 active:scale-[0.98] transition-all text-center font-semibold" type="button">
+                  Buy now
+                </button>
+</div>
+</article>
+<!-- Product Card 2: Organic Raw Honey -->
+<article class="bg-surface-container-lowest border border-outline-variant/70 rounded-xl p-4 flex flex-col justify-between hover:border-primary/50 transition-all shadow-sm group">
+<div>
+<!-- Image Container with Badges -->
+<div class="relative w-full h-44 rounded-lg overflow-hidden bg-surface-container mb-3.5">
+<img alt="Organic Raw Honey" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaGR2tT8GesBeYRQr7Snt7F3bB6TSMBrpBnWsiRkKc-uN0XuKT68ISCDn_EaKpumr_J-YlZlXdIIV26DDthqhj88mdetrJ0kLXJGB3_4PXLbM2JEJc8YetG_p2VVSdCuuYKXsAC0rV_2v6Er2QrU6xqGeCj8L1N87M65Ovq_zfQW0ZEw8QicNABjXs9t220Rm8X7405JwSilechplWcUdf3Y6nDZ1KEv0a65fBW3ItVfMpLYYw5VJp">
+<span class="absolute top-2.5 left-2.5 bg-secondary text-on-secondary text-label-sm font-label-sm px-2.5 py-0.5 rounded-full font-semibold shadow-sm">
+                    Organic
+                  </span>
+<span class="absolute top-2.5 right-2.5 bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm px-2 py-0.5 rounded font-bold shadow-sm">
+                    Lowest price
+                  </span>
+</div>
+<!-- Title -->
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 font-semibold leading-snug">Organic Raw Honey</h3>
+<!-- Rating & Stock -->
+<div class="flex items-center gap-1.5 mb-2.5">
+<span class="text-label-lg font-label-lg text-on-surface font-medium">★ 4.6</span>
+<span class="text-outline text-label-sm font-label-sm">(4 reviews)</span>
+<span class="text-outline-variant text-label-sm">•</span>
+<span class="text-label-sm font-label-sm text-secondary font-semibold">In stock</span>
+</div>
+<!-- 1-line AI review summary -->
+<div class="bg-surface-container-low border border-outline-variant/60 rounded-lg px-2.5 py-2 mb-3">
+<p class="text-body-sm font-body-sm text-on-surface-variant italic">
+                    "Unfiltered, very pure flavor"
+                  </p>
+</div>
+<!-- Price -->
+<p class="text-headline-sm font-headline-sm font-bold text-primary mb-3">₹14.99</p>
+</div>
+<!-- Action buttons on ONE single line that never wraps -->
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/30">
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 bg-primary text-on-primary rounded-lg text-label-md font-label-md hover:bg-secondary active:scale-[0.98] transition-all text-center font-medium" type="button">
+                  Add to cart
+                </button>
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 bg-on-tertiary-container text-on-tertiary rounded-lg text-label-md font-label-md hover:opacity-90 active:scale-[0.98] transition-all text-center font-semibold" type="button">
+                  Buy now
+                </button>
+</div>
+</article>
+<!-- Product Card 3: Organic Buckwheat Honey -->
+<article class="bg-surface-container-lowest border border-outline-variant/70 rounded-xl p-4 flex flex-col justify-between hover:border-primary/50 transition-all shadow-sm group">
+<div>
+<!-- Image Container with Badges -->
+<div class="relative w-full h-44 rounded-lg overflow-hidden bg-surface-container mb-3.5">
+<img alt="Organic Buckwheat Honey" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClPXAd0mq02_Ba2wnOB1DGYFvp_e0PBndGirhGPua5uU7M8HlpxZKtjaluYrZS7Zw7WiiNoN1_Qongv3dzgvWVaFLxilm61dhENUGdtKNPOW4zSpCYzUwnbb59C6uo_-ozxApeYlp3PdV3jWCjRB0XYUj51aYwpS0qnd9qwMNmoK1FcWv7QiI4nfW9K8Cadf3VeCk8fGqWJPL9i4Ba4zs3TDCW8MGIrQOtvAEYKbowX6cBuL0in7KM">
+<span class="absolute top-2.5 left-2.5 bg-secondary text-on-secondary text-label-sm font-label-sm px-2.5 py-0.5 rounded-full font-semibold shadow-sm">
+                    Organic
+                  </span>
+</div>
+<!-- Title -->
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 font-semibold leading-snug">Organic Buckwheat Honey</h3>
+<!-- Rating & Stock -->
+<div class="flex items-center gap-1.5 mb-2.5">
+<span class="text-label-lg font-label-lg text-on-surface font-medium">★ 4.6</span>
+<span class="text-outline text-label-sm font-label-sm">(4 reviews)</span>
+<span class="text-outline-variant text-label-sm">•</span>
+<span class="text-label-sm font-label-sm text-secondary font-semibold">In stock</span>
+</div>
+<!-- 1-line AI review summary -->
+<div class="bg-surface-container-low border border-outline-variant/60 rounded-lg px-2.5 py-2 mb-3">
+<p class="text-body-sm font-body-sm text-on-surface-variant italic">
+                    "Rich and dark, great in tea"
+                  </p>
+</div>
+<!-- Price -->
+<p class="text-headline-sm font-headline-sm font-bold text-primary mb-3">₹18.99</p>
+</div>
+<!-- Action buttons on ONE single line that never wraps -->
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/30">
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 bg-primary text-on-primary rounded-lg text-label-md font-label-md hover:bg-secondary active:scale-[0.98] transition-all text-center font-medium" type="button">
+                  Add to cart
+                </button>
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 bg-on-tertiary-container text-on-tertiary rounded-lg text-label-md font-label-md hover:opacity-90 active:scale-[0.98] transition-all text-center font-semibold" type="button">
+                  Buy now
+                </button>
+</div>
+</article>
+</div>
+<!-- Quick Follow-up Suggestion Chips -->
+<div class="pt-2">
+<div class="flex flex-wrap gap-2">
+<button class="rounded-full bg-surface-container-lowest border border-outline-variant/80 px-3.5 py-1 text-label-lg font-label-lg text-on-surface hover:border-primary hover:text-primary transition-all flex items-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-base text-secondary">compare_arrows</span>
+                Compare these
+              </button>
+<button class="rounded-full bg-surface-container-lowest border border-outline-variant/80 px-3.5 py-1 text-label-lg font-label-lg text-on-surface hover:border-primary hover:text-primary transition-all flex items-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-base text-secondary">savings</span>
+                Show cheaper
+              </button>
+<button class="rounded-full bg-surface-container-lowest border border-outline-variant/80 px-3.5 py-1 text-label-lg font-label-lg text-on-surface hover:border-primary hover:text-primary transition-all flex items-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-base text-secondary">grade</span>
+                Only 4.7+
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pinned Bottom Chat Input Bar -->
+<div class="absolute bottom-0 left-0 right-0 pt-3 pb-3 bg-gradient-to-t from-surface via-surface/95 to-transparent">
+<div class="bg-surface-container-lowest border border-outline-variant/80 rounded-2xl shadow-md p-2 flex items-center gap-3">
+<!-- Camera Action for Image Upload -->
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-xl transition-colors shrink-0" title="Upload a photo" type="button">
+<span class="material-symbols-outlined text-2xl">photo_camera</span>
+</button>
+<!-- Clean Text Input -->
+<input class="flex-1 bg-transparent border-0 text-on-surface placeholder:text-on-surface-variant/70 text-body-md font-body-md focus:ring-0 focus:outline-none py-2 px-1" placeholder="Ask CartWise or upload a photo..." type="text">
+<!-- Up-Arrow Send Button -->
+<button class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center hover:bg-secondary active:scale-95 transition-all shrink-0 shadow-sm" type="button">
+<span class="material-symbols-outlined text-xl">arrow_upward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Right Side Column: Docked Agent Execution Trace Drawer -->
+<aside class="w-96 shrink-0 bg-surface-container-lowest border border-outline-variant rounded-xl flex flex-col h-[calc(100vh-100px)] shadow-sm overflow-hidden transition-all duration-300" id="agentTraceDrawer">
+<!-- Trace Header -->
+<div class="p-4 border-b border-outline-variant/60 bg-surface-container-low flex items-center justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<h2 class="text-headline-sm font-headline-sm text-primary font-bold">Agent Execution Trace</h2>
+</div>
+<p class="text-label-sm font-label-sm text-outline mt-0.5">Step by step copilot execution timeline</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-surface-container text-secondary text-label-sm font-label-sm font-bold border border-outline-variant/70">
+          1,128ms total
+        </span>
+<button class="text-outline hover:text-on-surface p-1 rounded hover:bg-surface-container transition-colors" id="closeTraceBtn" title="Close trace">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+</div>
+<!-- Execution Timeline Body -->
+<div class="flex-1 overflow-y-auto custom-scroll p-4 space-y-4">
+<!-- Step 1: Understand request -->
+<div class="relative pl-6 border-l-2 border-secondary/40 pb-4">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-[10px]">
+<span class="material-symbols-outlined text-[10px]">psychology</span>
+</div>
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-label-md font-label-md text-primary font-bold">1. Understand request</h3>
+<span class="text-label-sm font-label-sm text-outline font-medium">48ms</span>
+</div>
+<div class="bg-surface-container-low border border-dashed border-outline-variant rounded-lg p-2.5 text-body-sm font-body-sm text-on-surface-variant space-y-1">
+<div class="text-[12px] font-mono text-on-surface-variant leading-relaxed">
+<p class="">category: <span class="text-secondary font-bold">"honey"</span></p>
+<p class="">organic: <span class="text-secondary font-bold">true</span></p>
+<p class="">min rating: <span class="text-secondary font-bold">&gt;= 4.5</span></p>
+<p class="">max price: <span class="text-secondary font-bold">&lt;= ₹20</span></p>
+</div>
+</div>
+</div>
+<!-- Step 2: Search products -->
+<div class="relative pl-6 border-l-2 border-secondary/40 pb-4">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-[10px]">
+<span class="material-symbols-outlined text-[10px]">search</span>
+</div>
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-label-md font-label-md text-primary font-bold">2. Search products</h3>
+<span class="text-label-sm font-label-sm text-outline font-medium">60ms</span>
+</div>
+<div class="bg-surface-container-low border border-dashed border-outline-variant rounded-lg p-2.5 text-body-sm font-body-sm text-on-surface-variant">
+<p class="text-[13px] text-on-surface">SQL filters + keyword search, 3 matches</p>
+</div>
+</div>
+<!-- Step 3: Summarize reviews -->
+<div class="relative pl-6 border-l-2 border-secondary/40 pb-4">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-[10px]">
+<span class="material-symbols-outlined text-[10px]">rate_review</span>
+</div>
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-label-md font-label-md text-primary font-bold">3. Summarize reviews</h3>
+<span class="text-label-sm font-label-sm text-outline font-medium">900ms</span>
+</div>
+<div class="bg-surface-container-low border border-dashed border-outline-variant rounded-lg p-2.5 text-body-sm font-body-sm text-on-surface-variant">
+<p class="text-[13px] text-on-surface">Summarized 12 reviews across 3 products</p>
+</div>
+</div>
+<!-- Step 4: Write response -->
+<div class="relative pl-6 pb-1">
+<div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[10px]">
+<span class="material-symbols-outlined text-[10px]">check</span>
+</div>
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-label-md font-label-md text-primary font-bold">4. Write response</h3>
+<span class="text-label-sm font-label-sm text-outline font-medium">120ms</span>
+</div>
+<div class="bg-surface-container-low border border-dashed border-outline-variant rounded-lg p-2.5 text-body-sm font-body-sm text-on-surface-variant">
+<p class="text-[13px] text-on-surface">Generated response and formatted 3 product recommendations</p>
+</div>
+</div>
+</div>
+<!-- Drawer Footer with Raw JSON Action -->
+<div class="p-3 border-t border-outline-variant/60 bg-surface-container-low flex justify-end items-center">
+<a class="text-label-sm font-label-sm font-bold text-primary hover:text-secondary flex items-center gap-1 transition-colors" href="#">
+<span class="">Raw JSON</span>
+<span class="material-symbols-outlined text-xs">code</span>
+</a>
+</div>
+</aside>
+</main>
+<!-- Interactive script for trace drawer toggle -->
+<script>
+  const traceBtn = document.getElementById('traceToggleBtn');
+  const drawer = document.getElementById('agentTraceDrawer');
+  const closeBtn = document.getElementById('closeTraceBtn');
+
+  let isOpen = true;
+
+  function toggleTraceDrawer() {
+    isOpen = !isOpen;
+    if (isOpen) {
+      drawer.classList.remove('hidden');
+      drawer.classList.add('flex');
+    } else {
+      drawer.classList.add('hidden');
+      drawer.classList.remove('flex');
+    }
+  }
+
+  traceBtn.addEventListener('click', toggleTraceDrawer);
+  closeBtn.addEventListener('click', toggleTraceDrawer);
+</script>
+
+
+</body></html>

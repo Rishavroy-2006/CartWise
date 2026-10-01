@@ -1,0 +1,349 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise - Assistant</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-primary": "#9ed1bd",
+            "on-secondary-container": "#23714c",
+            "on-secondary-fixed": "#002111",
+            "tertiary-fixed-dim": "#ffb77d",
+            "surface": "#fbf9f5",
+            "outline-variant": "#c0c9c3",
+            "surface-dim": "#dbdad6",
+            "tertiary-container": "#6b3700",
+            "secondary-fixed": "#a5f3c4",
+            "on-error-container": "#93000a",
+            "surface-tint": "#376757",
+            "on-primary": "#ffffff",
+            "secondary-container": "#a5f3c4",
+            "secondary-fixed-dim": "#8ad7aa",
+            "on-secondary-fixed-variant": "#005232",
+            "background": "#fbf9f5",
+            "error-container": "#ffdad6",
+            "outline": "#707974",
+            "primary-container": "#1b4d3e",
+            "surface-bright": "#fbf9f5",
+            "on-tertiary-container": "#ff993b",
+            "surface-container-low": "#f5f3ef",
+            "inverse-on-surface": "#f2f0ed",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "on-tertiary-fixed": "#2f1500",
+            "secondary": "#1b6b47",
+            "on-primary-fixed-variant": "#1d4f40",
+            "inverse-surface": "#30312e",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "primary-fixed-dim": "#9ed1bd",
+            "surface-container-highest": "#e4e2de",
+            "surface-variant": "#e4e2de",
+            "primary": "#003629",
+            "tertiary-fixed": "#ffdcc3",
+            "on-tertiary": "#ffffff",
+            "on-primary-container": "#8abda9",
+            "surface-container-high": "#eae8e4",
+            "on-error": "#ffffff",
+            "on-background": "#1b1c1a",
+            "primary-fixed": "#baeed9",
+            "on-surface": "#1b1c1a",
+            "tertiary": "#4a2500",
+            "surface-container": "#efeeea",
+            "on-surface-variant": "#404945",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed": "#002117"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-xl": "2.5rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "margin-tablet": "2rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "2rem",
+            "gutter": "1.25rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    @keyframes organic-shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .shimmer-mask {
+      position: relative;
+      overflow: hidden;
+    }
+    .shimmer-mask::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.65) 50%, rgba(255,255,255,0) 100%);
+      animation: organic-shimmer 1.8s infinite ease-in-out;
+    }
+    @keyframes gentle-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .animate-gentle-spin {
+      animation: gentle-spin 2s linear infinite;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased flex justify-center min-h-screen">
+<div class="relative w-full max-w-[390px] min-h-screen bg-background flex flex-col shadow-[0_0_32px_rgba(0,0,0,0.06)] overflow-x-hidden pb-44">
+<!-- TOP APP BAR -->
+<header class="fixed top-0 left-0 right-0 w-full z-50 flex items-center justify-between px-margin h-14 max-w-[390px] mx-auto bg-surface border-b border-outline-variant/30 shadow-sm">
+<button aria-label="Open menu" class="w-9 h-9 flex items-center justify-center rounded-lg text-primary hover:bg-surface-container-high transition-colors active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<div class="flex items-center gap-1.5 text-headline-sm font-headline-sm text-primary tracking-tight">
+<span class="material-symbols-outlined text-secondary text-[22px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="">CartWise</span>
+</div>
+<button aria-label="View shopping cart" class="relative w-9 h-9 flex items-center justify-center rounded-lg text-primary hover:bg-surface-container-high transition-colors active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px]">shopping_cart</span>
+<span class="absolute -top-1 -right-1 w-4 h-4 bg-tertiary-container text-on-tertiary text-[10px] font-label-sm font-semibold rounded-full flex items-center justify-center shadow-sm">3</span>
+</button>
+</header>
+<!-- MAIN CHAT CONTAINER -->
+<main class="flex-1 px-margin pt-20 pb-4 flex flex-col gap-space-lg">
+<!-- Conversation Context / Date Divider -->
+<div class="flex items-center justify-center my-space-xs">
+<span class="px-space-md py-1 rounded-full bg-surface-container text-on-surface-variant text-label-sm font-label-sm tracking-wide">
+          Today, 10:24 AM
+        </span>
+</div>
+<!-- USER CHAT BUBBLE -->
+<div class="flex flex-col items-end gap-space-xs w-full pl-8">
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl rounded-br-[0.25rem] p-space-md shadow-[0_2px_8px_-1px_rgba(27,77,62,0.03)] text-on-surface">
+<p class="text-body-md font-body-md leading-relaxed text-on-surface">I want organic honey with 4.5+ rating under ₹20</p>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant/80 px-1">
+<span class="text-label-sm font-label-sm text-[11px]">10:24 AM</span>
+<span class="material-symbols-outlined text-secondary text-[15px]" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+</div>
+<!-- ASSISTANT THINKING CONTAINER -->
+<div class="flex flex-col gap-space-md w-full pr-1">
+<!-- Assistant Header & Avatar -->
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<!-- Thought Box Card -->
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant/50 rounded-xl rounded-tl-[0.25rem] p-space-md shadow-[0_4px_16px_-2px_rgba(27,77,62,0.04)]">
+<!-- Header state -->
+<div class="flex items-center gap-space-sm pb-space-sm border-b border-outline-variant/30">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+</span>
+<span class="text-label-lg font-label-lg text-primary tracking-tight">Finding the best matches...</span>
+</div>
+<!-- Progress Step List -->
+<div class="pt-space-md flex flex-col gap-space-sm">
+<!-- Step 1: Completed -->
+<div class="flex items-start gap-space-sm">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-secondary/15 text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1">
+<p class="text-body-sm font-body-sm text-on-surface-variant line-through opacity-85">Understanding your request</p>
+<p class="text-[11px] text-outline font-label-sm">Raw, unfiltered, verified organic standards</p>
+</div>
+</div>
+<!-- Step 2: In Progress -->
+<div class="flex items-start gap-space-sm">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-secondary-fixed/50 text-secondary flex items-center justify-center shrink-0 animate-gentle-spin">
+<span class="material-symbols-outlined text-[15px]">progress_activity</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<p class="text-body-sm font-body-sm text-on-surface font-semibold">Searching products</p>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/60 text-on-secondary-container text-[10px] font-label-sm font-medium tracking-wide">
+                      in progress
+                    </span>
+</div>
+<p class="text-[11px] text-on-surface-variant font-label-sm">Filtering pantry stock under ₹20.00</p>
+</div>
+</div>
+<!-- Step 3: Waiting / Pending -->
+<div class="flex items-start gap-space-sm opacity-60">
+<div class="mt-0.5 w-5 h-5 rounded-full border border-dashed border-outline text-outline flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[13px]">schedule</span>
+</div>
+<div class="flex-1">
+<p class="text-body-sm font-body-sm text-on-surface-variant">Summarizing reviews</p>
+<p class="text-[11px] text-outline font-label-sm">Analyzing verified customer ratings (4.5★+)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SKELETON PRODUCT CAROUSEL -->
+<div class="flex flex-col gap-space-xs pl-10 mt-1">
+<div class="flex items-center justify-between pr-2">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Gathering recommendations</span>
+<span class="text-[11px] font-label-sm text-secondary font-medium flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+              2 items found
+            </span>
+</div>
+<!-- Horizontal Carousel of Skeletons -->
+<div class="flex gap-space-md overflow-x-auto pb-2 pt-1 -mr-margin pr-margin no-scrollbar">
+<!-- Skeleton Card 1 -->
+<div class="min-w-[208px] w-[208px] bg-surface-container-lowest rounded-xl border border-outline-variant/50 p-space-md shadow-sm flex flex-col gap-space-sm shrink-0">
+<!-- Shimmer Image -->
+<div class="w-full h-28 bg-surface-container-high rounded-lg shimmer-mask relative"></div>
+<!-- Shimmer Badge -->
+<div class="w-20 h-4 bg-surface-container-high rounded-full shimmer-mask"></div>
+<!-- Shimmer Title Lines -->
+<div class="flex flex-col gap-1.5 mt-0.5">
+<div class="w-full h-3.5 bg-surface-container-high rounded shimmer-mask"></div>
+<div class="w-3/4 h-3.5 bg-surface-container-high rounded shimmer-mask"></div>
+</div>
+<!-- Shimmer Star Rating -->
+<div class="flex items-center gap-1 mt-1">
+<div class="w-16 h-3 bg-surface-container-high rounded shimmer-mask"></div>
+<div class="w-7 h-3 bg-surface-container-high rounded shimmer-mask"></div>
+</div>
+<!-- Price & Skeleton Button -->
+<div class="flex items-center justify-between pt-space-xs mt-auto border-t border-surface-container">
+<div class="w-12 h-5 bg-surface-container-high rounded shimmer-mask"></div>
+<div class="w-14 h-7 rounded-lg bg-surface-container-high shimmer-mask"></div>
+</div>
+</div>
+<!-- Skeleton Card 2 -->
+<div class="min-w-[208px] w-[208px] bg-surface-container-lowest rounded-xl border border-outline-variant/50 p-space-md shadow-sm flex flex-col gap-space-sm shrink-0">
+<!-- Shimmer Image -->
+<div class="w-full h-28 bg-surface-container-high rounded-lg shimmer-mask relative"></div>
+<!-- Shimmer Badge -->
+<div class="w-24 h-4 bg-surface-container-high rounded-full shimmer-mask"></div>
+<!-- Shimmer Title Lines -->
+<div class="flex flex-col gap-1.5 mt-0.5">
+<div class="w-5/6 h-3.5 bg-surface-container-high rounded shimmer-mask"></div>
+<div class="w-2/3 h-3.5 bg-surface-container-high rounded shimmer-mask"></div>
+</div>
+<!-- Shimmer Star Rating -->
+<div class="flex items-center gap-1 mt-1">
+<div class="w-16 h-3 bg-surface-container-high rounded shimmer-mask"></div>
+<div class="w-7 h-3 bg-surface-container-high rounded shimmer-mask"></div>
+</div>
+<!-- Price & Skeleton Button -->
+<div class="flex items-center justify-between pt-space-xs mt-auto border-t border-surface-container">
+<div class="w-14 h-5 bg-surface-container-high rounded shimmer-mask"></div>
+<div class="w-14 h-7 rounded-lg bg-surface-container-high shimmer-mask"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- PINNED CHAT INPUT BAR (Above Bottom Nav) -->
+<div class="fixed bottom-[60px] left-0 right-0 w-full max-w-[390px] mx-auto z-40 px-margin py-2 bg-gradient-to-t from-background via-background/95 to-transparent">
+<form class="flex items-center gap-space-xs bg-surface-container-lowest rounded-full border border-outline-variant/60 shadow-[0_4px_20px_-2px_rgba(27,77,62,0.08)] px-2 py-1.5 focus-within:ring-2 focus-within:ring-secondary focus-within:border-secondary transition-all" onsubmit="event.preventDefault();">
+<!-- Camera / Media button -->
+<button aria-label="Upload photo or scan label" class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</button>
+<!-- Text input field -->
+<input class="flex-1 bg-transparent border-0 py-1.5 text-body-md font-body-md text-on-surface placeholder:text-outline focus:ring-0 focus:outline-none" placeholder="Ask CartWise or upload a photo..." type="text">
+<!-- Mic / Quick Action -->
+<button aria-label="Voice input" class="w-8 h-8 rounded-full flex items-center justify-center text-outline hover:text-on-surface-variant transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+<!-- Send button -->
+<button aria-label="Send message" class="w-8 h-8 rounded-full bg-primary-container hover:bg-secondary text-on-primary flex items-center justify-center active:scale-95 transition-transform duration-150 shadow-sm" type="submit">
+<span class="material-symbols-outlined text-[17px]">arrow_upward</span>
+</button>
+</form>
+</div>
+<!-- BOTTOM NAVIGATION BAR (Anchored Shared Component) -->
+<nav class="fixed bottom-0 left-0 right-0 w-full z-40 flex justify-around items-center px-space-xs py-1.5 pb-safe max-w-[390px] mx-auto bg-surface-container-lowest/95 backdrop-blur-md border-t border-outline-variant/30 shadow-[0_-4px_16px_-2px_rgba(27,77,62,0.04)]">
+<!-- Tab 1: Assistant (ACTIVE) -->
+<a class="flex flex-col items-center justify-center text-primary font-semibold py-1 px-3 rounded-full bg-secondary-container/40 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="text-label-sm font-label-sm mt-0.5">Assistant</span>
+</a>
+<!-- Tab 2: Pantry -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 px-3 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+<span class="text-label-sm font-label-sm mt-0.5">Pantry</span>
+</a>
+<!-- Tab 3: Recipes -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 px-3 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span class="text-label-sm font-label-sm mt-0.5">Recipes</span>
+</a>
+<!-- Tab 4: Cart -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 px-3 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+<span class="text-label-sm font-label-sm mt-0.5">Cart</span>
+</a>
+</nav>
+</div>
+
+
+</body></html>

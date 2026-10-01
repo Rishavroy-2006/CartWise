@@ -1,0 +1,389 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>CartWise - Product Comparison</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "primary-fixed": "#baeed9",
+            "outline": "#707974",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#eae8e4",
+            "tertiary": "#4a2500",
+            "surface-bright": "#fbf9f5",
+            "outline-variant": "#c0c9c3",
+            "primary-fixed-dim": "#9ed1bd",
+            "on-secondary-container": "#23714c",
+            "primary": "#003629",
+            "surface-container-low": "#f5f3ef",
+            "on-tertiary-container": "#ff993b",
+            "on-primary-container": "#8abda9",
+            "surface-tint": "#376757",
+            "surface": "#fbf9f5",
+            "inverse-on-surface": "#f2f0ed",
+            "on-error": "#ffffff",
+            "surface-dim": "#dbdad6",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdcc3",
+            "secondary-fixed-dim": "#8ad7aa",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed": "#002111",
+            "inverse-primary": "#9ed1bd",
+            "secondary-container": "#a5f3c4",
+            "surface-variant": "#e4e2de",
+            "on-surface-variant": "#404945",
+            "surface-container-highest": "#e4e2de",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "primary-container": "#1b4d3e",
+            "on-background": "#1b1c1a",
+            "on-tertiary-fixed": "#2f1500",
+            "on-surface": "#1b1c1a",
+            "on-secondary-fixed-variant": "#005232",
+            "tertiary-container": "#6b3700",
+            "secondary": "#1b6b47",
+            "surface-container": "#efeeea",
+            "inverse-surface": "#30312e",
+            "on-primary-fixed": "#002117",
+            "tertiary-fixed-dim": "#ffb77d",
+            "background": "#fbf9f5",
+            "on-primary-fixed-variant": "#1d4f40",
+            "secondary-fixed": "#a5f3c4",
+            "error": "#ba1a1a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "space-xs": "0.25rem",
+            "margin-tablet": "2rem",
+            "space-md": "1rem",
+            "gutter-desktop": "2rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "space-xl": "2.5rem",
+            "gutter": "1.25rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["15px", {"lineHeight": "24px", "fontWeight": "400"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .ambient-shadow {
+      box-shadow: 0 4px 16px -2px rgba(27, 77, 62, 0.04), 0 2px 6px -1px rgba(27, 77, 62, 0.02);
+    }
+    .floating-shadow {
+      box-shadow: 0 12px 32px -4px rgba(27, 77, 62, 0.08), 0 4px 12px -2px rgba(27, 77, 62, 0.03);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased flex justify-center min-h-screen">
+<!-- Mobile Viewport Container (390px fixed canvas) -->
+<main class="w-[390px] min-h-screen bg-background relative flex flex-col pb-28 select-none">
+<!-- TopAppBar (from Shared Components JSON) -->
+<header class="fixed top-0 left-0 right-0 w-full z-50 flex items-center justify-between px-margin h-14 max-w-[390px] mx-auto bg-surface shadow-sm">
+<button aria-label="Open menu" class="w-10 h-10 flex items-center justify-center rounded-lg text-primary hover:bg-surface-container-high active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<div class="flex items-center gap-1.5 text-headline-sm font-headline-sm text-primary tracking-tight">
+<span class="material-symbols-outlined text-secondary text-[22px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="">CartWise</span>
+</div>
+<button aria-label="View shopping cart" class="w-10 h-10 relative flex items-center justify-center rounded-lg text-primary hover:bg-surface-container-high active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+<span class="absolute top-1.5 right-1.5 min-w-[17px] h-[17px] px-1 bg-primary-container text-on-primary rounded-full text-label-sm font-label-sm flex items-center justify-center leading-none">3</span>
+</button>
+</header>
+<!-- Sub-header / Context Bar -->
+<section class="mt-14 pt-3 pb-2 px-margin flex items-center justify-between bg-surface-container-low border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<h1 class="text-label-lg font-label-lg text-primary">Comparing 3 honeys</h1>
+</div>
+<a class="flex items-center gap-1 text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors py-1 px-2 rounded-md hover:bg-surface-container" href="#">
+<span class="">Back to chat</span>
+<span class="material-symbols-outlined text-[16px]">close</span>
+</a>
+</section>
+<!-- Assistant Thought / Agent Trace Accordion -->
+<section class="px-margin pt-3">
+<div class="bg-surface-container-low border border-dashed border-outline-variant/70 rounded-xl p-3 flex items-start gap-2.5">
+<div class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-on-primary text-[14px]">smart_toy</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-secondary font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              Organic verification check
+            </span>
+<span class="text-label-sm font-label-sm text-outline">3 of 3 passed</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Audited for USDA 100% organic certification, cold extraction methods, and zero additive sugars.</p>
+</div>
+</div>
+</section>
+<!-- Product Comparison Section -->
+<section class="px-margin pt-4 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md text-outline">Select the ideal honey for your pantry</span>
+<span class="text-label-sm font-label-sm text-secondary font-semibold bg-secondary-container/40 px-2 py-0.5 rounded-full">3 Options</span>
+</div>
+<!-- Comparison Carousel / Stacked Matrix Cards -->
+<div class="flex flex-col gap-4">
+<!-- 1. Organic Acacia Honey (Best Pick) -->
+<article class="bg-surface-container-lowest border-2 border-primary-container rounded-xl overflow-hidden ambient-shadow flex flex-col relative transition-transform">
+<!-- Prominent Highlight Pill -->
+<div class="bg-primary-container text-on-primary px-3 py-1.5 flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-label-md font-label-md">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="">Best pick: highest rating</span>
+</div>
+<span class="text-label-sm font-label-sm opacity-90">Top Choice</span>
+</div>
+<div class="p-4 flex flex-col gap-3.5">
+<!-- Header Info -->
+<div class="flex items-start justify-between gap-2">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Organic Acacia Honey</h2>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary mt-0.5">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="">Pure Certified Organic</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-headline-sm font-headline-sm text-primary">₹17.99</span>
+<span class="block text-label-sm font-label-sm text-outline">16 oz jar</span>
+</div>
+</div>
+<!-- Comparison Table Grid -->
+<div class="border border-outline-variant/40 rounded-lg overflow-hidden text-body-sm font-body-sm divide-y divide-outline-variant/30">
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-low/40">
+<span class="text-label-md font-label-md text-on-surface-variant">Price</span>
+<span class="col-span-2 text-primary font-semibold">₹17.99</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-lowest">
+<span class="text-label-md font-label-md text-on-surface-variant">Rating</span>
+<span class="col-span-2 text-primary font-semibold flex items-center gap-1">
+<span class="">★ 4.8 (highest)</span>
+</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-low/40">
+<span class="text-label-md font-label-md text-on-surface-variant">Organic</span>
+<span class="col-span-2 text-secondary flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="">Yes (Organic certified)</span>
+</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-lowest">
+<span class="text-label-md font-label-md text-on-surface-variant">Pros</span>
+<span class="col-span-2 text-on-surface">Light delicate flavor, slow to crystallize, highly rated</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-low/40">
+<span class="text-label-md font-label-md text-on-surface-variant">Cons</span>
+<span class="col-span-2 text-on-surface-variant">Premium price point</span>
+</div>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full h-11 bg-primary-container text-on-primary rounded-lg text-label-lg font-label-lg flex items-center justify-center gap-2 hover:bg-secondary active:scale-[0.99] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span class="">Add to cart (₹17.99)</span>
+</button>
+</div>
+</article>
+<!-- 2. Organic Raw Honey -->
+<article class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl overflow-hidden ambient-shadow flex flex-col transition-transform">
+<div class="p-4 flex flex-col gap-3.5">
+<!-- Header Info -->
+<div class="flex items-start justify-between gap-2">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Organic Raw Honey</h2>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary mt-0.5">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="">Cold Filtered</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-headline-sm font-headline-sm text-primary">₹14.99</span>
+<span class="block text-label-sm font-label-sm text-secondary font-medium">Budget Friendly</span>
+</div>
+</div>
+<!-- Comparison Table Grid -->
+<div class="border border-outline-variant/40 rounded-lg overflow-hidden text-body-sm font-body-sm divide-y divide-outline-variant/30">
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-low/40">
+<span class="text-label-md font-label-md text-on-surface-variant">Price</span>
+<span class="col-span-2 text-primary font-semibold">₹14.99</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-lowest">
+<span class="text-label-md font-label-md text-on-surface-variant">Rating</span>
+<span class="col-span-2 text-primary font-semibold flex items-center gap-1">
+<span class="">★ 4.6</span>
+</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-low/40">
+<span class="text-label-md font-label-md text-on-surface-variant">Organic</span>
+<span class="col-span-2 text-secondary flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="">Yes (Organic certified)</span>
+</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-lowest">
+<span class="text-label-md font-label-md text-on-surface-variant">Pros</span>
+<span class="col-span-2 text-on-surface">Unfiltered, rich enzymatic profile, budget-friendly organic</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-low/40">
+<span class="text-label-md font-label-md text-on-surface-variant">Cons</span>
+<span class="col-span-2 text-on-surface-variant">Naturally crystallizes faster</span>
+</div>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full h-11 bg-primary-container text-on-primary rounded-lg text-label-lg font-label-lg flex items-center justify-center gap-2 hover:bg-secondary active:scale-[0.99] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span class="">Add to cart (₹14.99)</span>
+</button>
+</div>
+</article>
+<!-- 3. Organic Buckwheat Honey -->
+<article class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl overflow-hidden ambient-shadow flex flex-col transition-transform">
+<div class="p-4 flex flex-col gap-3.5">
+<!-- Header Info -->
+<div class="flex items-start justify-between gap-2">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Organic Buckwheat Honey</h2>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary mt-0.5">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="">Dark Amber Reserve</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-headline-sm font-headline-sm text-primary">₹18.99</span>
+<span class="block text-label-sm font-label-sm text-outline">16 oz jar</span>
+</div>
+</div>
+<!-- Comparison Table Grid -->
+<div class="border border-outline-variant/40 rounded-lg overflow-hidden text-body-sm font-body-sm divide-y divide-outline-variant/30">
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-low/40">
+<span class="text-label-md font-label-md text-on-surface-variant">Price</span>
+<span class="col-span-2 text-primary font-semibold">₹18.99</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-lowest">
+<span class="text-label-md font-label-md text-on-surface-variant">Rating</span>
+<span class="col-span-2 text-primary font-semibold flex items-center gap-1">
+<span class="">★ 4.6</span>
+</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-low/40">
+<span class="text-label-md font-label-md text-on-surface-variant">Organic</span>
+<span class="col-span-2 text-secondary flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="">Yes (Organic certified)</span>
+</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-lowest">
+<span class="text-label-md font-label-md text-on-surface-variant">Pros</span>
+<span class="col-span-2 text-on-surface">Deep robust molasses notes, rich in antioxidants</span>
+</div>
+<div class="grid grid-cols-3 p-2.5 bg-surface-container-low/40">
+<span class="text-label-md font-label-md text-on-surface-variant">Cons</span>
+<span class="col-span-2 text-on-surface-variant">Strong distinctive flavor not for everyone</span>
+</div>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full h-11 bg-primary-container text-on-primary rounded-lg text-label-lg font-label-lg flex items-center justify-center gap-2 hover:bg-secondary active:scale-[0.99] transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span class="">Add to cart (₹18.99)</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+<!-- Quick Follow-up Chips -->
+<section class="px-margin pt-4 pb-2">
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/80 text-body-sm font-body-sm text-on-surface-variant hover:border-primary hover:text-primary transition-all flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[15px]">help_outline</span>
+<span class="">Which is best for tea?</span>
+</button>
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/80 text-body-sm font-body-sm text-on-surface-variant hover:border-primary hover:text-primary transition-all flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[15px]">swap_horiz</span>
+<span class="">Compare jar sizes</span>
+</button>
+</div>
+</section>
+<!-- Pinned Bottom Input Bar -->
+<div class="fixed bottom-0 left-0 right-0 w-full max-w-[390px] mx-auto z-40 bg-surface-container-lowest/95 backdrop-blur-md px-margin py-3 border-t border-outline-variant/30 floating-shadow">
+<form class="flex items-center gap-2" onsubmit="event.preventDefault()">
+<!-- Camera Icon Button on Left -->
+<button aria-label="Upload photo" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container active:scale-95 transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[22px]">photo_camera</span>
+</button>
+<!-- Input Field -->
+<div class="relative flex-1">
+<input class="w-full h-11 bg-surface-container-low border border-outline-variant/60 rounded-full px-4 text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" placeholder="Ask CartWise or upload a photo..." type="text">
+</div>
+<!-- Green Circular Send Button on Right -->
+<button aria-label="Send message" class="w-11 h-11 rounded-full bg-primary-container text-on-primary flex items-center justify-center hover:bg-secondary active:scale-95 transition-all shrink-0 shadow-sm" type="submit">
+<span class="material-symbols-outlined text-[20px]">arrow_upward</span>
+</button>
+</form>
+</div>
+</main>
+
+
+</body></html>

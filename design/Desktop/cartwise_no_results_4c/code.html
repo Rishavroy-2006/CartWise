@@ -1,0 +1,314 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise - No Results Alternatives</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#30312e",
+            "primary-fixed-dim": "#9ed1bd",
+            "on-primary-container": "#8abda9",
+            "on-error": "#ffffff",
+            "surface-container-low": "#f5f3ef",
+            "surface-container": "#efeeea",
+            "on-secondary-fixed-variant": "#005232",
+            "secondary-fixed": "#a5f3c4",
+            "surface-container-high": "#eae8e4",
+            "primary": "#003629",
+            "surface-container-highest": "#e4e2de",
+            "tertiary-container": "#6b3700",
+            "secondary-fixed-dim": "#8ad7aa",
+            "outline": "#707974",
+            "primary-fixed": "#baeed9",
+            "error": "#ba1a1a",
+            "tertiary-fixed-dim": "#ffb77d",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#002117",
+            "tertiary": "#4a2500",
+            "on-secondary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface": "#fbf9f5",
+            "inverse-primary": "#9ed1bd",
+            "on-background": "#1b1c1a",
+            "on-tertiary-container": "#ff993b",
+            "tertiary-fixed": "#ffdcc3",
+            "surface-tint": "#376757",
+            "surface-variant": "#e4e2de",
+            "on-secondary-fixed": "#002111",
+            "on-surface-variant": "#404945",
+            "inverse-on-surface": "#f2f0ed",
+            "outline-variant": "#c0c9c3",
+            "surface-bright": "#fbf9f5",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "primary-container": "#1b4d3e",
+            "background": "#fbf9f5",
+            "surface-dim": "#dbdad6",
+            "on-tertiary-fixed": "#2f1500",
+            "on-secondary-container": "#23714c",
+            "surface-container-lowest": "#ffffff",
+            "secondary-container": "#a5f3c4",
+            "on-primary-fixed-variant": "#1d4f40",
+            "secondary": "#1b6b47",
+            "on-surface": "#1b1c1a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-md": "1rem",
+            "gutter": "1.25rem",
+            "gutter-desktop": "2rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            "margin-tablet": "2rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md min-h-screen flex flex-col antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface-container-lowest border-b border-outline-variant/30 sticky top-0 z-50 shadow-sm">
+<div class="max-w-7xl mx-auto px-8 py-3.5 flex items-center justify-between">
+<!-- Left: Brand & Navigation Links -->
+<div class="flex items-center space-x-8">
+<a class="flex items-center gap-2 group" href="#">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="eco" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">CartWise</span>
+</a>
+<nav class="flex items-center space-x-6 text-label-lg font-label-lg">
+<a class="text-primary border-b-2 border-primary pb-1 font-semibold transition-colors duration-150" href="#">Chat</a>
+<a class="text-on-surface-variant pb-1 hover:text-primary transition-colors duration-150" href="#">Orders</a>
+</nav>
+</div>
+<!-- Right: Actions & Profile Utilities -->
+<div class="flex items-center space-x-3.5">
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-outline-variant/60 text-primary hover:bg-surface-container-low transition-colors duration-150 text-label-lg font-label-lg" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span class="">New chat</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors duration-150 text-label-lg font-label-lg" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="account_tree">account_tree</span>
+<span class="">Agent Trace</span>
+</button>
+<div class="h-5 w-[1px] bg-outline-variant/50 mx-1"></div>
+<button aria-label="Shopping Cart" class="relative p-2 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[24px]" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute top-1 right-1 bg-tertiary-container text-on-tertiary text-label-sm font-label-sm w-4 h-4 rounded-full flex items-center justify-center ring-2 ring-surface-container-lowest">3</span>
+</button>
+<button aria-label="User Account" class="p-1 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[28px]" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Chat Flow Canvas -->
+<main class="flex-1 w-full max-w-4xl mx-auto px-6 pt-8 pb-36 flex flex-col justify-start space-y-6">
+<!-- User Message -->
+<div class="flex justify-end">
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl rounded-br-sm px-5 py-3.5 shadow-sm max-w-md">
+<p class="text-body-md font-body-md text-on-surface font-medium">organic olive oil under ₹10</p>
+</div>
+</div>
+<!-- Assistant Response Stream -->
+<div class="flex items-start gap-3.5">
+<!-- Assistant Avatar -->
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="psychology_alt" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology_alt</span>
+</div>
+<!-- Assistant Body Content -->
+<div class="flex-1 flex flex-col space-y-4">
+<!-- Message Narrative -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl rounded-tl-sm p-4 shadow-sm">
+<p class="text-body-md font-body-md text-on-surface">I couldn't find any organic olive oil under ₹10 in our store, but here are our closest organic and culinary oil alternatives:</p>
+</div>
+<!-- 3 Visual Product Cards in a Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Card 1: Organic Extra Virgin Olive Oil -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:border-primary-container/40 transition-all duration-200">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden bg-surface-container-low mb-3 flex items-center justify-center relative">
+<img class="w-full h-full object-cover" data-alt="A clean artisanal studio product photograph of a premium glass bottle of organic extra virgin olive oil filled with luminous golden green oil. Soft bright natural sunlight illuminates the translucent liquid, resting on a light warm cream surface with soft ambient botanical shadows and a minimalist Scandinavian pantry atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwI9bw2OhxzA0brabNH182Ba9hKEeA_UV92x__Pbm2_r7UmTeUTo0qptV4sRyw6gJ--RErM0UdNYYuw9ahuX9ol5NGVhOyRZrIFU7jwOv7uM20769iY0yPYwPiTE9eVb453YaoN4pdsbJbwjwHAx6JoRI4eo813i94lZxXolHN2lT1lTDRT6HO1KXrxrC990kGeD6qZasiemcATsE82rhT_77m_62JlUClzwrpc896_YadpJ95LsV7">
+<div class="absolute top-2.5 left-2.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-container text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-[13px]" data-icon="eco">eco</span>
+                    Organic
+                  </span>
+</div>
+</div>
+<h3 class="text-body-md font-body-md font-semibold text-on-surface leading-tight">Organic Extra Virgin Olive Oil</h3>
+<div class="flex items-center gap-1.5 mt-1.5 mb-2">
+<span class="text-label-md font-label-md text-tertiary-container font-bold">4.7</span>
+<span class="material-symbols-outlined text-tertiary-container text-[15px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">(128)</span>
+</div>
+<div class="text-headline-sm font-headline-sm font-bold text-on-surface tracking-tight mb-4">₹16.99</div>
+</div>
+<!-- Action Buttons on One Row -->
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/20">
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 rounded-lg border border-primary-container text-primary-container hover:bg-surface-container-low transition-colors text-label-md font-label-lg font-semibold text-center" type="button">
+                Add to cart
+              </button>
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 rounded-lg bg-tertiary-container text-on-tertiary hover:bg-tertiary transition-colors text-label-md font-label-lg font-semibold text-center shadow-xs" type="button">
+                Buy now
+              </button>
+</div>
+</div>
+<!-- Card 2: Organic Flaxseed Oil -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:border-primary-container/40 transition-all duration-200">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden bg-surface-container-low mb-3 flex items-center justify-center relative">
+<img class="w-full h-full object-cover" data-alt="A focused studio product still-life featuring an amber glass bottle of cold-pressed organic flaxseed oil with a minimalist off-white label. Set against a serene cream background with organic warmth, clean soft lighting, and subtle reflections that evoke unhurried culinary wellness and pure wholesome nutrition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3wz6D8KdDmZ_chnWbCPzJF2PFRaNexfcz1J7n_jjAucIjAVUsRXjHThYRYL_PYkD_ZeaUOP_RTxQqIe6Bp02Oh9ZnBucw086TXG7nfm5Z1_ZhhFZprBeo-SaMS5vR2zuUCECq_W5H4tBYZM5VbAZbQrfsSzmrP8osTYy6TIDYv7XEwgGywsD0phYuHNIBe7NZ0sYSw7r0_v2PDxlVQwlw2cJQP2XUa2_yFZpuKjp2FgbvqNWaQtoZ">
+<div class="absolute top-2.5 left-2.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-container text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-[13px]" data-icon="eco">eco</span>
+                    Organic
+                  </span>
+</div>
+</div>
+<h3 class="text-body-md font-body-md font-semibold text-on-surface leading-tight">Organic Flaxseed Oil</h3>
+<div class="flex items-center gap-1.5 mt-1.5 mb-2">
+<span class="text-label-md font-label-md text-tertiary-container font-bold">4.5</span>
+<span class="material-symbols-outlined text-tertiary-container text-[15px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">(94)</span>
+</div>
+<div class="text-headline-sm font-headline-sm font-bold text-on-surface tracking-tight mb-4">₹14.99</div>
+</div>
+<!-- Action Buttons on One Row -->
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/20">
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 rounded-lg border border-primary-container text-primary-container hover:bg-surface-container-low transition-colors text-label-md font-label-lg font-semibold text-center" type="button">
+                Add to cart
+              </button>
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 rounded-lg bg-tertiary-container text-on-tertiary hover:bg-tertiary transition-colors text-label-md font-label-lg font-semibold text-center shadow-xs" type="button">
+                Buy now
+              </button>
+</div>
+</div>
+<!-- Card 3: Coconut Oil -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:border-primary-container/40 transition-all duration-200">
+<div>
+<div class="w-full h-44 rounded-xl overflow-hidden bg-surface-container-low mb-3 flex items-center justify-center relative">
+<img class="w-full h-full object-cover" data-alt="A modern artisanal commercial photo of a wide glass jar filled with virgin coconut oil showing its pure white textured solid form and natural wooden lid. Bathed in soft morning diffuse light against a clean warm cream background, highlighting tactile wholesome kitchen ingredients without clutter." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb7vbOH0pxlrL0AjtcRBGPXVCFfmw5F8NUHzdumUDq4hIEmWJP7iKdkHWIOrPiNQOMDjMKCn6jWlTmzv7m-IGSG8eg62frt00B5b7QbzIigSW409hmU9dxsPi2WL982Nw4Yb_DLoKvcj2ehE_-NKGLHgoetuD6cHGV9UTrbujPl8suZri8n9DTdWUopuxQ7K8qjXSgFbM0MgfpzmM6L0cQJVzVGq_qqp5EZy-TPZMGgZm7U630VOwl">
+<div class="absolute top-2.5 left-2.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined text-[13px]" data-icon="label">label</span>
+                    Non-organic
+                  </span>
+</div>
+</div>
+<h3 class="text-body-md font-body-md font-semibold text-on-surface leading-tight">Coconut Oil</h3>
+<div class="flex items-center gap-1.5 mt-1.5 mb-2">
+<span class="text-label-md font-label-md text-tertiary-container font-bold">3.7</span>
+<span class="material-symbols-outlined text-tertiary-container text-[15px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">(42)</span>
+</div>
+<div class="text-headline-sm font-headline-sm font-bold text-on-surface tracking-tight mb-4">₹12.49</div>
+</div>
+<!-- Action Buttons on One Row -->
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/20">
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 rounded-lg border border-primary-container text-primary-container hover:bg-surface-container-low transition-colors text-label-md font-label-lg font-semibold text-center" type="button">
+                Add to cart
+              </button>
+<button class="flex-1 whitespace-nowrap px-2.5 py-2 rounded-lg bg-tertiary-container text-on-tertiary hover:bg-tertiary transition-colors text-label-md font-label-lg font-semibold text-center shadow-xs" type="button">
+                Buy now
+              </button>
+</div>
+</div>
+</div>
+<!-- Follow-up Chips -->
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/60 text-on-surface hover:border-primary-container hover:text-primary transition-all duration-150 text-body-sm font-label-lg shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container" data-icon="tune">tune</span>
+<span class="">Raise budget to ₹20</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/60 text-on-surface hover:border-primary-container hover:text-primary transition-all duration-150 text-body-sm font-label-lg shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="format_list_bulleted">format_list_bulleted</span>
+<span class="">Show all oils</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Pinned Bottom Input Bar Container -->
+<footer class="fixed bottom-0 inset-x-0 bg-gradient-to-t from-surface via-surface/95 to-transparent pt-6 pb-6 z-40">
+<div class="max-w-4xl mx-auto px-6">
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded-2xl shadow-md p-1.5 flex items-center gap-2 ring-1 ring-primary-container/5 focus-within:border-secondary transition-all">
+<!-- Visual & Attachment Upload Button -->
+<button aria-label="Upload photo" class="p-2.5 rounded-xl text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="photo_camera">photo_camera</span>
+</button>
+<!-- Conversational Input -->
+<input class="flex-1 bg-transparent border-0 text-on-surface placeholder:text-on-surface-variant/60 text-body-md font-body-md focus:ring-0 focus:outline-none px-1" placeholder="Ask CartWise or upload a photo..." type="text">
+<!-- Send Prompt Button -->
+<button aria-label="Send message" class="w-10 h-10 rounded-xl bg-primary-container text-on-primary hover:bg-secondary transition-colors duration-150 flex items-center justify-center shrink-0 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_upward">arrow_upward</span>
+</button>
+</div>
+<!-- Ambient Safety / Guidance Microcopy -->
+<div class="flex items-center justify-center gap-2 mt-2 text-center text-label-sm font-label-sm text-on-surface-variant/70">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified_user">verified_user</span>
+<span class="">CartWise independently verifies certified organic seals and direct pantry pricing.</span>
+</div>
+</div>
+</footer>
+
+
+</body></html>

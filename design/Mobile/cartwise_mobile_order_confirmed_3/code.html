@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise Mobile - Order Confirmed (3)</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#a5f3c4",
+            "on-error": "#ffffff",
+            "surface-container-highest": "#e4e2de",
+            "tertiary-fixed-dim": "#ffb77d",
+            "inverse-surface": "#30312e",
+            "tertiary-container": "#6b3700",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#a5f3c4",
+            "secondary-fixed-dim": "#8ad7aa",
+            "surface-container-lowest": "#ffffff",
+            "surface-tint": "#376757",
+            "surface-variant": "#e4e2de",
+            "on-secondary-fixed": "#002111",
+            "on-primary-fixed": "#002117",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed": "#2f1500",
+            "on-secondary-container": "#23714c",
+            "primary-container": "#1b4d3e",
+            "on-error-container": "#93000a",
+            "primary-fixed-dim": "#9ed1bd",
+            "tertiary-fixed": "#ffdcc3",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#1d4f40",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "inverse-on-surface": "#f2f0ed",
+            "surface-dim": "#dbdad6",
+            "surface-bright": "#fbf9f5",
+            "on-background": "#1b1c1a",
+            "secondary": "#1b6b47",
+            "surface-container": "#efeeea",
+            "surface": "#fbf9f5",
+            "on-surface-variant": "#404945",
+            "on-secondary-fixed-variant": "#005232",
+            "on-primary-container": "#8abda9",
+            "inverse-primary": "#9ed1bd",
+            "surface-container-high": "#eae8e4",
+            "tertiary": "#4a2500",
+            "on-tertiary-container": "#ff993b",
+            "primary-fixed": "#baeed9",
+            "outline-variant": "#c0c9c3",
+            "on-secondary": "#ffffff",
+            "on-surface": "#1b1c1a",
+            "primary": "#003629",
+            "surface-container-low": "#f5f3ef",
+            "outline": "#707974",
+            "on-tertiary": "#ffffff",
+            "background": "#fbf9f5"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "gutter": "1.25rem",
+            "margin-desktop": "3rem",
+            "gutter-desktop": "2rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin-tablet": "2rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex items-center justify-center p-0 md:p-6 antialiased">
+<!-- Mobile Screen Container (390px fixed width representation) -->
+<main class="w-full max-w-[390px] min-h-screen bg-background flex flex-col justify-between shadow-2xl relative">
+<!-- Top Bar -->
+<div>
+<header class="h-14 px-4 bg-surface-container-lowest border-b border-outline-variant/30 flex items-center justify-between sticky top-0 z-20">
+<button aria-label="Go back" class="p-1 rounded-full text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Order Confirmed</h1>
+<div aria-hidden="true" class="w-6"></div>
+</header>
+<!-- Progress Stepper (3-step) -->
+<section aria-label="Checkout Progress" class="px-6 pt-5 pb-4 bg-surface">
+<div class="flex items-center justify-between relative">
+<!-- Connector Line Complete 1 to 2 -->
+<div class="absolute left-6 right-1/2 top-3.5 h-[2px] -translate-y-1/2 bg-primary-container z-0"></div>
+<!-- Connector Line Complete 2 to 3 -->
+<div class="absolute left-1/2 right-6 top-3.5 h-[2px] -translate-y-1/2 bg-primary-container z-0"></div>
+<!-- Step 1: Cart -->
+<div class="flex flex-col items-center relative z-10">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="mt-1.5 font-label-sm text-label-sm text-primary font-medium">Cart</span>
+</div>
+<!-- Step 2: Review -->
+<div class="flex flex-col items-center relative z-10">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="mt-1.5 font-label-sm text-label-sm text-primary font-medium">Review</span>
+</div>
+<!-- Step 3: Confirmed -->
+<div class="flex flex-col items-center relative z-10">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-sm ring-4 ring-secondary-container/40">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="mt-1.5 font-label-sm text-label-sm text-primary font-semibold">Confirmed</span>
+</div>
+</div>
+</section>
+<!-- Hero Section -->
+<section class="text-center px-6 pt-4 pb-6">
+<div class="w-16 h-16 mx-auto rounded-full bg-secondary-container/50 border border-secondary/20 flex items-center justify-center mb-3">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Order #1042 confirmed</h2>
+<p class="mt-1 font-body-md text-body-md text-on-surface-variant">Arriving in 3-5 business days</p>
+</section>
+<!-- Order Details Card -->
+<section class="px-5">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 p-5" style="box-shadow: 0 4px 16px -2px rgba(27, 77, 62, 0.04), 0 2px 6px -1px rgba(27, 77, 62, 0.02);">
+<h3 class="font-headline-sm text-headline-sm text-on-surface pb-3.5 border-b border-outline-variant/30">Order Details</h3>
+<!-- Items List -->
+<div class="py-4 space-y-3">
+<div class="flex items-center justify-between">
+<div class="pr-2">
+<p class="font-body-md text-body-md text-on-surface font-medium">Organic Acacia Honey</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Qty: 2</p>
+</div>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold">₹35.98</p>
+</div>
+<div class="flex items-center justify-between">
+<div class="pr-2">
+<p class="font-body-md text-body-md text-on-surface font-medium">Organic Raw Honey</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Qty: 1</p>
+</div>
+<p class="font-label-lg text-label-lg text-on-surface font-semibold">₹14.99</p>
+</div>
+</div>
+<!-- Divider -->
+<div class="border-t border-outline-variant/30 pt-3.5 flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Total</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">₹50.97</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Actions Section -->
+<footer class="p-5 space-y-3 bg-background">
+<button class="w-full h-12 bg-primary-container hover:bg-secondary text-on-primary rounded-lg font-label-lg text-label-lg flex items-center justify-center transition-colors active:scale-[0.99]" type="button">
+        View orders
+      </button>
+<button class="w-full h-12 bg-transparent hover:bg-surface-container-low text-primary-container border-[1.5px] border-primary-container rounded-lg font-label-lg text-label-lg flex items-center justify-center transition-colors active:scale-[0.99]" type="button">
+        Continue shopping
+      </button>
+</footer>
+</main>
+
+
+</body></html>

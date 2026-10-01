@@ -1,0 +1,467 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise Mobile - Your Orders</title>
+<!-- Material Symbols Outlined literal transcription link -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Plus Jakarta Sans Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-bright": "#fbf9f5",
+            "secondary-container": "#a5f3c4",
+            "tertiary": "#4a2500",
+            "secondary-fixed-dim": "#8ad7aa",
+            "on-secondary-fixed": "#002111",
+            "on-secondary-fixed-variant": "#005232",
+            "surface-container-low": "#f5f3ef",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "outline-variant": "#c0c9c3",
+            "surface-container-high": "#eae8e4",
+            "on-tertiary-fixed": "#2f1500",
+            "on-secondary-container": "#23714c",
+            "surface": "#fbf9f5",
+            "surface-variant": "#e4e2de",
+            "tertiary-fixed-dim": "#ffb77d",
+            "secondary-fixed": "#a5f3c4",
+            "background": "#fbf9f5",
+            "primary-fixed-dim": "#9ed1bd",
+            "on-tertiary-container": "#ff993b",
+            "surface-dim": "#dbdad6",
+            "primary-container": "#1b4d3e",
+            "primary-fixed": "#baeed9",
+            "outline": "#707974",
+            "on-primary": "#ffffff",
+            "tertiary-container": "#6b3700",
+            "on-primary-container": "#8abda9",
+            "on-surface": "#1b1c1a",
+            "secondary": "#1b6b47",
+            "error": "#ba1a1a",
+            "on-background": "#1b1c1a",
+            "surface-tint": "#376757",
+            "on-tertiary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "surface-container-highest": "#e4e2de",
+            "on-surface-variant": "#404945",
+            "inverse-primary": "#9ed1bd",
+            "on-error": "#ffffff",
+            "primary": "#003629",
+            "inverse-on-surface": "#f2f0ed",
+            "on-primary-fixed": "#002117",
+            "on-primary-fixed-variant": "#1d4f40",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#30312e",
+            "tertiary-fixed": "#ffdcc3",
+            "on-error-container": "#93000a",
+            "surface-container": "#efeeea"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin-tablet": "2rem",
+            "margin-desktop": "3rem",
+            "gutter": "1.25rem",
+            "space-xl": "2.5rem",
+            "space-xs": "0.25rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "2rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "body-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "body-md": ["15px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Hide scrollbars for clean chip slider */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#e4e2de] text-on-surface antialiased min-h-screen flex justify-center py-0 sm:py-8 font-body-md text-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Mobile Viewport Container (Fixed width 390px) -->
+<main class="w-[390px] min-h-[844px] bg-surface relative flex flex-col shadow-2xl border-x border-[#E9E4DC] overflow-hidden">
+<!-- TOP BAR (Sticky 56px, subtle border, CartWise header identity) -->
+<header class="sticky top-0 z-30 h-14 bg-surface/95 backdrop-blur-md border-b border-outline-variant/30 px-4 flex items-center justify-between">
+<button aria-label="Open menu" class="w-10 h-10 -ml-2 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">
+        Orders
+      </h1>
+<button aria-label="View Cart (3 items)" class="w-10 h-10 -mr-2 rounded-full flex items-center justify-center text-primary hover:bg-surface-container active:scale-95 transition-all relative" type="button">
+<span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+<!-- Cart Badge showing 3 -->
+<span class="absolute top-1.5 right-1.5 min-w-[18px] h-[18px] px-1 bg-primary text-on-primary font-label-sm text-[10px] leading-tight font-bold rounded-full flex items-center justify-center">
+          3
+        </span>
+</button>
+</header>
+<!-- CONTENT SCROLL AREA -->
+<div class="flex-1 overflow-y-auto pb-10">
+<!-- CONFIRMATION / REORDER BANNER -->
+<section class="bg-secondary-container/40 border-b border-secondary/20 px-4 py-3 flex items-center justify-between transition-all duration-300" id="confirmation-banner">
+<div class="flex items-center gap-2.5">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</span>
+<p class="font-label-md text-label-md text-on-surface font-medium">
+            3 items added to cart · 
+            <a class="font-label-md text-label-md text-primary font-bold underline decoration-primary underline-offset-2 ml-0.5 hover:text-secondary" href="#">View cart</a>
+</p>
+</div>
+<button aria-label="Dismiss banner" class="text-on-surface-variant hover:text-on-surface p-1 rounded-full active:scale-90 transition-transform" onclick="document.getElementById('confirmation-banner').style.display='none'" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</section>
+<!-- VIEW SWITCHER & TITLE META -->
+<section class="px-4 pt-4 pb-2 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold uppercase tracking-wider">
+          History &amp; Status
+        </span>
+<!-- View switcher interactive pill -->
+<div class="inline-flex p-0.5 rounded-lg bg-surface-container border border-[#E9E4DC]">
+<button class="px-2.5 py-1 rounded-[6px] font-label-sm text-label-sm font-bold bg-surface-container-lowest text-primary shadow-sm transition-all" id="tab-orders" onclick="switchView('orders')" type="button">
+            Orders (3)
+          </button>
+<button class="px-2.5 py-1 rounded-[6px] font-label-sm text-label-sm font-medium text-on-surface-variant hover:text-on-surface transition-all" id="tab-empty" onclick="switchView('empty')" type="button">
+            Empty state
+          </button>
+</div>
+</section>
+<!-- SEARCH & FILTER CHIPS -->
+<section class="px-4 py-2 space-y-3">
+<!-- Search Input -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-outline text-[20px] pointer-events-none">search</span>
+<input class="w-full h-11 pl-10 pr-4 rounded-xl bg-surface-container-lowest border border-[#E9E4DC] text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" placeholder="Search by product or order number" type="text">
+</div>
+<!-- Filter Chips (Horizontal scrollable) -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+<button class="px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold flex items-center gap-1 shadow-sm flex-shrink-0 active:scale-95 transition-transform" type="button">
+<span class="">All</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-[#E9E4DC] text-on-surface-variant font-label-sm text-label-sm font-medium hover:border-outline hover:text-on-surface flex-shrink-0 active:scale-95 transition-transform" type="button">
+            Delivered
+          </button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-[#E9E4DC] text-on-surface-variant font-label-sm text-label-sm font-medium hover:border-outline hover:text-on-surface flex-shrink-0 active:scale-95 transition-transform" type="button">
+            In transit
+          </button>
+</div>
+</section>
+<!-- VIEW 1: ACTIVE ORDER CARDS (STACKED VERTICALLY) -->
+<div class="px-4 pt-2 space-y-4" id="view-orders-content">
+<!-- ORDER 1 -->
+<article class="bg-surface-container-lowest rounded-xl border border-[#E9E4DC] p-4 shadow-sm hover:shadow-md transition-shadow">
+<!-- Card Header -->
+<div class="flex items-center justify-between pb-3 border-b border-[#E9E4DC]/60">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Order #1041</h2>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant font-medium mt-0.5">28 Sep</p>
+</div>
+<!-- Status Pill Delivered -->
+<span class="bg-[#dcfce7] text-[#166534] font-label-sm text-[12px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">check</span>
+<span class="">Delivered</span>
+</span>
+</div>
+<!-- Items list -->
+<div class="py-3 space-y-3">
+<!-- Item 1 -->
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-lg object-cover bg-surface-container border border-[#E9E4DC] flex-shrink-0" data-alt="An artisanal clear glass jar packed with crisp raw organic almonds, shot in soft warm daylight on a light Scandinavian timber kitchen table with gentle organic green shadows and wholesome clean composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh16pYPqXoDU5vSFOZqnlEhM2_khLsNiR43zUl7EPNh1wLPa0DPjTm6i6Y1AcPYVgZ5NEdYIFXTilIDL26xBypXQzy5e9JbSlj-fBKPWjyvUZKw0FOsphA0sPIH0ewWlkZMS94dS7-0iyiryY0sUCgfhSTh3ohXS8QlfBwhtaRfQYm0BJRvwNuf6uO2NtVmMhkvC_yBz6_zd3MALUXLabF7ox8ENLY7Ng5iPOSJk6hK0NRQ1j_ZH3i">
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface font-semibold truncate">Organic Almonds</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">₹11.99 · Qty: 1</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-lg object-cover bg-surface-container border border-[#E9E4DC] flex-shrink-0" data-alt="An organic kraft paper pouch with a clear window revealing tiny black organic chia seeds, nestled in bright natural sunlight on a minimalist cream linen backdrop with artisanal wellness tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtsG8Jn6creFF7FJoqL3d8P5SU3Tmn3rXusfEBIflXDRg6AB8RYOI7_QhCOUcFvbEeWSfK59EvrFm_9KJ8ymJy_teovRXi0A47-V4X5eL5RlP22M1r5H1Xe_W-ZEYwyhQxFMpeIBmrIrQAmJQus8u1f_5FRLCBZwZKqeYky3C1S9HZKRlQG0LzK-kW-wH7wdf0qSklR4UI8olZ_jMoho33fCgFXhYrWgHYwdoyel-bHX3UHg8luwqm">
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface font-semibold truncate">Organic Chia Seeds</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">₹8.49 · Qty: 1</p>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="pt-3 border-t border-[#E9E4DC]/60 flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Total</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">₹20.48</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3.5 rounded-lg border border-primary-container text-primary-container font-label-md text-label-md font-semibold hover:bg-surface-container-low active:scale-95 transition-all" type="button">
+                Details
+              </button>
+<button class="h-9 px-3.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold hover:bg-secondary flex items-center gap-1.5 shadow-sm active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[17px]">repeat</span>
+<span class="">Reorder</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ORDER 2 (Includes expandable/expanded itemized breakdown preview) -->
+<article class="bg-surface-container-lowest rounded-xl border border-[#E9E4DC] p-4 shadow-sm hover:shadow-md transition-shadow">
+<!-- Card Header -->
+<div class="flex items-center justify-between pb-3 border-b border-[#E9E4DC]/60">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Order #1040</h2>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant font-medium mt-0.5">25 Sep</p>
+</div>
+<!-- Status Pill In Transit -->
+<span class="bg-[#fef3c7] text-[#92400e] font-label-sm text-[12px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">local_shipping</span>
+<span class="">In transit</span>
+</span>
+</div>
+<!-- Items list -->
+<div class="py-3 space-y-3">
+<!-- Item 1 -->
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-lg object-cover bg-surface-container border border-[#E9E4DC] flex-shrink-0" data-alt="A curated tin canister of premium loose leaf organic green tea beside fresh dried leaves on a soft light-toned limestone surface, illuminated by gentle organic natural window light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9IEohRrkbkjZK9KBvmpxUKBQw7K6IPcM4B-PN3zuWLxboHzoTeX8xU1qLVejkp7slUO5KGugO_Ld0HGMVaoAkFxC1pTEAiRfV6SCZTqOH6BN8lfDc9uAofEzXgkH1wceoW7sNMB-glcTUxGbR8eBjXlrqAWx5KcLiUqVvDBVrWUElKH217NWR9PnalP9QKEDZJVtB6YvAgskQhOldpya0u7njwHPsaAr3q8MWkCtINz9TgRqBE-wW">
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface font-semibold truncate">Organic Green Tea</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">₹12.99 · Qty: 1</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-lg object-cover bg-surface-container border border-[#E9E4DC] flex-shrink-0" data-alt="A recyclable kraft container of soothing yellow dried chamomile tea flowers, styled with clean Scandinavian culinary aesthetic against a warm cream organic backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7dxdZ1SCm0xAibE4y9ccw3RWwH_1DLuFBBZlTDadvkXDfkSFQdbgaSfTyJL121pCldEjxPun9dkdCu1QqvCbOAobCudeqg24J95teRpjoy7e7HX3qZYDOVN4Ru-ZpSv7oro_YKbX7g9HF08BqBK6WU_OlNKTGxEDoQo-SqGy2DMkyyDsCBt7RaIeS-PRUF3Igk-WB7vZzU5bAMWonmTraNvm9cvPjd0VwbEomMHe4WIhgCxZckoFh">
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface font-semibold truncate">Chamomile Tea</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">₹8.99 · Qty: 1</p>
+</div>
+</div>
+</div>
+<!-- Itemized Breakdown Preview (Accordion Drawer) -->
+<div class="mb-3 rounded-lg bg-surface-container-low border border-[#E9E4DC]/80 p-3">
+<div class="flex items-center justify-between pb-2 mb-2 border-b border-[#E9E4DC]/70">
+<span class="font-label-sm text-label-sm font-semibold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+                Itemized breakdown
+              </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Subtotals</span>
+</div>
+<div class="space-y-1.5 font-body-sm text-body-sm">
+<div class="flex justify-between text-on-surface-variant">
+<span class="truncate pr-2">Organic Green Tea</span>
+<span class="font-medium text-on-surface">₹12.99</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="truncate pr-2">Chamomile Tea</span>
+<span class="font-medium text-on-surface">₹8.99</span>
+</div>
+<div class="flex justify-between pt-1.5 border-t border-[#E9E4DC]/50 font-label-md text-label-md font-semibold text-primary">
+<span class="">Items total</span>
+<span class="">₹21.98</span>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="pt-2 border-t border-[#E9E4DC]/60 flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Total</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">₹21.98</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3.5 rounded-lg border border-primary-container text-primary-container font-label-md text-label-md font-semibold hover:bg-surface-container-low active:scale-95 transition-all" type="button">
+                Details
+              </button>
+<button class="h-9 px-3.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold hover:bg-secondary flex items-center gap-1.5 shadow-sm active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[17px]">repeat</span>
+<span class="">Reorder</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ORDER 3 -->
+<article class="bg-surface-container-lowest rounded-xl border border-[#E9E4DC] p-4 shadow-sm hover:shadow-md transition-shadow">
+<!-- Card Header -->
+<div class="flex items-center justify-between pb-3 border-b border-[#E9E4DC]/60">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Order #1039</h2>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant font-medium mt-0.5">20 Sep</p>
+</div>
+<!-- Status Pill Delivered -->
+<span class="bg-[#dcfce7] text-[#166534] font-label-sm text-[12px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">check</span>
+<span class="">Delivered</span>
+</span>
+</div>
+<!-- Items list -->
+<div class="py-3 space-y-3">
+<!-- Item 1 -->
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-lg object-cover bg-surface-container border border-[#E9E4DC] flex-shrink-0" data-alt="An artisanal glass hexagonal jar filled with amber golden organic raw honey, topped with a rustic label in bright daylight with warm honey reflections and minimalist studio backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdahF4nAqJi8TgjiietFDQQSelbtmvbrkn_mbPXp-h7IW86Z7h29-ylcXPHmjoGUy-3jjdxPNko4QusigFkWUelaS3DlYctbOcg3wHCl9nVl_D2H0D_YkvnqvEJChf7Qv_LutdTeGtUqb3jV0zl1knxhshwmGlOQNtuxTce5I06YJCI_PbIr2L3b9rFMsjHbMcmuxxF1MSIfMzSva8rvNOaCOKkND7jImZpUSl9cDwYYLrdrEig-1d">
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface font-semibold truncate">Organic Raw Honey</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">₹14.99 · Qty: 1</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-lg object-cover bg-surface-container border border-[#E9E4DC] flex-shrink-0" data-alt="Wholesome whole grain rolled oats inside a clean organic pantry bag alongside a few loose grains on a bright white wooden counter in calm ambient Nordic morning light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQG5q37-Jb1Oeh1NdLBXKm6ZkeydPBPhjN6c3euvk-k57u5uQa472E35cNSKrfEyJ1rRjzFd08ONa4JswzXtiYdS-uwA8UK7FbYpfZ_Ck6K7NiVLNhuqtrYUKXSemXJn-O9pMj5DNNI_sUOM3rZnaJ1e6PolntG9IqxfDqjT9r4p4OwW3jds67nd3zqumVXZ7WwI_xZ-pK6JcFAB97xSEF3-egTr1IcTi-rQKng4bma_Lh7kCDA44u">
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface font-semibold truncate">Rolled Oats</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">₹5.49 · Qty: 2</p>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="pt-3 border-t border-[#E9E4DC]/60 flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Total</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">₹25.97</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3.5 rounded-lg border border-primary-container text-primary-container font-label-md text-label-md font-semibold hover:bg-surface-container-low active:scale-95 transition-all" type="button">
+                Details
+              </button>
+<button class="h-9 px-3.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold hover:bg-secondary flex items-center gap-1.5 shadow-sm active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[17px]">repeat</span>
+<span class="">Reorder</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- VIEW 2: EMPTY STATE (Toggled via view switcher) -->
+<div class="hidden px-6 pt-16 pb-12 flex-col items-center text-center" id="view-empty-content">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center text-primary-container mb-5 shadow-inner">
+<span class="material-symbols-outlined text-[44px]">receipt_long</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary mb-2">No orders yet</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[270px] mb-8 leading-relaxed">
+          When you place an order with CartWise, it will appear here.
+        </p>
+<button class="w-full max-w-[240px] h-12 rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:bg-secondary active:scale-95 transition-all flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<span class="">Start shopping</span>
+</button>
+</div>
+</div>
+<!-- PERSISTENT MOBILE BOTTOM NAVIGATION -->
+<nav class="h-16 bg-surface border-t border-[#E9E4DC] px-4 flex items-center justify-around z-30">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-on-surface active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[22px]">smart_toy</span>
+<span class="font-label-sm text-[11px] font-medium leading-none">Assistant</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-on-surface active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[22px]">inventory_2</span>
+<span class="font-label-sm text-[11px] font-medium leading-none">Pantry</span>
+</button>
+<!-- Active tab mapped strictly to Order History / Orders -->
+<button class="flex flex-col items-center gap-1 text-primary active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-label-sm text-[11px] font-bold leading-none">Orders</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-on-surface active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[22px]">nutrition</span>
+<span class="font-label-sm text-[11px] font-medium leading-none">Dietary</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-on-surface active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[22px]">tune</span>
+<span class="font-label-sm text-[11px] font-medium leading-none">Settings</span>
+</button>
+</nav>
+</main>
+<!-- Interactive script for View Switcher -->
+<script>
+    function switchView(mode) {
+      const ordersContainer = document.getElementById('view-orders-content');
+      const emptyContainer = document.getElementById('view-empty-content');
+      const tabOrders = document.getElementById('tab-orders');
+      const tabEmpty = document.getElementById('tab-empty');
+
+      if (mode === 'empty') {
+        ordersContainer.classList.add('hidden');
+        emptyContainer.classList.remove('hidden');
+        emptyContainer.classList.add('flex');
+
+        tabEmpty.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+        tabEmpty.classList.remove('text-on-surface-variant', 'font-medium');
+
+        tabOrders.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+        tabOrders.classList.add('text-on-surface-variant', 'font-medium');
+      } else {
+        emptyContainer.classList.add('hidden');
+        emptyContainer.classList.remove('flex');
+        ordersContainer.classList.remove('hidden');
+
+        tabOrders.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+        tabOrders.classList.remove('text-on-surface-variant', 'font-medium');
+
+        tabEmpty.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-bold');
+        tabEmpty.classList.add('text-on-surface-variant', 'font-medium');
+      }
+    }
+  </script>
+
+
+</body></html>

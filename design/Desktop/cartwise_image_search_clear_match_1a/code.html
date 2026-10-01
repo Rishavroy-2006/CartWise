@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise - Chat</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Script -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-highest": "#e4e2de",
+            "surface-container-high": "#eae8e4",
+            "surface-dim": "#dbdad6",
+            "surface-bright": "#fbf9f5",
+            "outline": "#707974",
+            "error-container": "#ffdad6",
+            "secondary-fixed": "#a5f3c4",
+            "tertiary": "#4a2500",
+            "surface": "#fbf9f5",
+            "on-secondary-container": "#23714c",
+            "on-surface-variant": "#404945",
+            "outline-variant": "#c0c9c3",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#30312e",
+            "surface-tint": "#376757",
+            "tertiary-container": "#6b3700",
+            "on-primary-fixed-variant": "#1d4f40",
+            "on-primary-container": "#8abda9",
+            "on-tertiary": "#ffffff",
+            "background": "#fbf9f5",
+            "on-background": "#1b1c1a",
+            "on-tertiary-fixed": "#2f1500",
+            "on-tertiary-container": "#ff993b",
+            "inverse-on-surface": "#f2f0ed",
+            "secondary-fixed-dim": "#8ad7aa",
+            "on-surface": "#1b1c1a",
+            "surface-container": "#efeeea",
+            "surface-container-low": "#f5f3ef",
+            "on-secondary-fixed-variant": "#005232",
+            "secondary": "#1b6b47",
+            "on-secondary": "#ffffff",
+            "on-error-container": "#93000a",
+            "primary": "#003629",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "primary-fixed": "#baeed9",
+            "secondary-container": "#a5f3c4",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed": "#002111",
+            "tertiary-fixed": "#ffdcc3",
+            "on-primary-fixed": "#002117",
+            "on-error": "#ffffff",
+            "inverse-primary": "#9ed1bd",
+            "primary-container": "#1b4d3e",
+            "error": "#ba1a1a",
+            "primary-fixed-dim": "#9ed1bd",
+            "surface-variant": "#e4e2de",
+            "tertiary-fixed-dim": "#ffb77d"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.25rem",
+            "space-xl": "2.5rem",
+            "space-sm": "0.5rem",
+            "margin-desktop": "3rem",
+            "space-xs": "0.25rem",
+            "gutter-desktop": "2rem",
+            "margin-tablet": "2rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col font-body-md selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar (Shared Component) -->
+<header class="sticky top-0 z-50 w-full bg-surface-container-lowest border-b border-outline-variant/30 shadow-sm">
+<div class="flex items-center justify-between px-8 py-3.5 w-full max-w-7xl mx-auto">
+<!-- Brand Logo & Left Nav Links -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 text-headline-sm font-headline-sm font-bold text-primary tracking-tight" href="#">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="eco">eco</span>
+<span class="">CartWise</span>
+</a>
+<!-- Navigation Links: Exactly 'Chat' and 'Orders', NO search bar, NO category tabs -->
+<nav class="flex items-center gap-6">
+<a class="text-primary border-b-2 border-primary pb-1 font-semibold text-label-lg font-label-lg transition-colors" href="#">
+            Chat
+          </a>
+<a class="text-on-surface-variant pb-1 hover:text-primary transition-colors text-label-lg font-label-lg" href="#">
+            Orders
+          </a>
+</nav>
+</div>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-3">
+<!-- New chat Button -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-primary text-primary rounded-lg text-label-lg font-label-lg hover:bg-surface-container-low active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+<span class="">New chat</span>
+</button>
+<!-- Agent Trace Button -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-primary active:scale-[0.98] transition-all text-label-lg font-label-lg" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="neurology">neurology</span>
+<span class="">Agent Trace</span>
+</button>
+<!-- Shopping Cart Icon with Badge '3' -->
+<div class="relative p-1.5 rounded-full hover:bg-surface-container-low transition-colors cursor-pointer text-on-surface-variant hover:text-primary ml-1">
+<span class="material-symbols-outlined text-2xl" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute 0 top-0.5 right-0.5 bg-primary text-on-primary text-[11px] font-semibold w-4 h-4 rounded-full flex items-center justify-center leading-none">
+            3
+          </span>
+</div>
+<!-- Account Silhouette Icon -->
+<div class="p-1.5 rounded-full hover:bg-surface-container-low transition-colors cursor-pointer text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Chat Workspace Canvas -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-8 py-8 flex flex-col justify-between">
+<!-- Conversational Stream -->
+<div class="space-y-6 max-w-5xl mx-auto w-full mb-10">
+<!-- User Message (Right Aligned) -->
+<div class="flex flex-col items-end">
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded-2xl rounded-br-sm p-4 shadow-sm max-w-md">
+<div class="overflow-hidden rounded-lg mb-3 border border-outline-variant/40 bg-surface-container">
+<img alt="Uploaded honey jar" class="w-full h-44 object-cover" data-alt="A clean, close-up photograph of an artisanal glass jar of honey sitting on a natural warm wood countertop. Soft golden morning daylight highlights the clear amber viscosity of the honey with natural floral tones. The composition is calm, minimal, and organic, perfectly fitting a wholesome culinary atmosphere with earthy muted tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsVokQaTy7LzSqTs2NCHdONVEq8hwZrCVOVdmpZp10ENsDUz1lcNNZ-uSYdsWdEkmcNp_Ae9ZfWCu_OybbY2zurRcXC9jQhltLaHl-NcG3krnu_uFX9C02L8qk7K9jQQgyhSrTdTs10ApeJ7ecCPd8sz-TTnUooybnQxgCANTt7TV0frKj82DI3EmMSnVN_ztTET-wLvuEhYZi-rN6XhOeQY5kmwrQS-QlNTBlSPDs81QzBEY_PYBF">
+</div>
+<p class="text-on-surface text-body-md font-body-md font-medium">
+            Do you have this honey or similar?
+          </p>
+</div>
+</div>
+<!-- Assistant Response (Left Aligned) -->
+<div class="flex items-start gap-3.5">
+<!-- Assistant Avatar -->
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0 mt-1 shadow-sm">
+<span class="material-symbols-outlined text-lg" data-icon="spa">spa</span>
+</div>
+<div class="flex-1 space-y-4">
+<!-- Compact Image Analysis Card -->
+<div class="inline-block bg-surface-container-low border border-dashed border-outline-variant/80 rounded-xl p-3.5 w-full max-w-sm">
+<div class="flex items-center gap-2 mb-2 pb-1.5 border-b border-outline-variant/40">
+<span class="material-symbols-outlined text-secondary text-base" data-icon="center_focus_strong">center_focus_strong</span>
+<span class="text-label-lg font-label-lg font-semibold text-primary">Image analysis</span>
+</div>
+<div class="space-y-1.5 text-label-lg font-label-lg">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-normal">Detected:</span>
+<span class="text-on-surface font-medium">Honey</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-normal">Organic label:</span>
+<span class="text-on-surface font-medium">not visible</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-normal">Confidence:</span>
+<span class="text-secondary font-semibold">High (92%)</span>
+</div>
+</div>
+</div>
+<!-- Short Text Message -->
+<p class="text-on-surface text-body-md font-body-md">
+            I found 3 matching honeys in our store:
+          </p>
+<!-- 3 Matching Product Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-1">
+<!-- Card 1: Organic Raw Honey -->
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-4 flex flex-col justify-between hover:border-primary/40 transition-colors shadow-sm">
+<div>
+<div class="w-full h-44 rounded-lg overflow-hidden bg-surface-container-low mb-3">
+<img alt="Organic Raw Honey" class="w-full h-full object-cover" data-alt="A premium glass jar containing thick, raw organic golden honey with a clean screw-top lid displayed against a soft neutral background. Warm, natural diffused lighting brings out rich amber highlights and authentic texture. The aesthetic is artisanal, pristine, and grounded in organic nutrition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXcnMqD3SbQx9C4KcdwdgVurQ6hbv-4atgeEIxBQVz6XR0-rK_IHFElbGHKxWDQu0C_y74TbX5_9vdnIxm36Ha-sFUdLy2OL4SRQbAUbZppylfcJzQ0HIcK75vRHC2qQiYNuwGgkyEEmqWDDir2zleaxrmKTJ9llEbREoXMrUiq1plnHvDKgbGFE3YMxZ9NjTL4VKkCXJA8IThku1q2UK6PLo-_30dE3CXDl9NAkR_gvvKMB4BSnK0">
+</div>
+<div class="mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-secondary-container text-on-secondary-container">
+                    Organic
+                  </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 leading-snug">Organic Raw Honey</h3>
+<p class="text-on-surface-variant text-label-lg font-label-lg mb-2">★ 4.6 (4 reviews)</p>
+<p class="text-headline-sm font-headline-sm font-bold text-primary mb-4">₹14.99</p>
+</div>
+<!-- Action buttons on one single line -->
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/30">
+<button class="flex-1 whitespace-nowrap px-3 py-2 bg-primary text-on-primary rounded-lg text-label-lg font-label-lg hover:bg-secondary active:scale-[0.98] transition-all text-center" type="button">
+                  Add to cart
+                </button>
+<button class="flex-1 whitespace-nowrap px-3 py-2 bg-on-tertiary-container text-on-tertiary rounded-lg text-label-lg font-label-lg hover:opacity-90 active:scale-[0.98] transition-all text-center font-semibold" type="button">
+                  Buy now
+                </button>
+</div>
+</div>
+<!-- Card 2: Wildflower Honey -->
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-4 flex flex-col justify-between hover:border-primary/40 transition-colors shadow-sm">
+<div>
+<div class="w-full h-44 rounded-lg overflow-hidden bg-surface-container-low mb-3">
+<img alt="Wildflower Honey" class="w-full h-full object-cover" data-alt="A transparent glass jar filled with luminous wildflower honey highlighting a pure golden tint. Soft studio illumination emphasizes natural clarity and viscous reflections against a warm minimalist backdrop. The overall mood is authentic, culinary, and clean." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZj_LRdyiVu6ZuTOgQ5U9FMlYFw8pRu8Yfp8B8a5MK7x_ff15UOhubVrFh7dtN0vJbonfkM-nG6zS3-u6i4SHBzCj5ea6hznMVsuKyXqCXeDQUZMnMOty39WCgdIL1pdZQhy_ZFvAdIbeAQV_SbqEA8WY3AHeA3nvGKB9ldMYY6fXOaQ3atvTFgT0jaHOwHWB4T-PZYnn7RJ-7drUv9css_VSXf86kBT419WU-7JZ4YKlmmus1_LFg">
+</div>
+<div class="mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-surface-container-highest text-on-surface-variant">
+                    Non-organic
+                  </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 leading-snug">Wildflower Honey</h3>
+<p class="text-on-surface-variant text-label-lg font-label-lg mb-2">★ 3.8 (3 reviews)</p>
+<p class="text-headline-sm font-headline-sm font-bold text-primary mb-4">₹12.99</p>
+</div>
+<!-- Action buttons on one single line -->
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/30">
+<button class="flex-1 whitespace-nowrap px-3 py-2 bg-primary text-on-primary rounded-lg text-label-lg font-label-lg hover:bg-secondary active:scale-[0.98] transition-all text-center" type="button">
+                  Add to cart
+                </button>
+<button class="flex-1 whitespace-nowrap px-3 py-2 bg-on-tertiary-container text-on-tertiary rounded-lg text-label-lg font-label-lg hover:opacity-90 active:scale-[0.98] transition-all text-center font-semibold" type="button">
+                  Buy now
+                </button>
+</div>
+</div>
+<!-- Card 3: Orange Blossom Honey -->
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-4 flex flex-col justify-between hover:border-primary/40 transition-colors shadow-sm">
+<div>
+<div class="w-full h-44 rounded-lg overflow-hidden bg-surface-container-low mb-3">
+<img alt="Orange Blossom Honey" class="w-full h-full object-cover" data-alt="An artisanal jar filled with sweet orange blossom honey featuring delicate floral citrus undertones in its warm golden hue. Photographed with soft atmospheric natural daylight on a clean cream surface. Visual style is modern, wholesome, and refined." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPCR_mvGpXCXkIV48-AmETDrwMbivb0xVX6ngmPkw2Qdp3FsGo4DuXy51yMSDYpYn1JJC-lEOWBoX-yUsLfN5uCUR141D8OGWAbngOZk2tjmgTT7U4xpfsoHLiiengNdALUuuVmeiS9VwTLYVa7riPuawZ-wlQuFNuB7-d5VTzCy61KOYW6oAOuGm8svU_69kBJwEyPD5k0r1lO2XlTXwOnuqYRSaTXtux_DizOZ00M-e4G_jo9hah">
+</div>
+<div class="mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-surface-container-highest text-on-surface-variant">
+                    Non-organic
+                  </span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 leading-snug">Orange Blossom Honey</h3>
+<p class="text-on-surface-variant text-label-lg font-label-lg mb-2">★ 4.2 (3 reviews)</p>
+<p class="text-headline-sm font-headline-sm font-bold text-primary mb-4">₹15.99</p>
+</div>
+<!-- Action buttons on one single line -->
+<div class="flex items-center gap-2 pt-2 border-t border-outline-variant/30">
+<button class="flex-1 whitespace-nowrap px-3 py-2 bg-primary text-on-primary rounded-lg text-label-lg font-label-lg hover:bg-secondary active:scale-[0.98] transition-all text-center" type="button">
+                  Add to cart
+                </button>
+<button class="flex-1 whitespace-nowrap px-3 py-2 bg-on-tertiary-container text-on-tertiary rounded-lg text-label-lg font-label-lg hover:opacity-90 active:scale-[0.98] transition-all text-center font-semibold" type="button">
+                  Buy now
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Chat Input Dock -->
+<div class="max-w-4xl mx-auto w-full sticky bottom-6">
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-2xl shadow-md p-2 flex items-center gap-3">
+<!-- Upload Photo/Camera Action -->
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-xl transition-colors shrink-0" title="Upload a photo" type="button">
+<span class="material-symbols-outlined text-2xl" data-icon="photo_camera">photo_camera</span>
+</button>
+<!-- Chat Input Field -->
+<input class="flex-1 bg-transparent border-0 text-on-surface placeholder:text-on-surface-variant/70 text-body-md font-body-md focus:ring-0 focus:outline-none py-2 px-1" placeholder="Ask CartWise or upload a photo..." type="text">
+<!-- Send Arrow Button -->
+<button class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center hover:bg-secondary active:scale-95 transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="arrow_upward">arrow_upward</span>
+</button>
+</div>
+</div>
+</main>
+
+
+</body></html>

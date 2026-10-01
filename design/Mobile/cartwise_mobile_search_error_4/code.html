@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise - Organic Grocery Assistant</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-primary": "#9ed1bd",
+            "on-secondary-container": "#23714c",
+            "on-secondary-fixed": "#002111",
+            "tertiary-fixed-dim": "#ffb77d",
+            "surface": "#fbf9f5",
+            "outline-variant": "#c0c9c3",
+            "surface-dim": "#dbdad6",
+            "tertiary-container": "#6b3700",
+            "secondary-fixed": "#a5f3c4",
+            "on-error-container": "#93000a",
+            "surface-tint": "#376757",
+            "on-primary": "#ffffff",
+            "secondary-container": "#a5f3c4",
+            "secondary-fixed-dim": "#8ad7aa",
+            "on-secondary-fixed-variant": "#005232",
+            "background": "#fbf9f5",
+            "error-container": "#ffdad6",
+            "outline": "#707974",
+            "primary-container": "#1b4d3e",
+            "surface-bright": "#fbf9f5",
+            "on-tertiary-container": "#ff993b",
+            "surface-container-low": "#f5f3ef",
+            "inverse-on-surface": "#f2f0ed",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "on-tertiary-fixed": "#2f1500",
+            "secondary": "#1b6b47",
+            "on-primary-fixed-variant": "#1d4f40",
+            "inverse-surface": "#30312e",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "primary-fixed-dim": "#9ed1bd",
+            "surface-container-highest": "#e4e2de",
+            "surface-variant": "#e4e2de",
+            "primary": "#003629",
+            "tertiary-fixed": "#ffdcc3",
+            "on-tertiary": "#ffffff",
+            "on-primary-container": "#8abda9",
+            "surface-container-high": "#eae8e4",
+            "on-error": "#ffffff",
+            "on-background": "#1b1c1a",
+            "primary-fixed": "#baeed9",
+            "on-surface": "#1b1c1a",
+            "tertiary": "#4a2500",
+            "surface-container": "#efeeea",
+            "on-surface-variant": "#404945",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed": "#002117"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-xl": "2.5rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "margin-tablet": "2rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "2rem",
+            "gutter": "1.25rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased flex justify-center min-h-screen">
+<!-- Outer Mobile Container Frame (390px) -->
+<div class="w-full max-w-[390px] min-h-screen bg-background relative flex flex-col shadow-[0_12px_32px_-4px_rgba(27,77,62,0.06)] border-x border-surface-container overflow-hidden">
+<!-- TOP APP BAR (from Shared Components JSON: TopAppBar) -->
+<header class="fixed top-0 left-0 right-0 w-full z-50 flex items-center justify-between px-margin h-14 max-w-[390px] mx-auto bg-surface border-b border-outline-variant/30 shadow-sm backdrop-blur-md bg-surface/90">
+<!-- Leading Icon: Hamburger Menu -->
+<button aria-label="Open Navigation" class="w-10 h-10 flex items-center justify-center rounded-lg text-primary hover:bg-surface-container-high transition-colors active:scale-95 duration-150" type="button">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<!-- Brand Logo / Headline Center Aligned with Leaf Icon -->
+<div class="flex items-center gap-1.5 text-headline-sm font-headline-sm text-primary tracking-tight">
+<span class="material-symbols-outlined fill-icon text-secondary text-[22px]" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="">CartWise</span>
+</div>
+<!-- Trailing Action: Cart with Badge -->
+<button aria-label="Shopping Cart" class="relative w-10 h-10 flex items-center justify-center rounded-lg text-primary hover:bg-surface-container-high transition-colors active:scale-95 duration-150" type="button">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<!-- Badge '3' -->
+<span class="absolute top-1.5 right-1.5 min-w-[17px] h-[17px] px-1 bg-secondary text-on-secondary text-label-sm font-label-sm rounded-full flex items-center justify-center font-bold shadow-xs">
+          3
+        </span>
+</button>
+</header>
+<!-- MAIN CHAT CANVAS -->
+<main class="flex-1 pt-16 pb-24 px-margin overflow-y-auto space-y-space-md">
+<!-- Timestamp Divider / Context Intro -->
+<div class="flex items-center justify-center my-space-xs">
+<span class="text-label-sm font-label-sm text-on-surface-variant bg-surface-container-high/60 px-3 py-1 rounded-full border border-surface-container-highest">
+          Today • 2:14 PM
+        </span>
+</div>
+<!-- User Chat Bubble (Right aligned) -->
+<div class="flex flex-col items-end space-y-1">
+<div class="max-w-[85%] bg-surface-container-lowest text-on-surface border border-outline-variant/40 rounded-2xl rounded-br-[4px] px-space-md py-2.5 shadow-[0_2px_8px_-1px_rgba(27,77,62,0.03)]" style="background-color: rgba(45, 122, 84, 0.07);">
+<p class="text-body-md font-body-md leading-relaxed text-on-surface">Find gluten-free organic snacks under ₹15</p>
+</div>
+<span class="text-label-sm font-label-sm text-outline px-1">2:14 PM</span>
+</div>
+<!-- Calm Organic Error & Notice Card (Left aligned / Assistant context) -->
+<div class="flex items-start gap-2.5 max-w-full">
+<!-- Assistant Botanical Avatar -->
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+<span class="material-symbols-outlined text-[18px]" data-icon="smart_toy">smart_toy</span>
+</div>
+<div class="flex-1 space-y-space-sm">
+<!-- Gentle Notice Card (Terra-cotta / warm amber botanical outline) -->
+<div class="bg-surface-container-lowest border border-[#D97706]/30 rounded-2xl rounded-tl-[4px] p-space-md shadow-[0_4px_16px_-2px_rgba(27,77,62,0.04)] space-y-space-sm bg-gradient-to-b from-[#FBF9F5] to-surface-container-lowest">
+<!-- Notice Status Header -->
+<div class="flex items-start gap-2.5">
+<div class="w-7 h-7 rounded-full bg-[#D97706]/10 text-[#6B3700] flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]" data-icon="info">info</span>
+</div>
+<div class="space-y-0.5">
+<h4 class="text-label-lg font-label-lg text-on-surface font-semibold">
+                  Search Interrupted
+                </h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+                  Something went wrong while searching. Your message was saved.
+                </p>
+</div>
+</div>
+<!-- Gentle Divider -->
+<div class="h-[1px] bg-surface-container-high w-full"></div>
+<!-- Two Dedicated Action Buttons -->
+<div class="flex items-center gap-2 pt-0.5">
+<!-- Retry Button (Primary Filled Deep Forest Green) -->
+<button class="flex-1 h-10 px-space-md bg-primary-container hover:bg-secondary text-on-primary rounded-lg text-label-lg font-label-lg flex items-center justify-center gap-1.5 transition-colors active:scale-95 duration-150 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+<span class="">Retry</span>
+</button>
+<!-- Start New Chat Button (Secondary Outlined) -->
+<button class="flex-1 h-10 px-space-md border border-primary-container text-primary-container hover:bg-surface-container-low rounded-lg text-label-lg font-label-lg flex items-center justify-center gap-1.5 transition-colors active:scale-95 duration-150" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span class="">Start new chat</span>
+</button>
+</div>
+</div>
+<!-- Reassuring Saved Query Card / Tap-to-Send Shortcut -->
+<div class="bg-surface-container-low/70 border border-outline-variant/30 rounded-xl p-space-sm flex items-center justify-between gap-3 hover:bg-surface-container-low transition-colors group cursor-pointer">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0" data-icon="bookmark">bookmark</span>
+<div class="truncate">
+<p class="text-label-sm font-label-sm text-on-surface-variant font-medium">Saved query</p>
+<p class="text-body-sm font-body-sm text-on-surface font-medium truncate">"gluten-free organic snacks under ₹15"</p>
+</div>
+</div>
+<button aria-label="Tap to send saved query" class="shrink-0 w-8 h-8 rounded-lg bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-all duration-150 shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+</button>
+</div>
+<!-- Helpful Suggestion Chips for Pantry & Snack queries -->
+<div class="space-y-1.5 pt-1">
+<p class="text-label-sm font-label-sm text-outline px-1">Or try these organic suggestions:</p>
+<div class="flex flex-wrap gap-1.5">
+<button class="px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant text-label-sm font-label-sm hover:border-secondary hover:text-primary transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="eco">eco</span>
+<span class="">Organic Almond Crunch</span>
+</button>
+<button class="px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant/40 text-on-surface-variant text-label-sm font-label-sm hover:border-secondary hover:text-primary transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="nutrition">nutrition</span>
+<span class="">Gluten-free Fruit Bites</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- PINNED INPUT BAR AT BOTTOM (Prompt specification: camera icon, placeholder, send button) -->
+<div class="fixed bottom-0 left-0 right-0 w-full z-40 bg-surface-container-lowest/95 backdrop-blur-md border-t border-outline-variant/30 py-2.5 px-margin max-w-[390px] mx-auto shadow-[0_-4px_16px_-2px_rgba(27,77,62,0.04)]">
+<div class="flex items-center gap-2">
+<!-- Camera Icon Button -->
+<button aria-label="Scan Pantry or Barcode" class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors active:scale-95 duration-150 shrink-0" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="photo_camera">photo_camera</span>
+</button>
+<!-- Input Bar with Pre-filled/Placeholder State -->
+<div class="flex-1 relative flex items-center">
+<input class="w-full h-11 pl-3.5 pr-3 bg-surface border border-outline-variant/60 focus:border-secondary focus:ring-1 focus:ring-secondary rounded-lg text-body-md font-body-md text-on-surface placeholder:text-outline-variant outline-none transition-all" placeholder="Ask about pantry items, recipes..." type="text" value="gluten-free organic snacks under ₹15">
+</div>
+<!-- Send Button -->
+<button aria-label="Send Message" class="w-10 h-10 rounded-lg bg-primary-container hover:bg-secondary text-on-primary flex items-center justify-center transition-colors active:scale-95 duration-150 shrink-0 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+
+
+</body></html>

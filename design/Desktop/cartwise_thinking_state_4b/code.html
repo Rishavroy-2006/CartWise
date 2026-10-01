@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise - Thinking State</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "inverse-surface": "#30312e",
+            "primary-fixed-dim": "#9ed1bd",
+            "on-primary-container": "#8abda9",
+            "on-error": "#ffffff",
+            "surface-container-low": "#f5f3ef",
+            "surface-container": "#efeeea",
+            "on-secondary-fixed-variant": "#005232",
+            "secondary-fixed": "#a5f3c4",
+            "surface-container-high": "#eae8e4",
+            "primary": "#003629",
+            "surface-container-highest": "#e4e2de",
+            "tertiary-container": "#6b3700",
+            "secondary-fixed-dim": "#8ad7aa",
+            "outline": "#707974",
+            "primary-fixed": "#baeed9",
+            "error": "#ba1a1a",
+            "tertiary-fixed-dim": "#ffb77d",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#002117",
+            "tertiary": "#4a2500",
+            "on-secondary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface": "#fbf9f5",
+            "inverse-primary": "#9ed1bd",
+            "on-background": "#1b1c1a",
+            "on-tertiary-container": "#ff993b",
+            "tertiary-fixed": "#ffdcc3",
+            "surface-tint": "#376757",
+            "surface-variant": "#e4e2de",
+            "on-secondary-fixed": "#002111",
+            "on-surface-variant": "#404945",
+            "inverse-on-surface": "#f2f0ed",
+            "outline-variant": "#c0c9c3",
+            "surface-bright": "#fbf9f5",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "primary-container": "#1b4d3e",
+            "background": "#fbf9f5",
+            "surface-dim": "#dbdad6",
+            "on-tertiary-fixed": "#2f1500",
+            "on-secondary-container": "#23714c",
+            "surface-container-lowest": "#ffffff",
+            "secondary-container": "#a5f3c4",
+            "on-primary-fixed-variant": "#1d4f40",
+            "secondary": "#1b6b47",
+            "on-surface": "#1b1c1a"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin": "1rem",
+            "space-md": "1rem",
+            "gutter": "1.25rem",
+            "gutter-desktop": "2rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            "margin-tablet": "2rem",
+            "space-sm": "0.5rem"
+          },
+          fontFamily: {
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"]
+          },
+          fontSize: {
+            "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }],
+            "body-md": ["15px", { lineHeight: "24px", fontWeight: "400" }],
+            "display-lg-mobile": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }],
+            "body-sm": ["13px", { lineHeight: "20px", fontWeight: "400" }],
+            "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.02em", fontWeight: "500" }],
+            "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+            "headline-lg-mobile": ["26px", { lineHeight: "34px", letterSpacing: "-0.015em", fontWeight: "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.65; transform: scale(1.08); }
+    }
+    .animate-pulse-subtle {
+      animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .shimmer-effect {
+      background: linear-gradient(90deg, #eae8e4 0%, #f5f3ef 50%, #eae8e4 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.8s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar (Derived verbatim from Shared Components JSON & Style Guidance) -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant/30 dark:border-outline/20 shadow-sm dark:shadow-none docked full-width top-0 sticky z-50">
+<div class="sticky top-0 z-50 flex items-center justify-between px-8 py-3.5 w-full max-w-7xl mx-auto">
+<!-- Left: Brand Logo & Links -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 group text-headline-sm font-headline-sm font-bold text-primary dark:text-inverse-primary" href="#">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-surface text-primary-fixed">
+<span class="material-symbols-outlined text-[20px]" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<span class="tracking-tight text-primary font-headline-sm text-headline-sm">CartWise</span>
+</a>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary dark:text-inverse-primary border-b-2 border-primary dark:border-inverse-primary pb-1 font-semibold text-label-lg font-label-lg transition-colors duration-150" href="#">Chat</a>
+<a class="text-on-surface-variant dark:text-outline-variant pb-1 hover:text-primary dark:hover:text-inverse-primary text-label-lg font-label-lg transition-colors duration-150" href="#">Orders</a>
+</nav>
+</div>
+<!-- Right Utilities: Trailing Actions -->
+<div class="flex items-center gap-3">
+<!-- New chat action -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-outline-variant/60 text-primary font-label-lg text-label-lg hover:bg-surface-container-low transition-colors duration-150 active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+          New chat
+        </button>
+<!-- Agent Trace action -->
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span>
+          Agent Trace
+        </button>
+<div class="h-4 w-px bg-outline-variant/40 mx-1"></div>
+<!-- Cart Icon with Badge '3' -->
+<button aria-label="Shopping Cart" class="relative p-2 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute top-1 right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold text-on-primary bg-primary-container rounded-full ring-2 ring-surface-container-lowest">3</span>
+</button>
+<!-- Circular Account Icon -->
+<button aria-label="Account" class="p-1 rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-[26px] text-outline" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Canvas Workspace -->
+<main class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 pt-8 pb-36 flex flex-col justify-start">
+<!-- Conversation Container -->
+<div class="space-y-6">
+<!-- 1. User Message (Right-aligned bubble) -->
+<div class="flex justify-end">
+<div class="max-w-xl bg-surface-container-lowest border border-outline-variant/50 rounded-2xl rounded-br-[4px] px-5 py-3.5 shadow-sm">
+<p class="font-body-md text-body-md text-on-surface font-medium leading-relaxed">I want organic honey with 4.5+ rating under ₹20</p>
+<div class="mt-1 flex items-center justify-end gap-1 text-label-sm font-label-sm text-outline">
+<span class="">10:42 AM</span>
+<span class="material-symbols-outlined text-[13px] text-secondary" data-icon="done_all">done_all</span>
+</div>
+</div>
+</div>
+<!-- 2. Assistant Response (Thinking / Processing State) -->
+<div class="flex items-start gap-3.5">
+<!-- Botanical CartWise Avatar -->
+<div class="w-9 h-9 rounded-full bg-primary-container text-surface flex items-center justify-center shrink-0 shadow-sm mt-0.5 ring-4 ring-surface-container-low">
+<span class="material-symbols-outlined text-[19px] text-primary-fixed" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<!-- Assistant Workspace Content -->
+<div class="flex-1 space-y-4 max-w-3xl">
+<!-- Live Progress Status Card -->
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl rounded-tl-[4px] p-5 shadow-[0_4px_16px_-2px_rgba(27,77,62,0.04),0_2px_6px_-1px_rgba(27,77,62,0.02)]">
+<!-- Live Status Header -->
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/30 mb-4">
+<div class="flex items-center gap-2.5">
+<div class="relative flex items-center justify-center">
+<div class="w-3 h-3 rounded-full bg-secondary animate-pulse-subtle"></div>
+<div class="absolute w-5 h-5 rounded-full border border-secondary/30 animate-ping opacity-60"></div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Finding organic honeys...</h3>
+</div>
+<span class="font-label-sm text-label-sm text-outline bg-surface-container-low px-2 py-0.5 rounded-full border border-outline-variant/30">Live Analysis</span>
+</div>
+<!-- Live Progress Step List -->
+<div class="space-y-3">
+<!-- Step 1: Done -->
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed-variant shrink-0">
+<span class="material-symbols-outlined text-[14px]" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-body-md text-body-md text-secondary font-medium">Understanding your request</span>
+<span class="ml-auto font-label-sm text-label-sm font-semibold text-secondary">Done</span>
+</div>
+<!-- Step 2: In progress -->
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 flex items-center justify-center shrink-0">
+<svg class="animate-spin w-4 h-4 text-secondary" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Searching products</span>
+<span class="ml-auto flex items-center gap-1 font-label-sm text-label-sm font-semibold text-secondary">
+                  In progress
+                </span>
+</div>
+<!-- Step 3: Waiting -->
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded-full border border-outline-variant/60 flex items-center justify-center text-outline shrink-0">
+<span class="material-symbols-outlined text-[13px]" data-icon="schedule">schedule</span>
+</div>
+<span class="font-body-md text-body-md text-outline">Summarizing reviews</span>
+<span class="ml-auto font-label-sm text-label-sm text-outline">Waiting</span>
+</div>
+</div>
+</div>
+<!-- Skeleton Loading Product Cards (Horizontal 3-Column Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+<!-- Skeleton Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-3.5 flex flex-col justify-between h-[360px] shadow-[0_2px_8px_-1px_rgba(27,77,62,0.03)]">
+<div>
+<!-- Image Placeholder -->
+<div class="w-full h-36 rounded-lg shimmer-effect mb-3"></div>
+<!-- Rating badge line -->
+<div class="flex items-center gap-1.5 mb-2">
+<div class="w-12 h-4 rounded shimmer-effect"></div>
+<div class="w-16 h-3 rounded shimmer-effect"></div>
+</div>
+<!-- Title Lines -->
+<div class="space-y-1.5 mb-3">
+<div class="w-full h-4 rounded shimmer-effect"></div>
+<div class="w-3/4 h-4 rounded shimmer-effect"></div>
+</div>
+<!-- Price and badge -->
+<div class="w-20 h-5 rounded shimmer-effect mb-4"></div>
+</div>
+<!-- Action Buttons Placeholder -->
+<div class="space-y-2 pt-2 border-t border-surface-container-high">
+<div class="w-full h-8 rounded-lg shimmer-effect"></div>
+<div class="w-full h-8 rounded-lg shimmer-effect"></div>
+</div>
+</div>
+<!-- Skeleton Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-3.5 flex flex-col justify-between h-[360px] shadow-[0_2px_8px_-1px_rgba(27,77,62,0.03)]">
+<div>
+<!-- Image Placeholder -->
+<div class="w-full h-36 rounded-lg shimmer-effect mb-3"></div>
+<!-- Rating badge line -->
+<div class="flex items-center gap-1.5 mb-2">
+<div class="w-12 h-4 rounded shimmer-effect"></div>
+<div class="w-16 h-3 rounded shimmer-effect"></div>
+</div>
+<!-- Title Lines -->
+<div class="space-y-1.5 mb-3">
+<div class="w-full h-4 rounded shimmer-effect"></div>
+<div class="w-2/3 h-4 rounded shimmer-effect"></div>
+</div>
+<!-- Price and badge -->
+<div class="w-16 h-5 rounded shimmer-effect mb-4"></div>
+</div>
+<!-- Action Buttons Placeholder -->
+<div class="space-y-2 pt-2 border-t border-surface-container-high">
+<div class="w-full h-8 rounded-lg shimmer-effect"></div>
+<div class="w-full h-8 rounded-lg shimmer-effect"></div>
+</div>
+</div>
+<!-- Skeleton Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-3.5 flex flex-col justify-between h-[360px] shadow-[0_2px_8px_-1px_rgba(27,77,62,0.03)]">
+<div>
+<!-- Image Placeholder -->
+<div class="w-full h-36 rounded-lg shimmer-effect mb-3"></div>
+<!-- Rating badge line -->
+<div class="flex items-center gap-1.5 mb-2">
+<div class="w-12 h-4 rounded shimmer-effect"></div>
+<div class="w-16 h-3 rounded shimmer-effect"></div>
+</div>
+<!-- Title Lines -->
+<div class="space-y-1.5 mb-3">
+<div class="w-full h-4 rounded shimmer-effect"></div>
+<div class="w-4/5 h-4 rounded shimmer-effect"></div>
+</div>
+<!-- Price and badge -->
+<div class="w-24 h-5 rounded shimmer-effect mb-4"></div>
+</div>
+<!-- Action Buttons Placeholder -->
+<div class="space-y-2 pt-2 border-t border-surface-container-high">
+<div class="w-full h-8 rounded-lg shimmer-effect"></div>
+<div class="w-full h-8 rounded-lg shimmer-effect"></div>
+</div>
+</div>
+</div>
+<!-- Thought Footer Context -->
+<div class="flex items-center gap-2 pt-1 px-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-outline">Filtering USDA Organic certified inventories with customer ratings above 4.5...</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Pinned Bottom Input Bar -->
+<div class="fixed bottom-0 inset-x-0 bg-surface/95 backdrop-blur-md border-t border-outline-variant/30 py-4 px-4 z-40">
+<div class="max-w-3xl mx-auto">
+<div class="relative flex items-center bg-surface-container-lowest border border-outline-variant/60 rounded-xl shadow-[0_8px_24px_-4px_rgba(27,77,62,0.06)] focus-within:ring-2 focus-within:ring-secondary focus-within:border-transparent transition-all">
+<!-- Camera Icon Button -->
+<button aria-label="Upload photo or scan pantry item" class="p-3 text-outline hover:text-primary transition-colors flex items-center justify-center shrink-0 ml-1 rounded-lg" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="photo_camera">photo_camera</span>
+</button>
+<!-- Input Field -->
+<input class="w-full bg-transparent border-0 focus:ring-0 text-on-surface font-body-md text-body-md placeholder:text-outline/70 py-3 px-2" disabled="" placeholder="Ask CartWise or upload a photo..." type="text">
+<!-- Disabled / Active Green Send Button -->
+<div class="pr-2 shrink-0">
+<button aria-label="Send query" class="w-9 h-9 rounded-lg bg-primary-container/60 text-surface flex items-center justify-center cursor-not-allowed transition-all" disabled="" type="button">
+<span class="material-symbols-outlined text-[19px] text-surface/80" data-icon="arrow_upward">arrow_upward</span>
+</button>
+</div>
+</div>
+<!-- Micro Disclaimer -->
+<div class="text-center mt-2">
+<p class="font-label-sm text-label-sm text-outline">CartWise synthesizes nutritional data &amp; verified grocery inventories in real-time.</p>
+</div>
+</div>
+</div>
+
+
+</body></html>

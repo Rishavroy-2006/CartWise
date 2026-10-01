@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CartWise - Order Confirmed (3C)</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-container": "#8abda9",
+            "surface-dim": "#dbdad6",
+            "on-primary-fixed": "#002117",
+            "surface-tint": "#376757",
+            "inverse-surface": "#30312e",
+            "secondary-fixed": "#a5f3c4",
+            "surface-container-high": "#eae8e4",
+            "inverse-on-surface": "#f2f0ed",
+            "on-secondary-container": "#23714c",
+            "on-tertiary-container": "#ff993b",
+            "surface-container-low": "#f5f3ef",
+            "background": "#fbf9f5",
+            "secondary-container": "#a5f3c4",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "inverse-primary": "#9ed1bd",
+            "on-secondary": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "surface-container-highest": "#e4e2de",
+            "surface-container-lowest": "#ffffff",
+            "surface-variant": "#e4e2de",
+            "on-surface": "#1b1c1a",
+            "secondary-fixed-dim": "#8ad7aa",
+            "primary-fixed-dim": "#9ed1bd",
+            "error": "#ba1a1a",
+            "primary-fixed": "#baeed9",
+            "tertiary-fixed": "#ffdcc3",
+            "on-secondary-fixed-variant": "#005232",
+            "tertiary-fixed-dim": "#ffb77d",
+            "surface": "#fbf9f5",
+            "surface-container": "#efeeea",
+            "tertiary-container": "#6b3700",
+            "on-error": "#ffffff",
+            "secondary": "#1b6b47",
+            "tertiary": "#4a2500",
+            "on-surface-variant": "#404945",
+            "on-background": "#1b1c1a",
+            "on-primary-fixed-variant": "#1d4f40",
+            "outline": "#707974",
+            "on-primary": "#ffffff",
+            "surface-bright": "#fbf9f5",
+            "on-secondary-fixed": "#002111",
+            "on-tertiary-fixed": "#2f1500",
+            "primary-container": "#1b4d3e",
+            "primary": "#003629",
+            "outline-variant": "#c0c9c3"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "margin-desktop": "3rem",
+            "margin-tablet": "2rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2.5rem",
+            "gutter-desktop": "2rem",
+            "space-lg": "1.5rem",
+            "gutter": "1.25rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .custom-ambient-shadow {
+      box-shadow: 0 4px 16px -2px rgba(27, 77, 62, 0.04), 0 2px 6px -1px rgba(27, 77, 62, 0.02);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md">
+<!-- Top Navigation (Shared Component Specification) -->
+<header class="bg-surface-container-lowest border-b border-outline-variant/30 sticky top-0 z-50">
+<div class="sticky top-0 z-50 flex items-center justify-between px-8 py-3.5 w-full max-w-7xl mx-auto">
+<!-- Brand Logo -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">CartWise</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant pb-1 hover:text-primary transition-colors duration-150 text-label-lg font-label-lg" href="#">Chat</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-semibold text-label-lg font-label-lg" href="#">Orders</a>
+</nav>
+<!-- Right Trailing Actions -->
+<div class="flex items-center gap-4">
+<!-- Cart Action with zero count badge -->
+<button aria-label="Shopping Cart" class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 active:scale-[0.98]">
+<span class="material-symbols-outlined text-xl" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute top-1 right-1 bg-surface-container-highest text-on-surface-variant text-[11px] font-semibold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+</button>
+<!-- User Profile Action -->
+<button aria-label="Account" class="p-1 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150 active:scale-[0.98]">
+<span class="material-symbols-outlined text-2xl" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Sub-header back link -->
+<div class="w-full max-w-7xl mx-auto px-8 pt-6 pb-2">
+<a class="inline-flex items-center gap-1.5 text-on-surface-variant hover:text-primary text-body-md font-body-md transition-colors group" href="#">
+<span class="material-symbols-outlined text-lg group-hover:-translate-x-0.5 transition-transform" data-icon="arrow_back">arrow_back</span>
+<span class="">Continue shopping</span>
+</a>
+</div>
+<!-- Main Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center px-4 py-8 max-w-7xl mx-auto w-full">
+<!-- Stepper Navigation -->
+<div class="w-full max-w-xl mx-auto mb-10">
+<div class="flex items-center justify-between relative">
+<!-- Connecting Lines -->
+<div class="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-0.5 bg-secondary-fixed-dim -z-0"></div>
+<!-- Step 1: Cart (Completed) -->
+<div class="flex items-center gap-2 bg-background px-3 z-10">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-base" data-icon="check">check</span>
+</div>
+<span class="text-body-md font-body-md font-semibold text-primary">1. Cart</span>
+</div>
+<!-- Step 2: Review (Completed) -->
+<div class="flex items-center gap-2 bg-background px-3 z-10">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-base" data-icon="check">check</span>
+</div>
+<span class="text-body-md font-body-md font-semibold text-primary">2. Review</span>
+</div>
+<!-- Step 3: Confirmed (Active & Completed) -->
+<div class="flex items-center gap-2 bg-background px-3 z-10">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-primary flex items-center justify-center ring-4 ring-secondary-container/50">
+<span class="material-symbols-outlined text-base" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="text-body-md font-body-md font-bold text-secondary">3. Confirmed</span>
+</div>
+</div>
+</div>
+<!-- Centered Order Confirmation Card -->
+<section class="w-full max-w-xl bg-surface-container-lowest border border-outline-variant/40 rounded-xl custom-ambient-shadow p-8 md:p-10">
+<!-- Top Success Icon & Heading -->
+<div class="text-center flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-primary-container mb-4">
+<span class="material-symbols-outlined text-3xl font-bold" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight mb-2">Order #1042 confirmed</h1>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-md">Thank you for your order! We're preparing your organic groceries.</p>
+</div>
+<!-- Delivery Estimation Box -->
+<div class="mt-8 p-4 rounded-lg bg-surface-container-low border border-outline-variant/30 flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-2xl" data-icon="local_shipping">local_shipping</span>
+<span class="text-body-md font-body-md font-medium text-on-surface">Delivery: Estimated 3-5 business days</span>
+</div>
+<!-- Order Details Section -->
+<div class="mt-8 border-t border-outline-variant/30 pt-6">
+<h2 class="text-label-lg font-label-lg text-on-surface font-semibold mb-4">Order Details</h2>
+<div class="space-y-4">
+<!-- Item 1 -->
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/20">
+<div>
+<p class="text-body-md font-body-md font-medium text-on-surface">Organic Acacia Honey</p>
+<p class="text-body-md font-body-md text-on-surface-variant">Qty: 2</p>
+</div>
+<p class="text-body-md font-body-md font-semibold text-on-surface">₹35.98</p>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between py-2 border-b border-outline-variant/20">
+<div>
+<p class="text-body-md font-body-md font-medium text-on-surface">Organic Raw Honey</p>
+<p class="text-body-md font-body-md text-on-surface-variant">Qty: 1</p>
+</div>
+<p class="text-body-md font-body-md font-semibold text-on-surface">₹14.99</p>
+</div>
+<!-- Total Row -->
+<div class="flex items-center justify-between pt-3">
+<span class="text-body-lg font-body-lg font-bold text-primary">Total</span>
+<span class="text-headline-sm font-headline-sm font-bold text-primary">₹50.97</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-10 flex flex-col sm:flex-row items-center gap-4">
+<a class="w-full sm:w-1/2 flex items-center justify-center py-3 px-6 rounded-lg bg-primary-container text-on-primary text-label-lg font-label-lg hover:bg-secondary transition-colors duration-150 active:scale-[0.98] shadow-sm text-center" href="#">
+          View orders
+        </a>
+<a class="w-full sm:w-1/2 flex items-center justify-center py-3 px-6 rounded-lg border-2 border-primary-container text-primary-container text-label-lg font-label-lg hover:bg-surface-container-low transition-colors duration-150 active:scale-[0.98] text-center" href="#">
+          Continue shopping
+        </a>
+</div>
+</section>
+</main>
+<!-- Ambient Footer with Subtle Brand Mark -->
+<footer class="w-full py-6 text-center text-body-md font-body-md text-on-surface-variant/70 border-t border-outline-variant/20 mt-auto">
+<span class="">CartWise Organic Pantry © 2025</span>
+</footer>
+
+
+</body></html>

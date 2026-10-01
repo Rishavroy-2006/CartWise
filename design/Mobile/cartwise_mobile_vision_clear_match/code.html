@@ -1,0 +1,375 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>CartWise - Image Search</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Plus Jakarta Sans Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "primary-fixed": "#baeed9",
+            "outline": "#707974",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#eae8e4",
+            "tertiary": "#4a2500",
+            "surface-bright": "#fbf9f5",
+            "outline-variant": "#c0c9c3",
+            "primary-fixed-dim": "#9ed1bd",
+            "on-secondary-container": "#23714c",
+            "primary": "#003629",
+            "surface-container-low": "#f5f3ef",
+            "on-tertiary-container": "#ff993b",
+            "on-primary-container": "#8abda9",
+            "surface-tint": "#376757",
+            "surface": "#fbf9f5",
+            "inverse-on-surface": "#f2f0ed",
+            "on-error": "#ffffff",
+            "surface-dim": "#dbdad6",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdcc3",
+            "secondary-fixed-dim": "#8ad7aa",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed": "#002111",
+            "inverse-primary": "#9ed1bd",
+            "secondary-container": "#a5f3c4",
+            "surface-variant": "#e4e2de",
+            "on-surface-variant": "#404945",
+            "surface-container-highest": "#e4e2de",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "primary-container": "#1b4d3e",
+            "on-background": "#1b1c1a",
+            "on-tertiary-fixed": "#2f1500",
+            "on-surface": "#1b1c1a",
+            "on-secondary-fixed-variant": "#005232",
+            "tertiary-container": "#6b3700",
+            "secondary": "#1b6b47",
+            "surface-container": "#efeeea",
+            "inverse-surface": "#30312e",
+            "on-primary-fixed": "#002117",
+            "tertiary-fixed-dim": "#ffb77d",
+            "background": "#fbf9f5",
+            "on-primary-fixed-variant": "#1d4f40",
+            "secondary-fixed": "#a5f3c4",
+            "error": "#ba1a1a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "space-xs": "0.25rem",
+            "margin-tablet": "2rem",
+            "space-md": "1rem",
+            "gutter-desktop": "2rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "space-xl": "2.5rem",
+            "gutter": "1.25rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["15px", {"lineHeight": "24px", "fontWeight": "400"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased flex flex-col items-center min-h-screen">
+<!-- 390px Mobile Viewport Container -->
+<div class="w-full max-w-[390px] min-h-screen bg-surface flex flex-col relative pb-32">
+<!-- TopAppBar Component (from Shared Components JSON) -->
+<header class="fixed top-0 left-0 right-0 w-full z-50 flex items-center justify-between px-margin h-14 max-w-[390px] mx-auto bg-surface shadow-sm">
+<!-- Leading Icon: Hamburger -->
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<!-- Headline / Brand Logo: CartWise with Botanical Leaf Icon -->
+<div class="flex items-center gap-1.5 text-headline-sm font-headline-sm text-primary tracking-tight">
+<span class="material-symbols-outlined text-secondary text-[22px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="">CartWise</span>
+</div>
+<!-- Trailing Icon: Shopping Bag with Badge '3' -->
+<button class="relative w-10 h-10 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+<span class="absolute top-1 right-1 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+          3
+        </span>
+</button>
+</header>
+<!-- Main Chat Canvas -->
+<main class="flex-1 px-margin pt-16 flex flex-col gap-space-md">
+<!-- Timestamp / Context Divider -->
+<div class="flex items-center justify-center my-space-xs">
+<span class="text-label-sm font-label-sm text-outline px-2.5 py-0.5 rounded-full bg-surface-container-low">
+          Today • 10:42 AM
+        </span>
+</div>
+<!-- User Message Bubble (Right-aligned, docked bottom-right corner) -->
+<div class="flex flex-col items-end self-end max-w-[85%]">
+<div class="bg-surface-container-lowest border border-outline-variant/50 p-space-sm rounded-2xl rounded-br-[4px] shadow-sm flex flex-col gap-space-xs">
+<!-- Uploaded Honey Jar Photo Thumbnail -->
+<div class="relative w-full h-32 rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A warm, sunlit organic glass honey jar resting on a natural linen tablecloth, filled with rich golden liquid honey and a wooden honey dipper placed gently beside it. The background displays soft out-of-focus botanical kitchen greenery and soft morning sunlight. Shot in an artisanal, high-end editorial food photography style with wholesome earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAr8ARsMyNalA_xce7hnSkm5RbjxyModmgw-KesA_PCRMTkrqGUy1dknAKAX-m8_HfaQZz3-7m6OWV6-EQ64ENvAZK8zQf3RumZt1jMGUazsWbnh_lnwUyfreeHyR1Fq7c2zXtDEEjMlXRMYmUKir8KYvZ4467FWG5_35HVrQrp7DAvujgTvFSWEvAd3Q24ZjqLN8c9g2D7eeyNzv0ipQbgGBCet2jQWs0btHKkZ8eG4QsHhiIQAUm">
+<div class="absolute bottom-1.5 right-1.5 bg-on-background/70 backdrop-blur-sm text-on-primary px-1.5 py-0.5 rounded text-[10px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">photo_camera</span>
+              Photo
+            </div>
+</div>
+<!-- Text Prompt -->
+<p class="text-body-md font-body-md text-on-surface px-1 pt-1">
+            Do you have this honey or something similar?
+          </p>
+</div>
+<span class="text-label-sm font-label-sm text-outline mt-1 pr-1">Delivered</span>
+</div>
+<!-- Assistant Thought / Image Analysis Card (Foldable reasoning style) -->
+<div class="flex items-start gap-2 self-start w-full">
+<!-- Assistant Botanical Avatar -->
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0 mt-1 shadow-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<!-- Reasoning & Analysis Content -->
+<div class="flex-1 flex flex-col gap-space-sm max-w-[calc(100%-2.25rem)]">
+<!-- Compact Image Analysis Card -->
+<div class="bg-surface-container-low border border-dashed border-outline-variant rounded-xl p-space-sm">
+<div class="flex items-center justify-between pb-1.5 border-b border-outline-variant/40">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-label-md font-label-md text-primary font-semibold">Image analysis</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+</div>
+<div class="pt-2 flex flex-col gap-1 text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center justify-between">
+<span class="">Detected:</span>
+<span class="font-medium text-on-surface">Honey</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="">Organic label:</span>
+<span class="text-on-surface-variant">not visible</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="">Confidence:</span>
+<span class="font-medium text-secondary">High (92%)</span>
+</div>
+</div>
+</div>
+<!-- Assistant Text Bubble (Left-aligned, docked top-left) -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 p-space-md rounded-2xl rounded-tl-[4px] shadow-sm">
+<p class="text-body-md font-body-md text-on-surface">
+              I found a clear match and 2 close organic &amp; floral alternatives from our pantry:
+            </p>
+</div>
+</div>
+</div>
+<!-- Swipeable Product Cards Carousel -->
+<div class="w-[calc(100%+2rem)] -mx-margin overflow-x-auto no-scrollbar pt-1 pb-2 px-margin flex gap-3.5 snap-x snap-mandatory">
+<!-- Product 1: Organic Raw Honey (Clear Match) -->
+<div class="min-w-[245px] max-w-[245px] snap-center bg-surface-container-lowest border-2 border-primary-container/20 rounded-xl p-3 flex flex-col justify-between shadow-[0_4px_16px_-2px_rgba(27,77,62,0.06)] relative">
+<!-- Top Tag / Badge -->
+<div class="flex items-center justify-between mb-2">
+<span class="bg-secondary-container text-on-secondary-container text-label-sm font-label-sm px-2 py-0.5 rounded-full flex items-center gap-0.5 font-semibold">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+              Organic
+            </span>
+<span class="text-label-sm font-label-sm text-primary font-semibold">Best Match</span>
+</div>
+<!-- Image -->
+<div class="w-full h-32 rounded-lg overflow-hidden bg-surface-container-low mb-2.5">
+<img class="w-full h-full object-cover" data-alt="An artisanal jar of pure organic raw honey with a clean minimalist label, set against a pristine warm cream background with gentle natural studio lighting. Rich amber-tinted golden honey glistens inside the glass with clean organic modern aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc-iK7ZLjiqceiooviGNvThdhQPKzjlN8f-n1Rh5tErIl9wXvU-ER-q6Ah4farADgScn7WKBmYLhpg6r7vzd942S2H9XIbYiBvy6sjF10ZxBLV0H1NYMtvHmuMhhjpdxs6KSkvxOmMGsAlRlMRj_ntlohOlYrKA6ja3mGM1RuNFzwyM3OZ6BgXtCjivLYAbEzyiid3TMwarBUBhgM5U13WN2-MS9C8jg5iaJjWwZ4D9XViyGThbN4C">
+</div>
+<!-- Title & Rating -->
+<div>
+<h3 class="text-label-lg font-label-lg text-on-surface truncate">Organic Raw Honey</h3>
+<div class="flex items-center gap-1 mt-0.5 mb-2">
+<span class="text-tertiary-container text-label-sm font-label-sm font-semibold">★ 4.6</span>
+<span class="text-outline text-label-sm font-label-sm">(124)</span>
+</div>
+<div class="text-headline-sm font-headline-sm text-primary mb-3">₹14.99</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-1.5">
+<button class="w-full py-2 bg-primary-container text-on-primary rounded-lg text-label-md font-label-md font-semibold hover:bg-secondary transition-colors active:scale-95 duration-150 flex items-center justify-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+              Add to cart
+            </button>
+<button class="w-full py-1.5 bg-surface-container-low text-primary border border-outline-variant/60 rounded-lg text-label-md font-label-md font-semibold hover:bg-surface-container transition-colors active:scale-95 duration-150">
+              Buy now
+            </button>
+</div>
+</div>
+<!-- Product 2: Wildflower Honey -->
+<div class="min-w-[245px] max-w-[245px] snap-center bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-3 flex flex-col justify-between shadow-[0_2px_8px_-1px_rgba(27,77,62,0.03)]">
+<!-- Placeholder header space for alignment -->
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm font-label-sm text-outline-variant">Pantry Select</span>
+</div>
+<!-- Image -->
+<div class="w-full h-32 rounded-lg overflow-hidden bg-surface-container-low mb-2.5">
+<img class="w-full h-full object-cover" data-alt="A clear glass hexagonal jar of golden wildflower honey bathed in soft ambient daylight, set on a calm warm off-white surface with subtle floral accents in the distance. Professional natural grocery catalog composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgsF-Z1QyXGBa-bZJt6Zo8en4ZDesselIgKFGrJIcmYPktbve2xn1d7BW6_bREQc7csX7bD-R4QQo76ZaHYEY7fHXf_6cgSlOvrye3CD-z4DTqbfA19CSa1IzjE3AfnD7NHXJ6G8V-d3TeB3sHI09Su5r2CFz9EzeGHeWk0POLI1ZO5lYxTT9kjtaJgTVIFkbVkkQIPt2bnccibF7YmKx19uI_JdRKHsikwfTN6MT-qLdmirvzwCLK">
+</div>
+<!-- Title & Rating -->
+<div>
+<h3 class="text-label-lg font-label-lg text-on-surface truncate">Wildflower Honey</h3>
+<div class="flex items-center gap-1 mt-0.5 mb-2">
+<span class="text-tertiary-container text-label-sm font-label-sm font-semibold">★ 3.8</span>
+<span class="text-outline text-label-sm font-label-sm">(89)</span>
+</div>
+<div class="text-headline-sm font-headline-sm text-primary mb-3">₹12.99</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-1.5">
+<button class="w-full py-2 bg-primary-container text-on-primary rounded-lg text-label-md font-label-md font-semibold hover:bg-secondary transition-colors active:scale-95 duration-150 flex items-center justify-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+              Add to cart
+            </button>
+<button class="w-full py-1.5 bg-surface-container-low text-primary border border-outline-variant/60 rounded-lg text-label-md font-label-md font-semibold hover:bg-surface-container transition-colors active:scale-95 duration-150">
+              Buy now
+            </button>
+</div>
+</div>
+<!-- Product 3: Orange Blossom Honey -->
+<div class="min-w-[245px] max-w-[245px] snap-center bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-3 flex flex-col justify-between shadow-[0_2px_8px_-1px_rgba(27,77,62,0.03)]">
+<!-- Placeholder header space for alignment -->
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm font-label-sm text-outline-variant">Pantry Select</span>
+</div>
+<!-- Image -->
+<div class="w-full h-32 rounded-lg overflow-hidden bg-surface-container-low mb-2.5">
+<img class="w-full h-full object-cover" data-alt="A delicate jar of bright orange blossom honey with gentle citrus blossom botanical styling in soft morning sunlight. The jar shows clear, radiant liquid gold honey on an understated warm natural background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv66q0Jd8NRKRzokIrNSHi6P78ycnplvmz40xs3u5rc900NBwaPxnkZLWoaU_vf1YZBkmcUZL-KG71pn2O8Lx8xOZPL0LekMp6xI0Jm5B58moiLRSgGgvmSPU9r3A--h2SzuzjHiYnIba3Fx-ZkrYk2xWDer1EpndS8ftn23jax8HqK1LPCUY2t_wGM-_dl0FtCF2LV9RjUwgk_Kb3gsN_aUkiCEatnKSc7B00ddbWGE-IsfQDRcaL">
+</div>
+<!-- Title & Rating -->
+<div>
+<h3 class="text-label-lg font-label-lg text-on-surface truncate">Orange Blossom Honey</h3>
+<div class="flex items-center gap-1 mt-0.5 mb-2">
+<span class="text-tertiary-container text-label-sm font-label-sm font-semibold">★ 4.2</span>
+<span class="text-outline text-label-sm font-label-sm">(63)</span>
+</div>
+<div class="text-headline-sm font-headline-sm text-primary mb-3">₹15.99</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-1.5">
+<button class="w-full py-2 bg-primary-container text-on-primary rounded-lg text-label-md font-label-md font-semibold hover:bg-secondary transition-colors active:scale-95 duration-150 flex items-center justify-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+              Add to cart
+            </button>
+<button class="w-full py-1.5 bg-surface-container-low text-primary border border-outline-variant/60 rounded-lg text-label-md font-label-md font-semibold hover:bg-surface-container transition-colors active:scale-95 duration-150">
+              Buy now
+            </button>
+</div>
+</div>
+</div>
+<!-- Quick Action Pills -->
+<div class="flex items-center gap-2 mt-1">
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant/80 rounded-full text-label-md font-label-md text-on-surface hover:border-primary transition-all active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[16px] text-primary">balance</span>
+          Compare these
+        </button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant/80 rounded-full text-label-md font-label-md text-on-surface hover:border-primary transition-all active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[16px] text-secondary">filter_alt</span>
+          Filter organic only
+        </button>
+</div>
+</main>
+<!-- Pinned Bottom Input Bar & Bottom Navigation Wrapper -->
+<div class="fixed bottom-0 left-0 right-0 w-full max-w-[390px] mx-auto z-40 bg-surface-container-lowest/95 backdrop-blur-md flex flex-col shadow-[0_-4px_20px_-2px_rgba(27,77,62,0.08)]">
+<!-- Pinned Chat Input Area -->
+<div class="px-margin py-2.5 flex items-center gap-2 border-b border-outline-variant/20">
+<!-- Camera Icon Button -->
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low text-primary hover:bg-surface-container transition-colors active:scale-95 duration-150 shrink-0">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</button>
+<!-- Input Field Container -->
+<div class="flex-1 relative flex items-center">
+<input class="w-full h-11 bg-surface-container-low border border-outline-variant/60 rounded-full pl-4 pr-11 text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" placeholder="Ask CartWise or upload a photo..." type="text">
+<!-- Circular Send Arrow Button -->
+<button class="absolute right-1 w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center hover:bg-secondary transition-colors active:scale-95 duration-150 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">arrow_upward</span>
+</button>
+</div>
+</div>
+<!-- BottomNavBar Component (from Shared Components JSON) -->
+<!-- Semantic Lock: Active destination is 'Assistant' because this is the conversational image search screen -->
+<nav class="flex justify-around items-center px-space-xs py-1.5 pb-2">
+<!-- Destination 1: Assistant (Active) -->
+<button class="flex flex-col items-center justify-center text-primary font-semibold py-1 px-3 rounded-full bg-secondary-container/40 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="text-label-sm font-label-sm">Assistant</span>
+</button>
+<!-- Destination 2: Pantry (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant py-1 px-3 hover:text-primary transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+<span class="text-label-sm font-label-sm">Pantry</span>
+</button>
+<!-- Destination 3: Recipes (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant py-1 px-3 hover:text-primary transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span class="text-label-sm font-label-sm">Recipes</span>
+</button>
+<!-- Destination 4: Cart (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant py-1 px-3 hover:text-primary transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+<span class="text-label-sm font-label-sm">Cart</span>
+</button>
+</nav>
+</div>
+</div>
+
+
+</body></html>

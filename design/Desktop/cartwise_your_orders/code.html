@@ -1,0 +1,481 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Orders — CartWise</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "surface-container": "#efeeea",
+            "surface-bright": "#fbf9f5",
+            "primary-fixed-dim": "#9ed1bd",
+            "on-tertiary-container": "#ff993b",
+            "on-primary-fixed": "#002117",
+            "on-tertiary-fixed": "#2f1500",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "surface-container-low": "#f5f3ef",
+            "on-secondary-container": "#23714c",
+            "outline": "#707974",
+            "on-primary-fixed-variant": "#1d4f40",
+            "on-background": "#1b1c1a",
+            "on-secondary-fixed-variant": "#005232",
+            "surface": "#fbf9f5",
+            "on-tertiary": "#ffffff",
+            "on-surface-variant": "#404945",
+            "inverse-on-surface": "#f2f0ed",
+            "secondary-fixed": "#a5f3c4",
+            "surface-container-high": "#eae8e4",
+            "surface-container-highest": "#e4e2de",
+            "secondary-container": "#a5f3c4",
+            "error": "#ba1a1a",
+            "on-secondary-fixed": "#002111",
+            "on-error-container": "#93000a",
+            "tertiary": "#4a2500",
+            "on-surface": "#1b1c1a",
+            "on-secondary": "#ffffff",
+            "outline-variant": "#c0c9c3",
+            "surface-tint": "#376757",
+            "inverse-primary": "#9ed1bd",
+            "tertiary-fixed": "#ffdcc3",
+            "tertiary-container": "#6b3700",
+            "secondary-fixed-dim": "#8ad7aa",
+            "background": "#fbf9f5",
+            "surface-container-lowest": "#ffffff",
+            "primary-fixed": "#baeed9",
+            "surface-variant": "#e4e2de",
+            "inverse-surface": "#30312e",
+            "primary-container": "#1b4d3e",
+            "on-primary-container": "#8abda9",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "surface-dim": "#dbdad6",
+            "primary": "#003629",
+            "tertiary-fixed-dim": "#ffb77d",
+            "secondary": "#1b6b47"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+            "gutter": "1.25rem",
+            "gutter-desktop": "2rem",
+            "margin": "1rem",
+            "margin-tablet": "2rem",
+            "margin-desktop": "3rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen font-body-md antialiased flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TOP NAV BAR (Shared Component: TopNavBar with active 'Orders') -->
+<header class="w-full sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant/40 shadow-[0_4px_16px_-2px_rgba(27,77,62,0.04)]">
+<div class="w-full flex items-center justify-between px-space-md md:px-gutter-desktop h-16 max-w-[1440px] mx-auto">
+<!-- Brand Logo Cluster -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 group cursor-pointer focus:outline-none" href="#">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<span class="text-headline-md font-headline-md font-bold text-primary tracking-tight">CartWise</span>
+</a>
+<!-- Desktop Navigation Links -->
+<nav class="hidden md:flex items-center gap-6 pt-1">
+<!-- Chat (Inactive) -->
+<a class="text-on-surface-variant font-label-lg text-label-lg font-medium hover:text-on-surface transition-colors pb-1 border-b-2 border-transparent hover:border-outline-variant/50" href="#">
+            Chat
+          </a>
+<!-- Orders (Active - Lock to Destination) -->
+<a class="text-primary font-label-lg text-label-lg font-semibold border-b-2 border-primary pb-1" href="#">
+            Orders
+          </a>
+</nav>
+</div>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-3">
+<!-- New chat button -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-secondary transition-all active:scale-[0.98] cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="">New chat</span>
+</button>
+<!-- Shopping Cart Icon with Badge -->
+<button aria-label="Shopping Cart" class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[22px]">shopping_cart</span>
+<span class="absolute top-1 right-1 flex items-center justify-center w-4 h-4 bg-tertiary-container text-on-primary text-[10px] font-bold rounded-full">
+            3
+          </span>
+</button>
+<!-- Account Silhouette -->
+<button aria-label="Account Profile" class="p-1 rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[26px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN CANVAS -->
+<main class="flex-1 w-full max-w-5xl mx-auto px-6 py-8">
+<!-- REORDER NOTIFICATION TOAST -->
+<div class="mb-6 flex items-center justify-between p-3 px-4 rounded-xl bg-secondary-container/30 border border-secondary/30 text-on-background shadow-[0_2px_8px_-1px_rgba(27,77,62,0.06)] animate-in fade-in duration-200" id="reorder-toast">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-body-md font-body-md font-medium text-on-background">3 items added to cart</span>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-label-lg font-label-lg text-secondary font-semibold hover:underline" href="#">View cart</a>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded-md cursor-pointer inline-flex items-center" onclick="document.getElementById('reorder-toast').remove()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- HEADER & VIEW STATE TOGGLE (Orders vs Empty State) -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<div>
+<h1 class="text-headline-lg font-headline-lg font-bold text-on-background tracking-tight">Your orders</h1>
+</div>
+<!-- State Toggle button to satisfy requirements for interactive empty state preview -->
+<div class="flex items-center bg-surface-container-high p-1 rounded-lg self-start sm:self-auto text-label-sm font-label-sm">
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-on-surface font-semibold shadow-xs transition-all" id="tab-orders" onclick="toggleOrdersView('orders')">
+          Active view (3)
+        </button>
+<button class="px-3 py-1 rounded text-on-surface-variant font-medium hover:text-on-surface transition-all" id="tab-empty" onclick="toggleOrdersView('empty')">
+          Empty preview
+        </button>
+</div>
+</div>
+<!-- SEARCH & FILTER BAR -->
+<div class="flex flex-col md:flex-row items-stretch md:items-center gap-3 mb-6" id="controls-section">
+<!-- Search Field -->
+<div class="relative flex-1">
+<span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="w-full h-11 pl-10 pr-4 rounded-lg bg-surface-container-lowest border border-outline-variant/60 text-on-surface text-body-md font-body-md placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all" placeholder="Search by product or order number" type="text">
+</div>
+<!-- Filter Chips Row -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
+<!-- All Chip (Active) -->
+<button class="inline-flex items-center px-4 py-1.5 rounded-full bg-primary text-on-primary text-label-md font-label-md transition-colors cursor-pointer" type="button">
+          All
+        </button>
+<!-- Delivered Chip -->
+<button class="inline-flex items-center px-4 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/60 text-on-surface-variant hover:bg-surface-container-low text-label-md font-label-md transition-colors cursor-pointer" type="button">
+          Delivered
+        </button>
+<!-- In transit Chip -->
+<button class="inline-flex items-center px-4 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/60 text-on-surface-variant hover:bg-surface-container-low text-label-md font-label-md transition-colors cursor-pointer" type="button">
+          In transit
+        </button>
+</div>
+</div>
+<!-- ORDERS CONTAINER -->
+<div class="space-y-5" id="orders-list">
+<!-- ORDER 1: #1041 (Delivered) -->
+<article class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-5 md:p-6 shadow-[0_4px_16px_-2px_rgba(27,77,62,0.03)] hover:border-outline-variant transition-all">
+<!-- Card Header -->
+<div class="flex items-center justify-between pb-4 border-b border-surface-container">
+<div class="flex items-center gap-3">
+<h2 class="text-headline-sm font-headline-sm font-semibold text-on-background">Order #1041</h2>
+<span class="text-body-sm font-body-sm text-on-surface-variant">28 Sep</span>
+</div>
+<!-- Delivered Pill -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container text-label-md font-label-md font-semibold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="">Delivered</span>
+</div>
+</div>
+<!-- Items List -->
+<div class="py-4 divide-y divide-surface-container">
+<!-- Item 1 -->
+<div class="py-3 flex items-center justify-between first:pt-0 last:pb-0">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0 border border-outline-variant/30 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Close up photograph of whole organic raw almonds presented in an artisanal ceramic bowl bathed in soft morning natural daylight, highlighting tactile textures in warm earth tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy6D4bSm2hHsNWC8k33qjUB7_2IC625HzlHIXMXQh97nP_v3Q5hXS6YhF91v59An27Z30Hk3ziCLJJ0EaThi9YHX9jP--lJf32kkCSfeRzpdMgBOg3G8w29VDH7j0XwVG-gumvaY-gOfz2Nc53uLhrfvlkF6HU66XRdl__uio_RDsBNsAdqizdirM9blRjSrG4uPqkPofteqMpYsKtOFiL-1YCgMQopXNNKBKgLaq1dU5QTU2_4G_g">
+</div>
+<div>
+<p class="text-label-lg font-label-lg text-on-surface">Organic Almonds</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Qty: 1</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-lg font-label-lg text-on-surface font-semibold">₹11.99</span>
+<span class="block text-body-sm font-body-sm text-on-surface-variant">x1</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="py-3 flex items-center justify-between first:pt-0 last:pb-0">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0 border border-outline-variant/30 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A clean top-down view of organic black chia seeds neatly piled on a clean white surface with minimal styling and organic kitchen warmth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsnWItV2Zn0HeNg4gt_lOmGnHVcTh0-Hb7GahvYEn3HU0kQgj1awlVwlobb8tnt-wb57J0gu8l5Fusjat2zg6Br3BooLXuFRYzJaRTDelhyW0bIpVIW7BFi4JE3u9UlQfQTHDY8lKO1Cy9v6IRv-P01Yp6QT33CkI3z3NN0sO4ZS7qLFl9pG-JSM-_NDpec6NF-YPLfd4-5g6reVQ-cMugCHBX26aXojOZEEJ_kIAh4EgSiFa3XZbM">
+</div>
+<div>
+<p class="text-label-lg font-label-lg text-on-surface">Organic Chia Seeds</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Qty: 1</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-lg font-label-lg text-on-surface font-semibold">₹8.49</span>
+<span class="block text-body-sm font-body-sm text-on-surface-variant">x1</span>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="pt-4 mt-2 border-t border-surface-container flex items-center justify-between">
+<div class="flex items-baseline gap-2">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Total</span>
+<span class="text-headline-sm font-headline-sm font-bold text-on-background">₹20.48</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-label-lg font-label-lg font-semibold text-secondary hover:text-primary transition-colors cursor-pointer px-2 py-1" type="button">
+              View details
+            </button>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-primary text-primary font-label-lg text-label-lg hover:bg-surface-container-low transition-colors cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+<span class="">Reorder</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ORDER 2: #1040 (In transit) - EXPANDED VIEW DETAILS -->
+<article class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-5 md:p-6 shadow-[0_4px_16px_-2px_rgba(27,77,62,0.03)] ring-1 ring-primary/10">
+<!-- Card Header -->
+<div class="flex items-center justify-between pb-4 border-b border-surface-container">
+<div class="flex items-center gap-3">
+<h2 class="text-headline-sm font-headline-sm font-semibold text-on-background">Order #1040</h2>
+<span class="text-body-sm font-body-sm text-on-surface-variant">25 Sep</span>
+</div>
+<!-- In Transit Pill -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed/60 text-tertiary font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+<span class="">In transit</span>
+</div>
+</div>
+<!-- Items List -->
+<div class="py-4 divide-y divide-surface-container">
+<!-- Item 1 -->
+<div class="py-3 flex items-center justify-between first:pt-0 last:pb-0">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0 border border-outline-variant/30 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Loose leaf organic whole Japanese green tea leaves displayed in an authentic clay craft bowl under pure soft daylight with natural shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1uNcE9gsCmFYwxKeRzpIhnrbs82HA1Wtbn1JCXL8h-Y-kPAM1rYOyJNj-7KKN-4ue23zo_XDx7KBjvyAJQZRMMUvBM6w8HDBqv4pRxVN_H_Hw54rRgvajOAqPbresMFUnzbiGfvQJzspKGENGnVjM5x8fv92_hLuDwsF-N7gim3DwI_PZnDOubHCb3soJl2azjsIqJePXhSLd-NbJGL_36XlwUKYpUTGbqc-IUzFs_MnsrCWzRAsd">
+</div>
+<div>
+<p class="text-label-lg font-label-lg text-on-surface">Organic Green Tea</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Qty: 1</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-lg font-label-lg text-on-surface font-semibold">₹12.99</span>
+<span class="block text-body-sm font-body-sm text-on-surface-variant">x1</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="py-3 flex items-center justify-between first:pt-0 last:pb-0">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0 border border-outline-variant/30 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Dried whole chamomile flowers in a simple ceramic cup, botanical wellness aesthetic with warm ambient daylight and subtle depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-Ies88la5PIsy7s3BtEwB81wreM4MIf_OyYrE3znZ3ydKJ7jTcbBfG9EG38k8zaPuglwp7p0-_3xB0c1z1jk7vbaNT7wskQxtH_-aOZOYTzbQSrEBcPStEjKt4UQzy6DOPo8OOz3O-mcRrYTnN1zywXoadP4d3qk_8orvijoKQjvRCpY6qh49zTE_TXtmmfkgH0E-joJSqzaa_RsFSSAfJtVZowmjXHIujJ0Wv-D4zrkI4FpUCo_G">
+</div>
+<div>
+<p class="text-label-lg font-label-lg text-on-surface">Chamomile Tea</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Qty: 1</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-lg font-label-lg text-on-surface font-semibold">₹8.99</span>
+<span class="block text-body-sm font-body-sm text-on-surface-variant">x1</span>
+</div>
+</div>
+</div>
+<!-- Inline Expanded Details View -->
+<div class="mt-3 p-4 rounded-xl bg-surface-container-low/70 border border-outline-variant/30 space-y-3">
+<div class="flex items-center justify-between text-label-md font-label-md font-semibold text-on-surface-variant">
+<span class="">Itemized Breakdown</span>
+<span class="">Subtotal</span>
+</div>
+<div class="space-y-1.5 border-b border-outline-variant/30 pb-3 text-body-sm font-body-sm">
+<div class="flex justify-between text-on-surface">
+<span class="">Organic Green Tea (x1)</span>
+<span class="">₹12.99</span>
+</div>
+<div class="flex justify-between text-on-surface">
+<span class="">Chamomile Tea (x1)</span>
+<span class="">₹8.99</span>
+</div>
+</div>
+<div class="flex justify-between items-center text-body-md font-body-md font-semibold text-on-surface pt-1">
+<span class="">Items total</span>
+<span class="text-headline-sm font-headline-sm font-bold text-primary">₹21.98</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="pt-4 mt-3 border-t border-surface-container flex items-center justify-between">
+<div class="flex items-baseline gap-2">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Total</span>
+<span class="text-headline-sm font-headline-sm font-bold text-on-background">₹21.98</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-label-lg font-label-lg font-semibold text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer px-2 py-1" type="button">
+              Hide details
+            </button>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-secondary transition-colors cursor-pointer shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+<span class="">Reorder</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ORDER 3: #1039 (Delivered) -->
+<article class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-5 md:p-6 shadow-[0_4px_16px_-2px_rgba(27,77,62,0.03)] hover:border-outline-variant transition-all">
+<!-- Card Header -->
+<div class="flex items-center justify-between pb-4 border-b border-surface-container">
+<div class="flex items-center gap-3">
+<h2 class="text-headline-sm font-headline-sm font-semibold text-on-background">Order #1039</h2>
+<span class="text-body-sm font-body-sm text-on-surface-variant">20 Sep</span>
+</div>
+<!-- Delivered Pill -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container text-label-md font-label-md font-semibold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="">Delivered</span>
+</div>
+</div>
+<!-- Items List -->
+<div class="py-4 divide-y divide-surface-container">
+<!-- Item 1 -->
+<div class="py-3 flex items-center justify-between first:pt-0 last:pb-0">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0 border border-outline-variant/30 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A jar of raw organic golden amber wildflower honey surrounded by natural elements in calm serene botanical sunlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9dV9YS9ZV4gZCGP3qT5XL7HOaNWutZHcvwQwamtiYH3p33eCL_MQrxwutO6qor69CI_U1uFxTKLiGnZ5x-L8OzAX_AZ2c2k7A2-jApnHyu-Tau2ySpVBwCdDmy9ef0c5nmcd1kj7p7C6_JxgVCjJ0s8B1kENgPKzTJhFzOnIAOPM5jutLFm9er9Bl5U_ptsYcZG68HKMAtQdhaxUPHk7ubtT2CwydOMrkccvg3UIgnIJW6LkrCJzP">
+</div>
+<div>
+<p class="text-label-lg font-label-lg text-on-surface">Organic Raw Honey</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Qty: 1</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-lg font-label-lg text-on-surface font-semibold">₹14.99</span>
+<span class="block text-body-sm font-body-sm text-on-surface-variant">x1</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="py-3 flex items-center justify-between first:pt-0 last:pb-0">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0 border border-outline-variant/30 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Organic rolled whole oats spilling gently from an artisanal stoneware bowl, clean organic food photography with balanced soft natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-S0RcIxV3xZurEoU2-ui9pr-qj2TdNZU0nQ2vdI97zTdEGIf6LAbDhh7O-BpKXrgEniZO76UaGbTVqxWp4ApYB75tYfvwlldjc_jxk20mcAGhxTB-y9MrSnEwTRW2D2RjHuweNtvXVJh0CWlm_N-8uqRJgm0cs6Pea2YCRjLAi8XrQ_hZ38ZzEcg-2S06qB0JIm_afIqsXlN9Vb5pww_8CascosssHjFp4lnv5AF_YHvwKkb-YIBt">
+</div>
+<div>
+<p class="text-label-lg font-label-lg text-on-surface">Rolled Oats</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Qty: 2</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-lg font-label-lg text-on-surface font-semibold">₹5.49</span>
+<span class="block text-body-sm font-body-sm text-on-surface-variant">x2</span>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="pt-4 mt-2 border-t border-surface-container flex items-center justify-between">
+<div class="flex items-baseline gap-2">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Total</span>
+<span class="text-headline-sm font-headline-sm font-bold text-on-background">₹25.97</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-label-lg font-label-lg font-semibold text-secondary hover:text-primary transition-colors cursor-pointer px-2 py-1" type="button">
+              View details
+            </button>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-primary text-primary font-label-lg text-label-lg hover:bg-surface-container-low transition-colors cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+<span class="">Reorder</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- EMPTY STATE SECTION (Controlled by tab / toggle) -->
+<div class="hidden py-16 px-6 text-center bg-surface-container-lowest rounded-2xl border border-outline-variant/40 shadow-xs max-w-xl mx-auto" id="empty-state">
+<div class="w-16 h-16 rounded-full bg-surface-container-high mx-auto flex items-center justify-center text-outline mb-4">
+<span class="material-symbols-outlined text-[32px]">shopping_basket</span>
+</div>
+<h3 class="text-headline-md font-headline-md font-semibold text-on-surface mb-2">No orders yet</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6 max-w-sm mx-auto">
+        When you place an order, it will appear here.
+      </p>
+<a class="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-secondary transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span class="">Start shopping</span>
+</a>
+</div>
+</main>
+<script>
+    function toggleOrdersView(mode) {
+      const ordersList = document.getElementById('orders-list');
+      const emptyState = document.getElementById('empty-state');
+      const controls = document.getElementById('controls-section');
+      const tabOrders = document.getElementById('tab-orders');
+      const tabEmpty = document.getElementById('tab-empty');
+
+      if (mode === 'empty') {
+        ordersList.classList.add('hidden');
+        controls.classList.add('opacity-40', 'pointer-events-none');
+        emptyState.classList.remove('hidden');
+        
+        tabEmpty.classList.add('bg-surface-container-lowest', 'text-on-surface', 'font-semibold', 'shadow-xs');
+        tabEmpty.classList.remove('text-on-surface-variant', 'font-medium');
+        tabOrders.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'font-semibold', 'shadow-xs');
+        tabOrders.classList.add('text-on-surface-variant', 'font-medium');
+      } else {
+        ordersList.classList.remove('hidden');
+        controls.classList.remove('opacity-40', 'pointer-events-none');
+        emptyState.classList.add('hidden');
+
+        tabOrders.classList.add('bg-surface-container-lowest', 'text-on-surface', 'font-semibold', 'shadow-xs');
+        tabOrders.classList.remove('text-on-surface-variant', 'font-medium');
+        tabEmpty.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'font-semibold', 'shadow-xs');
+        tabEmpty.classList.add('text-on-surface-variant', 'font-medium');
+      }
+    }
+  </script>
+
+
+</body></html>

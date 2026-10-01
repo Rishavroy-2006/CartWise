@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CartWise Mobile App - AI Chat &amp; Product Results</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#a5f3c4",
+            "error": "#ba1a1a",
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "outline-variant": "#c0c9c3",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed": "#ffdcc3",
+            "surface-container-low": "#f5f3ef",
+            "on-tertiary-container": "#ff993b",
+            "secondary-fixed-dim": "#8ad7aa",
+            "primary-fixed": "#baeed9",
+            "tertiary": "#4a2500",
+            "surface-container-lowest": "#ffffff",
+            "on-error": "#ffffff",
+            "on-secondary-container": "#23714c",
+            "surface-bright": "#fbf9f5",
+            "surface-dim": "#dbdad6",
+            "surface-container-high": "#eae8e4",
+            "inverse-on-surface": "#f2f0ed",
+            "primary-fixed-dim": "#9ed1bd",
+            "on-surface-variant": "#404945",
+            "on-background": "#1b1c1a",
+            "on-primary-container": "#8abda9",
+            "surface-container": "#efeeea",
+            "surface-variant": "#e4e2de",
+            "secondary": "#1b6b47",
+            "on-primary-fixed": "#002117",
+            "inverse-primary": "#9ed1bd",
+            "on-secondary-fixed-variant": "#005232",
+            "on-surface": "#1b1c1a",
+            "on-secondary-fixed": "#002111",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed-variant": "#6e3900",
+            "on-primary-fixed-variant": "#1d4f40",
+            "surface-container-highest": "#e4e2de",
+            "surface": "#fbf9f5",
+            "surface-tint": "#376757",
+            "primary": "#003629",
+            "tertiary-fixed-dim": "#ffb77d",
+            "secondary-fixed": "#a5f3c4",
+            "tertiary-container": "#6b3700",
+            "inverse-surface": "#30312e",
+            "primary-container": "#1b4d3e",
+            "on-tertiary-fixed": "#2f1500",
+            "background": "#fbf9f5",
+            "outline": "#707974",
+            "on-secondary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "margin-desktop": "3rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "margin": "1rem",
+            "gutter-desktop": "2rem",
+            "gutter": "1.25rem",
+            "space-lg": "1.5rem",
+            "margin-tablet": "2rem"
+          },
+          "fontFamily": {
+            "label-lg": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["15px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .botanical-shadow {
+      box-shadow: 0 4px 16px -2px rgba(27, 77, 62, 0.05), 0 2px 6px -1px rgba(27, 77, 62, 0.02);
+    }
+    .floating-pill-shadow {
+      box-shadow: 0 12px 32px -4px rgba(27, 77, 62, 0.16), 0 4px 12px -2px rgba(27, 77, 62, 0.08);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-container-high text-on-surface antialiased min-h-screen flex justify-center selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Mobile Viewport Wrapper (~390px phone container) -->
+<div class="w-full max-w-[420px] bg-background min-h-screen flex flex-col relative shadow-2xl overflow-x-hidden border-x border-outline-variant/30">
+<!-- Mobile Top App Bar (Docked full-width top, subtle drop shadow, no harsh border) -->
+<header class="sticky top-0 z-40 bg-surface/95 backdrop-blur-md shadow-sm transition-colors"><div class="flex items-center justify-between px-4 h-14 relative"><button aria-label="Menu" class="w-9 h-9 rounded-full flex items-center justify-center text-primary hover:bg-surface-container transition-colors active:scale-95" type="button"><span class="material-symbols-outlined text-2xl">menu</span></button><div class="flex items-center gap-1.5 absolute left-1/2 -translate-x-1/2"><span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">eco</span><h1 class="font-headline-sm text-lg font-bold text-primary tracking-tight leading-none">CartWise</h1></div><button aria-label="Cart" class="relative w-9 h-9 rounded-full flex items-center justify-center text-primary hover:bg-surface-container transition-colors active:scale-95" type="button"><span class="material-symbols-outlined text-2xl">shopping_bag</span><span class="absolute top-1 right-0.5 min-w-[17px] h-[17px] px-1 bg-tertiary-container text-on-tertiary rounded-full font-label-sm text-[10px] font-bold flex items-center justify-center shadow-sm">3</span></button></div></header>
+<!-- Main Scrollable Chat & Feed Content Canvas -->
+<main class="flex-1 px-4 pt-3 space-y-4 overflow-y-auto no-scrollbar"><div class="flex justify-center my-1"><span class="font-label-sm text-[11px] text-on-surface-variant/80 bg-surface-container px-3 py-0.5 rounded-full font-medium">Today</span></div><div class="flex justify-end pl-10"><div class="bg-surface border border-outline-variant/70 rounded-2xl rounded-br-[4px] p-3 shadow-sm text-right" style="background-color: #f2f8f4;"><p class="font-body-md text-sm text-on-surface font-medium leading-relaxed">"I want organic honey with 4.5+ rating under $20"</p><div class="flex items-center justify-end gap-1 mt-1 text-on-surface-variant/70"><span class="font-label-sm text-[10px]">10:24 AM</span><span class="material-symbols-outlined text-xs text-secondary font-bold">done_all</span></div></div></div><div class="bg-surface-container-low border border-outline-variant/60 rounded-xl p-2.5"><details class="group"><summary class="flex items-center justify-between cursor-pointer list-none"><span class="font-label-sm text-xs text-on-surface-variant font-medium flex items-center gap-1"><span class="material-symbols-outlined text-sm text-secondary">check_circle</span>Searched in 3 steps · 1.4s</span><span class="material-symbols-outlined text-sm text-on-surface-variant transition-transform group-open:rotate-180">expand_more</span></summary><div class="mt-2 pt-2 border-t border-outline-variant/40 space-y-1 font-body-sm text-xs text-on-surface-variant"><div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>1. Understand request</div><div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>2. Search products</div><div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>3. Summarize reviews</div></div></details></div><div class="flex items-start gap-2.5"><div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0 mt-0.5"><span class="material-symbols-outlined text-base">eco</span></div><div class="bg-surface-container-lowest border border-outline-variant/60 rounded-2xl rounded-tl-[4px] px-3.5 py-2.5 shadow-sm"><p class="font-body-md text-sm text-on-surface">I found 3 organic honeys that match.</p></div></div><div class="-mx-4 px-4 overflow-x-auto no-scrollbar flex gap-3 pt-1 pb-1"><div class="w-[85vw] max-w-[310px] flex-shrink-0 bg-surface-container-lowest border border-outline-variant/70 rounded-2xl overflow-hidden p-3 shadow-sm flex flex-col justify-between"><div class="space-y-2.5"><div class="w-full h-36 rounded-xl overflow-hidden bg-surface-container border border-outline-variant/40"><img alt="Organic Acacia Honey" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp7x8ZUT6ft8jKOppECFbKrXpPkTKDdWybvF7fbrIwVsxmAxWVhCCTV-4I8r0rpAwAsZSgEp0ORnFDH3JBkDwFs_JqkDEfcSIfi1hzArMYIrFA_2Uta2aK28cj_BsFDnGM_CuXQdpd41dQjD7RX18MA0gwVppiQN-wpXWEVhgC4oAsBLXIIQ2YdYbRwDxYmSy1sfzneJxOMbiRBzD_FSMj-_mGhtRCJ_W6jtaL1zjYDVAgTKp0mOUz"/></div><div class="flex items-center gap-1.5"><span class="bg-secondary-container text-on-secondary-container text-[11px] font-label-sm font-semibold px-2 py-0.5 rounded-full">Organic</span><span class="bg-tertiary-fixed text-on-tertiary-fixed text-[11px] font-label-sm font-semibold px-2 py-0.5 rounded-full">Top rated</span><span class="text-[11px] font-label-sm text-secondary font-medium ml-auto flex items-center gap-0.5"><span class="material-symbols-outlined text-xs">check</span>In stock</span></div><div><h3 class="font-headline-sm text-base font-bold text-primary leading-snug">Organic Acacia Honey</h3><div class="flex items-center gap-1 mt-0.5 text-on-surface-variant"><span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span><span class="font-label-md text-xs font-bold text-on-surface">4.8</span><span class="font-body-sm text-xs text-outline">(4 reviews)</span></div></div><div class="bg-surface-container-low rounded-lg p-2 border border-outline-variant/40"><p class="font-body-sm text-xs text-on-surface-variant leading-snug"><strong class="font-semibold text-primary">AI Review:</strong> "Mild, pure taste"</p></div></div><div class="mt-3 pt-2 border-t border-outline-variant/30 space-y-2"><div class="font-headline-sm text-lg font-extrabold text-primary">$17.99</div><div class="grid grid-cols-2 gap-2"><button class="w-full py-2 px-2 rounded-lg border border-primary text-primary font-label-md text-xs font-bold flex items-center justify-center gap-1 hover:bg-surface-container active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-base">add_shopping_cart</span>Add to cart</button><button class="w-full py-2 px-2 rounded-lg bg-primary text-on-primary font-label-md text-xs font-bold flex items-center justify-center gap-1 hover:opacity-95 active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-base">bolt</span>Buy now</button></div></div></div><div class="w-[85vw] max-w-[310px] flex-shrink-0 bg-surface-container-lowest border border-outline-variant/70 rounded-2xl overflow-hidden p-3 shadow-sm flex flex-col justify-between"><div class="space-y-2.5"><div class="w-full h-36 rounded-xl overflow-hidden bg-surface-container border border-outline-variant/40"><img alt="Organic Raw Honey" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVgBmzUSzxeVtx3on0vuyWoVXPPQ9NSma2-kkNokidEtY9D5_3jWwl8SfzI-_8_CEdm8FOzVJod1fn2HshFdJ8Ho45GCtZ6DVboEHDuLz70ORMv_YNFz6j_9X5fU0MKfQuo72-x6pcPFf1IPuqct0rueisYsRshXpwCNOiG89_PDk5l6UsMhEv6bnscKLmNDwbH1qaoyucMFzPsGUnx-qbR2uKdSKAXaHt5DH4-Nij3cz1g6WsLiUw"/></div><div class="flex items-center gap-1.5"><span class="bg-secondary-container text-on-secondary-container text-[11px] font-label-sm font-semibold px-2 py-0.5 rounded-full">Organic</span><span class="bg-surface-container text-on-surface-variant text-[11px] font-label-sm font-semibold px-2 py-0.5 rounded-full">Lowest price</span><span class="text-[11px] font-label-sm text-secondary font-medium ml-auto flex items-center gap-0.5"><span class="material-symbols-outlined text-xs">check</span>In stock</span></div><div><h3 class="font-headline-sm text-base font-bold text-primary leading-snug">Organic Raw Honey</h3><div class="flex items-center gap-1 mt-0.5 text-on-surface-variant"><span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span><span class="font-label-md text-xs font-bold text-on-surface">4.6</span><span class="font-body-sm text-xs text-outline">(4 reviews)</span></div></div><div class="bg-surface-container-low rounded-lg p-2 border border-outline-variant/40"><p class="font-body-sm text-xs text-on-surface-variant leading-snug"><strong class="font-semibold text-primary">AI Review:</strong> "Unfiltered, very pure flavor"</p></div></div><div class="mt-3 pt-2 border-t border-outline-variant/30 space-y-2"><div class="font-headline-sm text-lg font-extrabold text-primary">$14.99</div><div class="grid grid-cols-2 gap-2"><button class="w-full py-2 px-2 rounded-lg border border-primary text-primary font-label-md text-xs font-bold flex items-center justify-center gap-1 hover:bg-surface-container active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-base">add_shopping_cart</span>Add to cart</button><button class="w-full py-2 px-2 rounded-lg bg-primary text-on-primary font-label-md text-xs font-bold flex items-center justify-center gap-1 hover:opacity-95 active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-base">bolt</span>Buy now</button></div></div></div><div class="w-[85vw] max-w-[310px] flex-shrink-0 bg-surface-container-lowest border border-outline-variant/70 rounded-2xl overflow-hidden p-3 shadow-sm flex flex-col justify-between"><div class="space-y-2.5"><div class="w-full h-36 rounded-xl overflow-hidden bg-surface-container border border-outline-variant/40"><img alt="Organic Buckwheat Honey" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcgiy-SZhXECudtT-miqkaQWADnckdD6MdqUkUblBA6hLS8Gh7tb8SGXNAIHopcmr-l8rEQ91vbR60XNtkQBA_tPZsoKDvVebibiFa4ZgWjLN3nhhcp51qlv0Y6wzhnh7j1o4mJV66Hr9O9v2cDQQbH_e0u_bVIdLLkxVdHxnJfgcIGldNAQilcNd-IXwoPpwofmIvqFc2YnfQvcku_57xXpx_wsY6TpzVvsL2JqF4G-gR_JWl60Ki"/></div><div class="flex items-center gap-1.5"><span class="bg-secondary-container text-on-secondary-container text-[11px] font-label-sm font-semibold px-2 py-0.5 rounded-full">Organic</span><span class="text-[11px] font-label-sm text-secondary font-medium ml-auto flex items-center gap-0.5"><span class="material-symbols-outlined text-xs">check</span>In stock</span></div><div><h3 class="font-headline-sm text-base font-bold text-primary leading-snug">Organic Buckwheat Honey</h3><div class="flex items-center gap-1 mt-0.5 text-on-surface-variant"><span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span><span class="font-label-md text-xs font-bold text-on-surface">4.6</span><span class="font-body-sm text-xs text-outline">(4 reviews)</span></div></div><div class="bg-surface-container-low rounded-lg p-2 border border-outline-variant/40"><p class="font-body-sm text-xs text-on-surface-variant leading-snug"><strong class="font-semibold text-primary">AI Review:</strong> "Rich and dark, great in tea"</p></div></div><div class="mt-3 pt-2 border-t border-outline-variant/30 space-y-2"><div class="font-headline-sm text-lg font-extrabold text-primary">$18.99</div><div class="grid grid-cols-2 gap-2"><button class="w-full py-2 px-2 rounded-lg border border-primary text-primary font-label-md text-xs font-bold flex items-center justify-center gap-1 hover:bg-surface-container active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-base">add_shopping_cart</span>Add to cart</button><button class="w-full py-2 px-2 rounded-lg bg-primary text-on-primary font-label-md text-xs font-bold flex items-center justify-center gap-1 hover:opacity-95 active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-base">bolt</span>Buy now</button></div></div></div></div><div class="flex justify-center items-center gap-1.5 py-1"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span><span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span></div><div class="pt-1"><div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1"><button class="flex-shrink-0 flex items-center gap-1.5 bg-surface-container-lowest border border-outline-variant/80 hover:border-primary text-primary px-3.5 py-1.5 rounded-full font-label-md text-xs font-semibold transition-all active:scale-95 shadow-sm" type="button"><span class="material-symbols-outlined text-sm text-secondary">compare_arrows</span>Compare these</button><button class="flex-shrink-0 flex items-center gap-1.5 bg-surface-container-lowest border border-outline-variant/80 hover:border-primary text-on-surface-variant px-3.5 py-1.5 rounded-full font-label-md text-xs font-semibold transition-all active:scale-95 shadow-sm" type="button"><span class="material-symbols-outlined text-sm text-secondary">payments</span>Show cheaper</button><button class="flex-shrink-0 flex items-center gap-1.5 bg-surface-container-lowest border border-outline-variant/80 hover:border-primary text-on-surface-variant px-3.5 py-1.5 rounded-full font-label-md text-xs font-semibold transition-all active:scale-95 shadow-sm" type="button"><span class="material-symbols-outlined text-sm text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>Only 4.7+</button></div></div></main>
+<!-- Floating Persistent Cart Pill Indicator ($50.97 • 3 items) -->
+<!-- Fixed Bottom Mobile Chat Input Bar -->
+<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 z-40 w-full max-w-[420px] bg-surface/95 backdrop-blur-lg border-t border-outline-variant/40 px-3 py-2.5"><div class="flex items-center gap-2"><button aria-label="Upload pantry photo" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container active:scale-95 transition-all flex-shrink-0" type="button"><span class="material-symbols-outlined text-xl">photo_camera</span></button><div class="flex-1 relative flex items-center"><input class="w-full h-11 bg-surface-container-lowest border border-outline-variant rounded-full pl-4 pr-11 text-on-surface font-body-md text-sm placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition-all" placeholder="Ask CartWise or upload a photo..." type="text"/><button aria-label="Send message" class="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center hover:opacity-90 active:scale-95 transition-all shadow-sm" type="button"><span class="material-symbols-outlined text-base font-bold">arrow_upward</span></button></div></div></footer><div class="absolute inset-0 z-50 overflow-hidden flex"><div class="absolute inset-0 bg-black/50 backdrop-blur-[2px] transition-opacity"></div><aside aria-label="Navigation menu" class="relative w-4/5 max-w-[300px] h-full bg-surface shadow-2xl border-r border-outline-variant/40 flex flex-col justify-between z-10"><div class="p-4 flex flex-col gap-6"><div class="flex items-center justify-between border-b border-outline-variant/30 pb-3"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">eco</span><span class="font-headline-sm text-lg font-bold text-primary tracking-tight leading-none">CartWise</span></div><button aria-label="Close menu" class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors active:scale-95" type="button"><span class="material-symbols-outlined text-xl">close</span></button></div><nav class="space-y-1.5"><button class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border border-outline-variant/60 hover:bg-surface-container text-primary font-label-md text-sm font-semibold transition-all active:scale-95" type="button"><span class="material-symbols-outlined text-xl text-primary">add_comment</span><span>New chat</span></button><button class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container font-label-md text-sm font-semibold transition-all" type="button"><span class="material-symbols-outlined text-xl text-secondary" style="font-variation-settings: 'FILL' 1;">chat_bubble</span><span>Chat</span></button><button class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface hover:bg-surface-container font-label-md text-sm font-medium transition-all" type="button"><span class="material-symbols-outlined text-xl text-on-surface-variant">receipt_long</span><span>Orders</span></button><div class="flex items-center justify-between px-3 py-2.5 rounded-xl text-on-surface hover:bg-surface-container transition-all"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-xl text-on-surface-variant">insights</span><span class="font-label-md text-sm font-medium">Agent Trace</span></div><button aria-checked="true" aria-label="Toggle Agent Trace" class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary transition-colors cursor-pointer" role="switch" type="button"><span class="inline-block h-4 w-4 transform rounded-full bg-on-primary transition-transform translate-x-6 shadow-sm"></span></button></div></nav></div><div class="p-4 border-t border-outline-variant/30 bg-surface-container-lowest/50"><button class="w-full flex items-center gap-3 px-2 py-2 rounded-xl text-on-surface hover:bg-surface-container transition-all text-left" type="button"><div class="w-9 h-9 rounded-full bg-surface-container-high border border-outline-variant/60 flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined text-xl">person</span></div><div class="flex flex-col min-w-0"><span class="font-label-md text-sm font-semibold text-on-surface truncate">Account</span><span class="font-body-sm text-xs text-on-surface-variant truncate">Manage settings</span></div></button></div></aside></div>
+</div>
+</body></html>

@@ -1,0 +1,33 @@
+# dependencies
+node_modules/
+/.pnp
+.pnp.*
+
+# Next.js build output
+.next/
+out/
+build/
+dist/
+
+# Databases & local state
+store.db
+store.db-journal
+*.sqlite
+*.sqlite3
+
+# Environment variables
+.env
+.env*.local
+
+# System & AI planning files
+.planning/
+AGENTS.md
+TASKS.md
+.DS_Store
+*.pem
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.next-development.log
